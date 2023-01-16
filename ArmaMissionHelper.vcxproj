@@ -166,6 +166,8 @@
     <ClInclude Include="cFileManager.h" />
     <ClInclude Include="cGui.h" />
     <ClInclude Include="cHelpers.h" />
+    <ClInclude Include="cLoadout.h" />
+    <ClInclude Include="cLoadoutPanel.h" />
     <ClInclude Include="cLoadScreen.h" />
     <ClInclude Include="cMain.h" />
     <ClInclude Include="cSettings.h" />
@@ -178,6 +180,8 @@
     <ClCompile Include="cFileManager.cpp" />
     <ClCompile Include="cGui.cpp" />
     <ClCompile Include="cHelpers.cpp" />
+    <ClCompile Include="cLoadout.cpp" />
+    <ClCompile Include="cLoadoutPanel.cpp" />
     <ClCompile Include="cLoadScreen.cpp" />
     <ClCompile Include="cMain.cpp" />
     <ClCompile Include="cMainEvents.cpp" />
