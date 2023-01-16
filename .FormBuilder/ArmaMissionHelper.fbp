@@ -47,7 +47,7 @@
             <property name="minimum_size"></property>
             <property name="name">mainFrame</property>
             <property name="pos"></property>
-            <property name="size">1296,720</property>
+            <property name="size">1314,720</property>
             <property name="style">wxDEFAULT_FRAME_STYLE</property>
             <property name="subclass">; ; forward_declare</property>
             <property name="title">Arma Mission Helper</property>
@@ -57,7 +57,7 @@
             <property name="window_name"></property>
             <property name="window_style">wxTAB_TRAVERSAL</property>
             <property name="xrc_skip_sizer">1</property>
-            <object class="wxMenuBar" expanded="1">
+            <object class="wxMenuBar" expanded="0">
                 <property name="bg"></property>
                 <property name="context_help"></property>
                 <property name="context_menu">1</property>
@@ -78,7 +78,7 @@
                 <property name="window_extra_style"></property>
                 <property name="window_name"></property>
                 <property name="window_style"></property>
-                <object class="wxMenu" expanded="1">
+                <object class="wxMenu" expanded="0">
                     <property name="label">File</property>
                     <property name="name">m_file</property>
                     <property name="permission">protected</property>
@@ -177,11 +177,11 @@
                         <event name="OnMenuSelection">exit</event>
                     </object>
                 </object>
-                <object class="wxMenu" expanded="1">
+                <object class="wxMenu" expanded="0">
                     <property name="label">Options</property>
                     <property name="name">m_options</property>
                     <property name="permission">protected</property>
-                    <object class="wxMenuItem" expanded="1">
+                    <object class="wxMenuItem" expanded="0">
                         <property name="bitmap"></property>
                         <property name="checked">0</property>
                         <property name="enabled">1</property>
@@ -5883,11 +5883,11 @@
                         </object>
                     </object>
                 </object>
-                <object class="notebookpage" expanded="1">
+                <object class="notebookpage" expanded="0">
                     <property name="bitmap"></property>
                     <property name="label">Respawn</property>
                     <property name="select">0</property>
-                    <object class="wxPanel" expanded="1">
+                    <object class="wxPanel" expanded="0">
                         <property name="BottomDockable">1</property>
                         <property name="LeftDockable">1</property>
                         <property name="RightDockable">1</property>
@@ -5938,7 +5938,7 @@
                         <property name="window_extra_style"></property>
                         <property name="window_name"></property>
                         <property name="window_style">wxTAB_TRAVERSAL</property>
-                        <object class="wxFlexGridSizer" expanded="1">
+                        <object class="wxFlexGridSizer" expanded="0">
                             <property name="cols">4</property>
                             <property name="flexible_direction">wxBOTH</property>
                             <property name="growablecols">3</property>
@@ -6140,7 +6140,7 @@
                                                 <property name="window_extra_style"></property>
                                                 <property name="window_name"></property>
                                                 <property name="window_style"></property>
-                                                <event name="OnSetFocus">respwanTypeFocus</event>
+                                                <event name="OnSetFocus">respawnTypeFocus</event>
                                             </object>
                                         </object>
                                         <object class="sizeritem" expanded="0">
@@ -6287,7 +6287,7 @@
                                                 <property name="caption"></property>
                                                 <property name="caption_visible">1</property>
                                                 <property name="center_pane">0</property>
-                                                <property name="checked">0</property>
+                                                <property name="checked">1</property>
                                                 <property name="close_button">1</property>
                                                 <property name="context_help"></property>
                                                 <property name="context_menu">1</property>
@@ -6351,7 +6351,7 @@
                                                 <property name="caption"></property>
                                                 <property name="caption_visible">1</property>
                                                 <property name="center_pane">0</property>
-                                                <property name="checked">0</property>
+                                                <property name="checked">1</property>
                                                 <property name="close_button">1</property>
                                                 <property name="context_help"></property>
                                                 <property name="context_menu">1</property>
@@ -6997,7 +6997,7 @@
                                                 <property name="pin_button">1</property>
                                                 <property name="pos"></property>
                                                 <property name="resize">Resizable</property>
-                                                <property name="selection">1</property>
+                                                <property name="selection">0</property>
                                                 <property name="show">1</property>
                                                 <property name="size"></property>
                                                 <property name="style"></property>
@@ -7220,7 +7220,7 @@
                                                 <property name="caption"></property>
                                                 <property name="caption_visible">1</property>
                                                 <property name="center_pane">0</property>
-                                                <property name="checked">0</property>
+                                                <property name="checked">1</property>
                                                 <property name="close_button">1</property>
                                                 <property name="context_help"></property>
                                                 <property name="context_menu">1</property>
@@ -7307,7 +7307,7 @@
                                                 <property name="minimize_button">0</property>
                                                 <property name="minimum_size"></property>
                                                 <property name="moveable">1</property>
-                                                <property name="name">m_reviveItem</property>
+                                                <property name="name">m_reviveItemTxt</property>
                                                 <property name="pane_border">1</property>
                                                 <property name="pane_position"></property>
                                                 <property name="pane_size"></property>
@@ -7510,7 +7510,7 @@
                                                 <property name="validator_style">wxFILTER_NONE</property>
                                                 <property name="validator_type">wxDefaultValidator</property>
                                                 <property name="validator_variable"></property>
-                                                <property name="value">10</property>
+                                                <property name="value">6</property>
                                                 <property name="window_extra_style"></property>
                                                 <property name="window_name"></property>
                                                 <property name="window_style"></property>
@@ -7760,7 +7760,7 @@
                                                 <property name="validator_style">wxFILTER_NONE</property>
                                                 <property name="validator_type">wxDefaultValidator</property>
                                                 <property name="validator_variable"></property>
-                                                <property name="value">5</property>
+                                                <property name="value">3</property>
                                                 <property name="window_extra_style"></property>
                                                 <property name="window_name"></property>
                                                 <property name="window_style"></property>
@@ -7885,7 +7885,7 @@
                                                 <property name="validator_style">wxFILTER_NONE</property>
                                                 <property name="validator_type">wxDefaultValidator</property>
                                                 <property name="validator_variable"></property>
-                                                <property name="value">300</property>
+                                                <property name="value">120</property>
                                                 <property name="window_extra_style"></property>
                                                 <property name="window_name"></property>
                                                 <property name="window_style"></property>
@@ -8711,11 +8711,11 @@
                                     </object>
                                 </object>
                             </object>
-                            <object class="sizeritem" expanded="1">
+                            <object class="sizeritem" expanded="0">
                                 <property name="border">5</property>
                                 <property name="flag">wxEXPAND | wxALL</property>
                                 <property name="proportion">1</property>
-                                <object class="wxNotebook" expanded="1">
+                                <object class="wxNotebook" expanded="0">
                                     <property name="BottomDockable">1</property>
                                     <property name="LeftDockable">1</property>
                                     <property name="RightDockable">1</property>
@@ -8768,11 +8768,11 @@
                                     <property name="window_extra_style"></property>
                                     <property name="window_name"></property>
                                     <property name="window_style"></property>
-                                    <object class="notebookpage" expanded="1">
+                                    <object class="notebookpage" expanded="0">
                                         <property name="bitmap"></property>
                                         <property name="label">Blufor1</property>
                                         <property name="select">0</property>
-                                        <object class="wxScrolledWindow" expanded="1">
+                                        <object class="wxScrolledWindow" expanded="0">
                                             <property name="BottomDockable">1</property>
                                             <property name="LeftDockable">1</property>
                                             <property name="RightDockable">1</property>
@@ -13817,7 +13817,7 @@
                 <property name="window_style"></property>
             </object>
         </object>
-        <object class="Panel" expanded="1">
+        <object class="Panel" expanded="0">
             <property name="aui_managed">0</property>
             <property name="aui_manager_style">wxAUI_MGR_DEFAULT</property>
             <property name="bg">192,192,192</property>
@@ -13840,16 +13840,16 @@
             <property name="window_extra_style"></property>
             <property name="window_name"></property>
             <property name="window_style">wxTAB_TRAVERSAL</property>
-            <object class="wxBoxSizer" expanded="1">
+            <object class="wxBoxSizer" expanded="0">
                 <property name="minimum_size"></property>
                 <property name="name">loadoutPanelSizer</property>
                 <property name="orient">wxVERTICAL</property>
                 <property name="permission">none</property>
-                <object class="sizeritem" expanded="1">
+                <object class="sizeritem" expanded="0">
                     <property name="border">5</property>
                     <property name="flag">wxEXPAND | wxALL</property>
                     <property name="proportion">1</property>
-                    <object class="wxScrolledWindow" expanded="1">
+                    <object class="wxScrolledWindow" expanded="0">
                         <property name="BottomDockable">1</property>
                         <property name="LeftDockable">1</property>
                         <property name="RightDockable">1</property>

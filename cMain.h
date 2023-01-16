@@ -53,6 +53,11 @@ protected:
 	void disableContextMenu(wxCommandEvent& event);
 	void onMissionBackground(wxFileDirPickerEvent& event) override;
 	void onMapBackground(wxFileDirPickerEvent& event) override;
+
+	void respawnDelaySliderUpdate(wxCommandEvent& event) override;
+	void respawnDelayUpdate(wxCommandEvent& event) override;
+	void vehRespawnDelaySliderUpdate(wxCommandEvent& event) override;
+	void vehRespawnDelayUpdate(wxCommandEvent& event) override;
 public:
 	/** Constructor */
 	cMain( wxWindow* parent );
@@ -96,6 +101,13 @@ public:
 
 	int getMinPlayerDistance();
 
+	bool getCompass();
+	bool getGPS();
+	bool getWatch();
+	bool getGroupInd();
+	bool getUAV();
+	bool getAiKills();
+
 	// Load Page Getters
 	wxString getMapName();
 	wxString getMapAuthor();
@@ -127,6 +139,13 @@ public:
 	void setWreckMaxTime(int num);
 
 	void setMinPlayerDistance(int num);
+
+	void setCompass(bool set);
+	void setGPS(bool set);
+	void setWatch(bool set);
+	void setGroupInd(bool set);
+	void setUAV(bool set);
+	void setAiKills(bool set);
 
 	// Load Screen Setters
 	void setMapName(wxString name);

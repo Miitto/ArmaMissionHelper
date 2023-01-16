@@ -242,3 +242,59 @@ void cMain::onMissionBackground(wxFileDirPickerEvent& event)
 		m_missionBackground->SetPath(path);
 	}
 }
+
+void cMain::respawnDelaySliderUpdate(wxCommandEvent& event)
+{
+	wxString sliderVal = wxString::Format(wxT("%i"), m_respawnDelaySlider->GetValue());
+	wxString txtVal = m_respawnDelay->GetValue();
+
+	if (sliderVal != txtVal) // Stop Infinite Event Generation
+	{
+		m_respawnDelay->SetValue(sliderVal);
+	}
+	event.Skip();
+}
+
+void cMain::vehRespawnDelaySliderUpdate(wxCommandEvent& event)
+{
+	wxString sliderVal = wxString::Format(wxT("%i"), m_vehRespawnDelaySlider->GetValue());
+	wxString txtVal = m_vehRespawnDelay->GetValue();
+
+	if (sliderVal != txtVal)
+	{
+		m_vehRespawnDelay->SetValue(sliderVal);
+	}
+	event.Skip();
+}
+
+void cMain::respawnDelayUpdate(wxCommandEvent& event)
+{
+	int sliderVal = m_respawnDelaySlider->GetValue();
+	wxString txtVal = m_respawnDelay->GetValue();
+	long num;
+	if (!txtVal.ToLong(&num)) {
+		m_respawnDelay->SetValue(wxString::Format(wxT("%i"), sliderVal));
+	}
+
+	if (sliderVal != int(num))
+	{
+		m_respawnDelaySlider->SetValue(num);
+	}
+	event.Skip();
+}
+
+void cMain::vehRespawnDelayUpdate(wxCommandEvent& event)
+{
+	int sliderVal = m_vehRespawnDelaySlider->GetValue();
+	wxString txtVal = m_vehRespawnDelay->GetValue();
+	long num;
+	if (!txtVal.ToLong(&num)) {
+		m_vehRespawnDelay->SetValue(wxString::Format(wxT("%i"), sliderVal));
+	}
+
+	if (sliderVal != int(num))
+	{
+		m_vehRespawnDelaySlider->SetValue(num);
+	}
+	event.Skip();
+}

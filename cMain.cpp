@@ -11,17 +11,51 @@ mainFrame( parent )
 }
 
 void cMain::updateSettings() {
-	cSettings::mainSettings->gameType = getGameType();
-	cSettings::mainSettings->minPlayers = getMinPlayers();
-	cSettings::mainSettings->maxPlayers = getMaxPlayers();
-	cSettings::mainSettings->respawnType = getRespawnType();
-	cSettings::mainSettings->respawnOnStart = getStartRespawn();
-	cSettings::mainSettings->hudOptions = getHudSettings();
-	cSettings::mainSettings->showMap = getMap();
-	cSettings::mainSettings->corpseMode = getCorpseMode();
-	cSettings::mainSettings->disableAI = getAi();
-	cSettings::mainSettings->adminConsole = getAdmin();
-	cSettings::mainSettings->channels = getChannels();
+	cSettings* set = cSettings::getMain();
+	set->gameType = getGameType();
+	set->minPlayers = getMinPlayers();
+	set->maxPlayers = getMaxPlayers();
+	set->respawnType = getRespawnType();
+	set->respawnOnStart = getStartRespawn();
+	set->hudOptions = getHudSettings();
+	set->showMap = getMap();
+	set->corpseMode = getCorpseMode();
+	set->disableAI = getAi();
+	set->adminConsole = getAdmin();
+	set->channels = getChannels();
+
+	set->showCompass = getCompass();
+	set->showGPS = getGPS();
+	set->showWatch = getWatch();
+	set->groupIndicator = getGroupInd();
+	set->showUAVFeed = getUAV();
+	set->aiKills = getAiKills();
+
+	set->wreckMode = getWreckMode();
+	set->wreckLimit = getWreckLimit();
+	set->wreckMinTime = getWreckMinTime();
+	set->wreckMaxTime = getWreckMaxTime();
+
+	set->corpseLimit = getCorpseLimit();
+	set->corpseMinTime = getCorpseMinTime();
+	set->corpseMaxTime = getCorpseMaxTime();
+
+	set->minPlayerDistance = getMinPlayerDistance();
+
+	set->respawnButton = getRespawnButton();
+	set->respawnDialog = getRespawnDialog();
+	set->respawnDelay = getRespawnDelay();
+	set->vehRespawnDelay = getVehRespawnDelay();
+
+	set->reviveMode = getReviveMode();
+	set->damageModel = getDamageModel();
+	set->medicNeeded = getMedic();
+	set->fakConsumed = getFAK();
+	set->reviveItem = getReviveItem();
+	set->reviveTime = getReviveTime();
+	set->medicMult = getMedicMult();
+	set->forceRespawnDelay = getForceRespawnDelay();
+	set->bleedOutTime = getBleedOutTime();
 }
 
 void cMain::updateLoadScreen() {
@@ -74,6 +108,38 @@ void cMain::setSettings()
 	setAi(set->disableAI);
 	setAdmin(set->adminConsole);
 	setChannels(set->channels);
+
+	setCompass(set->showCompass);
+	setGPS(set->showGPS);
+	setWatch(set->showWatch);
+	setGroupInd(set->groupIndicator);
+	setUAV(set->showUAVFeed);
+	setAiKills(set->aiKills);
+
+	setCorpseLimit(set->corpseLimit);
+	setCorpseMinTime(set->corpseMinTime);
+	setCorpseMaxTime(set->corpseMaxTime);
+	setWreckLimit(set->wreckLimit);
+	setWreckMode(set->wreckMode);
+	setWreckMinTime(set->wreckMinTime);
+	setWreckMaxTime(set->wreckMaxTime);
+
+	setMinPlayerDistance(set->minPlayerDistance);
+
+	setRespawnButton(set->respawnButton);
+	setRespawnDialog(set->respawnDialog);
+	setRespawnDelay(set->respawnDelay);
+	setVehRespawnDelay(set->vehRespawnDelay);
+
+	setReviveMode(set->reviveMode);
+	setDamageModel(set->damageModel);
+	setMedic(set->medicNeeded);
+	setFAK(set->fakConsumed);
+	setReviveItem(set->reviveItem);
+	setReviveTime(set->reviveTime);
+	setMedicMult(set->medicMult);
+	setForceRespawnDelay(set->forceRespawnDelay);
+	setBleedOutTime(set->bleedOutTime);
 }
 
 void cMain::setLoadScreen()

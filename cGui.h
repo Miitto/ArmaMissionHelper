@@ -156,7 +156,7 @@ class mainFrame : public wxFrame
 		wxChoice* m_damageModel;
 		wxCheckBox* m_medicNeeded;
 		wxCheckBox* m_fakConsumed;
-		wxStaticText* m_reviveItem;
+		wxStaticText* m_reviveItemTxt;
 		wxChoice* m_reviveItem;
 		wxStaticText* m_reviveTimeTxt;
 		wxTextCtrl* m_reviveTime;
@@ -275,7 +275,7 @@ class mainFrame : public wxFrame
 		virtual void corpseManagerFocus( wxFocusEvent& event ) { event.Skip(); }
 		virtual void onMissionBackground( wxFileDirPickerEvent& event ) { event.Skip(); }
 		virtual void onMapBackground( wxFileDirPickerEvent& event ) { event.Skip(); }
-		virtual void respwanTypeFocus( wxFocusEvent& event ) { event.Skip(); }
+		virtual void respawnTypeFocus( wxFocusEvent& event ) { event.Skip(); }
 		virtual void startRespawnFocus( wxFocusEvent& event ) { event.Skip(); }
 		virtual void respawnDelaySliderUpdate( wxCommandEvent& event ) { event.Skip(); }
 		virtual void respawnDelayUpdate( wxCommandEvent& event ) { event.Skip(); }
@@ -315,7 +315,7 @@ class mainFrame : public wxFrame
 
 	public:
 
-		mainFrame( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("Arma Mission Helper"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 1296,720 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
+		mainFrame( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("Arma Mission Helper"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 1314,720 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
 		wxAuiManager m_mgr;
 
 		~mainFrame();

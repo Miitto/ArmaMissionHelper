@@ -77,4 +77,41 @@ public:
 	int adminConsole = 1;
 
 	ChannelSet* channels;
+
+	bool showCompass = true;
+	bool showGPS = true;
+	bool showWatch = true;
+	bool groupIndicator = false;
+	bool showUAVFeed = true;
+	bool aiKills = false;
+
+	int corpseLimit = 15;
+	int corpseMinTime = 10;
+	int corpseMaxTime = 3600;
+
+	int wreckMode = 2;
+	int wreckLimit = 15;
+	int wreckMinTime = 10;
+	int wreckMaxTime = 36000;
+
+	int minPlayerDistance = 0;
+
+	bool respawnButton = true;
+
+	bool respawnDialog = true;
+
+	int respawnDelay = 5;
+	int vehRespawnDelay = 5;
+
+	int reviveMode = 0;
+	int damageModel = 0;
+
+	bool medicNeeded = false;
+	bool fakConsumed = true;
+
+	int reviveItem = 2;
+	int reviveTime = 6;
+	int medicMult = 2;
+	int forceRespawnDelay = 3;
+	int bleedOutTime = 120;
 };

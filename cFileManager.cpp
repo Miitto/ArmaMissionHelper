@@ -104,6 +104,33 @@ bool cFileManager::readSettings(const wxString path, cSettings* set)
         OPT("corpsemanagermode") set->corpseMode = cHelpers::toInt(end, 2);
         OPT("disabledai") set->disableAI = end == wxT("1") ? true : false;
         OPT("enabledebugconsole") set->adminConsole = cHelpers::toInt(end, 1);
+        OPT("respawnbutton") set->respawnButton = end == wxT("1") ? true : false;
+        OPT("respawndelay") set->respawnDelay = cHelpers::toInt(end, 5);
+        OPT("respawnvehicledelay") set->vehRespawnDelay = cHelpers::toInt(end, 5);
+        OPT("respawndialog") set->respawnDialog = end == wxT("1") ? true : false;
+        OPT("revivemode") set->reviveMode = cHelpers::toInt(end, 0);
+        OPT("reviveunconsciousstatemode") set->damageModel = cHelpers::toInt(end, 0);
+        OPT("reviverequiredtrait") set->medicNeeded = end == wxT("1") ? true : false;
+        OPT("reviverequireditems") set->reviveItem = cHelpers::toInt(end, 2);
+        OPT("reviverequireditemsfakconsumed") set->fakConsumed = end == wxT("1") ? true : false;
+        OPT("revivemedicspeedmultiplier") set->medicMult = cHelpers::toInt(end, 2);
+        OPT("revivedelay") set->reviveTime = cHelpers::toInt(end, 6);
+    	OPT("reviveforcerespawndelay") set->respawnDelay = cHelpers::toInt(end, 3);
+        OPT("revivebleedoutdelay") set->bleedOutTime = cHelpers::toInt(end, 120);
+        OPT("corpselimit") set->corpseLimit = cHelpers::toInt(end, 15);
+        OPT("corpseremovalmintime") set->corpseMinTime = cHelpers::toInt(end, 10);
+        OPT("corpseremovalmaxtime") set->corpseMaxTime = cHelpers::toInt(end, 3600);
+        OPT("wreckmanagermode") set->wreckMode = cHelpers::toInt(end, 2);
+        OPT("wrecklimit") set->wreckLimit = cHelpers::toInt(end, 15);
+        OPT("wreckremovalmintime") set->wreckMinTime = cHelpers::toInt(end, 10);
+        OPT("wreckremovealmaxtime") set->wreckMaxTime = cHelpers::toInt(end, 36000);
+        OPT("minplayerdistance") set->minPlayerDistance = cHelpers::toInt(end, 0);
+        OPT("aikills") set->aiKills = end == wxT("1") ? true : false;
+        OPT("showcompass") set->showCompass = end == wxT("1") ? true : false;
+        OPT("showwatch") set->showWatch = end == wxT("1") ? true : false;
+        OPT("showgps") set->showGPS = end == wxT("1") ? true : false;
+        OPT("showuavfeed") set->showUAVFeed = end == wxT("1") ? true : false;
+        OPT("showgroupindicator") set->groupIndicator = end == wxT("1") ? true : false;
         else if (start.starts_with("showhud"))
         {
             std::bitset<11> hud;
@@ -284,17 +311,53 @@ bool cFileManager::writeSettings(wxString path, cSettings* set, cLoadScreen* loa
         hud.test(9) << ",\n\t" <<
         hud.test(10) << ",\n};\n" << std::endl;
 
-    desc << "showMap = " << (set->showMap ? "1" : "0") << ";" << std::endl;
+    desc << "showMap = " << (set->showMap ? "1" : "0") << ";\n" << std::endl;
+
+    desc << "showWatch = " << (set->showWatch ? "1" : "0") << ";" << std::endl;
+    desc << "showGPS = " << (set->showGPS ? "1" : "0") << ";" << std::endl;
+    desc << "showCompass = " << (set->showCompass ? "1" : "0") << ";" << std::endl;
+    desc << "showUAVFeed = " << (set->showUAVFeed ? "1" : "0") << ";" << std::endl;
+    desc << "showGroupIndicator = " << (set->groupIndicator ? "1" : "0") << ";\n" << std::endl;
+
+    desc << "aiKills = " << (set->aiKills ? "1" : "0") << ";\n" << std::endl;
+
     desc << "corpseManagerMode = " << set->corpseMode << ";" << std::endl;
+    desc << "corpseLimit = " << set->corpseLimit << ";" << std::endl;
+    desc << "corpseRemovalMinTime = " << set->corpseMinTime << ";" << std::endl;
+    desc << "corpseRemovalMaxTime = " << set->corpseMaxTime << ";\n" << std::endl;
+
+    desc << "wreckManagerMode = " << set->wreckMode << ";" << std::endl;
+    desc << "wreckLimit = " << set->wreckLimit << ";" << std::endl;
+    desc << "wreckRemovalMinTime = " << set->wreckMinTime << ";" << std::endl;
+    desc << "wreckRemovalMaxTime = " << set->wreckMaxTime << ";" << std::endl;
+    desc<< "minPlayerDistance = " << set->minPlayerDistance << ";\n" << std::endl;
+
+    desc << "respawnButton = " << (set->respawnButton ? "1" : "0") << ";" << std::endl;
+    desc << "respawnDialog = " << (set->respawnDialog ? "1" : "0") << ";" << std::endl;
+    desc << "reviveRequiredTrait = " << (set->medicNeeded ? "1" : "0") << ";" << std::endl;
+    desc << "reviveRequiredItemsFakConsumed = " << (set->fakConsumed ? "1" : "0") << ";\n" << std::endl;
+
+    desc << "respawnDelay = " << set->respawnDelay << ";" << std::endl;
+    desc << "respawnVehicleDelay = " << set->vehRespawnDelay << ";\n" << std::endl;
+
+    desc << "reviveMode = " << set->reviveMode << ";" << std::endl;
+    desc << "reviveUnconsciousStateMode = " << set->damageModel << ";\n" << std::endl;
+
+    desc << "reviveRequiredItems = " << set->reviveItem << ";" << std::endl;
+    desc << "reviveMedicSpeedMultiplier = " << set->medicMult << ";" << std::endl;
+    desc << "reviveDelay = " << set->reviveTime << ";" << std::endl;
+    desc << "reviveForceRespawnDelay = " << set->forceRespawnDelay << ";" << std::endl;
+    desc << "reviveBleedOutDelay = " << set->bleedOutTime << ";\n" << std::endl;
+
     desc << "disabledAI = " << (set->disableAI ? "1" : "0") << ";" << std::endl;
-    desc << "enableDebugConsole = " << set->adminConsole << ";" << std::endl;
+    desc << "enableDebugConsole = " << set->adminConsole << ";\n" << std::endl;
 
     desc << "disableChannels[] = {\n\t{\n\t\t0, " << (set->channels->global.chat ? "false" : "true") << ", " << (set->channels->global.voice ? "false" : "true") << "\n\t},\n\t{\n\t\t1, " <<
         (set->channels->side.chat ? "false" : "true") << ", " << (set->channels->side.voice ? "false" : "true") << "\n\t},\n\t{\n\t\t2, " <<
         (set->channels->command.chat ? "false" : "true") << ", " << (set->channels->command.voice ? "false" : "true") << "\n\t},\n\t{\n\t\t3, " <<
         (set->channels->group.chat ? "false" : "true") << ", " << (set->channels->group.voice ? "false" : "true") << "\n\t},\n\t{\n\t\t4, " <<
         (set->channels->vehicle.chat ? "false" : "true") << ", " << (set->channels->vehicle.voice ? "false" : "true") << "\n\t},\n\t{\n\t\t5, " <<
-        (set->channels->direct.chat ? "false" : "true") << ", " << (set->channels->direct.voice ? "false" : "true") << "\n\t}\n};" << std::endl;
+        (set->channels->direct.chat ? "false" : "true") << ", " << (set->channels->direct.voice ? "false" : "true") << "\n\t}\n};\n" << std::endl;
 
     desc << "//&&& Anything below this line will be saved. Do not add any settings above this line";
 

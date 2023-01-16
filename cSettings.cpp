@@ -3,8 +3,9 @@
 cSettings* cSettings::mainSettings = nullptr;
 
 cSettings::cSettings() {
-		mainSettings = this;
-		channels = new ChannelSet();
+	mainSettings = this;
+	channels = new ChannelSet();
+	hudOptions.set();
 }
 
 bool ChannelSet::set(int id, bool chat, bool voice)

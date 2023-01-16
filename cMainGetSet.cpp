@@ -53,12 +53,7 @@ bool cMain::getMap() {
 }
 
 int cMain::getCorpseMode() {
-	wxString val = m_corpseManager->GetStringSelection();
-	long num;
-	if (!val.ToLong(&num)) {
-		return 2;
-	}
-	return int(num);
+	return m_corpseManager->GetCurrentSelection();
 }
 
 bool cMain::getAi() {
@@ -66,12 +61,7 @@ bool cMain::getAi() {
 }
 
 int cMain::getAdmin() {
-	wxString val = m_adminConsole->GetStringSelection();
-	long num;
-	if (!val.ToLong(&num)) {
-		return 1;
-	}
-	return int(num);
+	return m_adminConsole->GetCurrentSelection();
 }
 
 ChannelSet* cMain::getChannels() {
@@ -122,12 +112,7 @@ int cMain::getCorpseMaxTime()
 
 int cMain::getWreckMode()
 {
-	wxString val = m_wreckManager->GetStringSelection();
-	long num;
-	if (!val.ToLong(&num)) {
-		return 2;
-	}
-	return int(num);
+	return m_wreckManager->GetCurrentSelection();
 }
 
 int cMain::getWreckLimit()
@@ -169,6 +154,38 @@ int cMain::getMinPlayerDistance()
 	}
 	return int(num);
 }
+
+bool cMain::getAiKills()
+{
+	return m_aiKills->IsChecked();
+}
+
+bool cMain::getUAV()
+{
+	return m_showUAVFeed->IsChecked();
+}
+
+bool cMain::getGroupInd()
+{
+	return m_showGroupIndicator->IsChecked();
+}
+
+bool cMain::getWatch()
+{
+	return m_showWatch->IsChecked();
+}
+
+bool cMain::getGPS()
+{
+	return m_showGPS->IsChecked();
+}
+
+bool cMain::getCompass()
+{
+	return m_showCompass->IsChecked();
+}
+
+
 
 
 // Load Screen Page
@@ -276,17 +293,17 @@ void cMain::setChannels(ChannelSet* channels)
 
 void cMain::setCorpseLimit(int num)
 {
-	m_corpseLimit->SetValue(num);
+	m_corpseLimit->SetValue(wxString::Format(wxT("%i"), num));
 }
 
 void cMain::setCorpseMinTime(int num)
 {
-	m_corpseMinTime->SetValue(num);
+	m_corpseMinTime->SetValue(wxString::Format(wxT("%i"), num));
 }
 
 void cMain::setCorpseMaxTime(int num)
 {
-	m_corpseMaxTime->SetValue(num);
+	m_corpseMaxTime->SetValue(wxString::Format(wxT("%i"), num));
 }
 
 
@@ -298,25 +315,53 @@ void cMain::setWreckMode(int type)
 
 void cMain::setWreckLimit(int num)
 {
-	m_wreckLimit->SetValue(num);
+	m_wreckLimit->SetValue(wxString::Format(wxT("%i"), num));
 }
 
 void cMain::setWreckMinTime(int num)
 {
-	m_wreckMinTime->SetValue(num);
+	m_wreckMinTime->SetValue(wxString::Format(wxT("%i"), num));
 }
 
 void cMain::setWreckMaxTime(int num)
 {
-	m_wreckMaxTime->SetValue(num);
+	m_wreckMaxTime->SetValue(wxString::Format(wxT("%i"), num));
 }
 
 void cMain::setMinPlayerDistance(int num)
 {
-	m_minPlayerDistance->SetValue(num);
+	m_minPlayerDistance->SetValue(wxString::Format(wxT("%i"), num));
 }
 
+void cMain::setCompass(bool set)
+{
+	m_showCompass->SetValue(set);
+}
 
+void cMain::setGPS(bool set)
+{
+	m_showGPS->SetValue(set);
+}
+
+void cMain::setWatch(bool set)
+{
+	m_showWatch->SetValue(set);
+}
+
+void cMain::setUAV(bool set)
+{
+	m_showUAVFeed->SetValue(set);
+}
+
+void cMain::setAiKills(bool set)
+{
+	m_aiKills->SetValue(set);
+}
+
+void cMain::setGroupInd(bool set)
+{
+	m_showGroupIndicator->SetValue(set);
+}
 
 
 // Load Screen Setters
@@ -354,3 +399,164 @@ void cMain::setMapBackground(wxString back)
 
 // Respawn Getters
 
+bool cMain::getRespawnButton()
+{
+	return m_respawnButton->IsChecked();
+}
+
+bool cMain::getRespawnDialog()
+{
+	return m_respawnDialog->IsChecked();
+}
+
+int cMain::getRespawnDelay()
+{
+	wxString val = m_respawnDelay->GetValue();
+	long num;
+	if (!val.ToLong(&num)) {
+		return 5;
+	}
+	return int(num);
+}
+
+int cMain::getVehRespawnDelay()
+{
+	wxString val = m_vehRespawnDelay->GetValue();
+	long num;
+	if (!val.ToLong(&num)) {
+		return 5;
+	}
+	return int(num);
+}
+
+int cMain::getReviveMode()
+{
+	return m_reviveMode->GetCurrentSelection();
+}
+
+int cMain::getDamageModel()
+{
+	return m_damageModel->GetCurrentSelection();
+}
+
+bool cMain::getMedic()
+{
+	return m_medicNeeded->IsChecked();
+}
+
+bool cMain::getFAK()
+{
+	return m_fakConsumed->IsChecked();
+}
+
+int cMain::getReviveItem()
+{
+	return m_reviveItem->GetCurrentSelection();
+}
+
+int cMain::getReviveTime()
+{
+	wxString val = m_reviveTime->GetValue();
+	long num;
+	if (!val.ToLong(&num)) {
+		return 5;
+	}
+	return int(num);
+}
+
+int cMain::getMedicMult()
+{
+	wxString val = m_medicMult->GetValue();
+	long num;
+	if (!val.ToLong(&num)) {
+		return 5;
+	}
+	return int(num);
+}
+
+int cMain::getForceRespawnDelay()
+{
+	wxString val = m_forceRespawnDelay->GetValue();
+	long num;
+	if (!val.ToLong(&num)) {
+		return 5;
+	}
+	return int(num);
+}
+
+int cMain::getBleedOutTime()
+{
+	wxString val = m_bleedOut->GetValue();
+	long num;
+	if (!val.ToLong(&num)) {
+		return 5;
+	}
+	return int(num);
+}
+
+// Respawn Setters
+
+void cMain::setRespawnButton(bool set)
+{
+	m_respawnButton->SetValue(set);
+}
+
+void cMain::setRespawnDialog(bool set)
+{
+	m_respawnDialog->SetValue(set);
+}
+
+void cMain::setRespawnDelay(int num)
+{
+	m_respawnDelay->SetValue(wxString::Format(wxT("%i"), num));
+}
+
+void cMain::setVehRespawnDelay(int num)
+{
+	m_vehRespawnDelay->SetValue(wxString::Format(wxT("%i"), num));
+}
+
+void cMain::setReviveMode(int type)
+{
+	m_reviveMode->SetSelection(type);
+}
+
+void cMain::setDamageModel(int num)
+{
+	m_damageModel->SetSelection(num);
+}
+
+void cMain::setMedic(bool set)
+{
+	m_medicNeeded->SetValue(set);
+}
+
+void cMain::setFAK(bool set)
+{
+	m_fakConsumed->SetValue(set);
+}
+
+void cMain::setReviveItem(int num)
+{
+	m_reviveItem->SetSelection(num);
+}
+
+void cMain::setReviveTime(int num)
+{
+	m_reviveTime->SetValue(wxString::Format(wxT("%i"), num));
+}
+
+void cMain::setMedicMult(int num)
+{
+	m_medicMult->SetValue(wxString::Format(wxT("%i"), num));
+}
+
+void cMain::setForceRespawnDelay(int num)
+{
+	m_forceRespawnDelay->SetValue(wxString::Format(wxT("%i"), num));
+}
+
+void cMain::setBleedOutTime(int num)
+{
+	m_bleedOut->SetValue(wxString::Format(wxT("%i"), num));
+}

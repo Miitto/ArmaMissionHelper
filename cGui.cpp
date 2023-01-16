@@ -608,11 +608,13 @@ mainFrame::mainFrame( wxWindow* parent, wxWindowID id, const wxString& title, co
 	respawnLeft->Add( m_startRespawn, 0, wxALL, 5 );
 
 	m_respawnButton = new wxCheckBox( m_respawnLeftPanel, wxID_ANY, wxT("Respawn Button"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_respawnButton->SetValue(true);
 	m_respawnButton->SetToolTip( wxT("Only Works with BASE and INSTANT Respawn Types") );
 
 	respawnLeft->Add( m_respawnButton, 0, wxALL, 5 );
 
 	m_respawnDialog = new wxCheckBox( m_respawnLeftPanel, wxID_ANY, wxT("Respawn Dialog"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_respawnDialog->SetValue(true);
 	m_respawnDialog->SetToolTip( wxT("Only works with BASE Respawn Type") );
 
 	respawnLeft->Add( m_respawnDialog, 0, wxALL, 5 );
@@ -675,7 +677,7 @@ mainFrame::mainFrame( wxWindow* parent, wxWindowID id, const wxString& title, co
 	wxString m_reviveModeChoices[] = { wxT("0 : Disabled"), wxT("1: Enabled"), wxT("2 : Player Attribute Dependant") };
 	int m_reviveModeNChoices = sizeof( m_reviveModeChoices ) / sizeof( wxString );
 	m_reviveMode = new wxChoice( m_respawnLeftPanel, wxID_ANY, wxDefaultPosition, wxDefaultSize, m_reviveModeNChoices, m_reviveModeChoices, 0 );
-	m_reviveMode->SetSelection( 1 );
+	m_reviveMode->SetSelection( 0 );
 	respawnLeft->Add( m_reviveMode, 0, wxALL, 5 );
 
 	m_damageModelTxt = new wxStaticText( m_respawnLeftPanel, wxID_ANY, wxT("Damage Model"), wxDefaultPosition, wxDefaultSize, 0 );
@@ -692,11 +694,12 @@ mainFrame::mainFrame( wxWindow* parent, wxWindowID id, const wxString& title, co
 	respawnLeft->Add( m_medicNeeded, 0, wxALL, 5 );
 
 	m_fakConsumed = new wxCheckBox( m_respawnLeftPanel, wxID_ANY, wxT("FAK Consumed"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_fakConsumed->SetValue(true);
 	respawnLeft->Add( m_fakConsumed, 0, wxALL, 5 );
 
-	m_reviveItem = new wxStaticText( m_respawnLeftPanel, wxID_ANY, wxT("Item Needed"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_reviveItem->Wrap( -1 );
-	respawnLeft->Add( m_reviveItem, 0, wxALL, 5 );
+	m_reviveItemTxt = new wxStaticText( m_respawnLeftPanel, wxID_ANY, wxT("Item Needed"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_reviveItemTxt->Wrap( -1 );
+	respawnLeft->Add( m_reviveItemTxt, 0, wxALL, 5 );
 
 	wxString m_reviveItemChoices[] = { wxT("0 : None"), wxT("1: Medkit"), wxT("2 : Medkit or First Aid Kit (FAK)"), wxEmptyString };
 	int m_reviveItemNChoices = sizeof( m_reviveItemChoices ) / sizeof( wxString );
@@ -708,7 +711,7 @@ mainFrame::mainFrame( wxWindow* parent, wxWindowID id, const wxString& title, co
 	m_reviveTimeTxt->Wrap( -1 );
 	respawnLeft->Add( m_reviveTimeTxt, 0, wxALL, 5 );
 
-	m_reviveTime = new wxTextCtrl( m_respawnLeftPanel, wxID_ANY, wxT("10"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_reviveTime = new wxTextCtrl( m_respawnLeftPanel, wxID_ANY, wxT("6"), wxDefaultPosition, wxDefaultSize, 0 );
 	respawnLeft->Add( m_reviveTime, 0, wxALL, 5 );
 
 	m_medicMultTxt = new wxStaticText( m_respawnLeftPanel, wxID_ANY, wxT("Medic Multiplier"), wxDefaultPosition, wxDefaultSize, 0 );
@@ -722,14 +725,14 @@ mainFrame::mainFrame( wxWindow* parent, wxWindowID id, const wxString& title, co
 	m_forceRespawnDelayTxt->Wrap( -1 );
 	respawnLeft->Add( m_forceRespawnDelayTxt, 0, wxALL, 5 );
 
-	m_forceRespawnDelay = new wxTextCtrl( m_respawnLeftPanel, wxID_ANY, wxT("5"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_forceRespawnDelay = new wxTextCtrl( m_respawnLeftPanel, wxID_ANY, wxT("3"), wxDefaultPosition, wxDefaultSize, 0 );
 	respawnLeft->Add( m_forceRespawnDelay, 0, wxALL, 5 );
 
 	m_bleedOutTxt = new wxStaticText( m_respawnLeftPanel, wxID_ANY, wxT("Bleed Out Time"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_bleedOutTxt->Wrap( -1 );
 	respawnLeft->Add( m_bleedOutTxt, 0, wxALL, 5 );
 
-	m_bleedOut = new wxTextCtrl( m_respawnLeftPanel, wxID_ANY, wxT("300"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_bleedOut = new wxTextCtrl( m_respawnLeftPanel, wxID_ANY, wxT("120"), wxDefaultPosition, wxDefaultSize, 0 );
 	respawnLeft->Add( m_bleedOut, 0, wxALL, 5 );
 
 
@@ -1478,7 +1481,7 @@ mainFrame::mainFrame( wxWindow* parent, wxWindowID id, const wxString& title, co
 	m_wreckManager->Connect( wxEVT_SET_FOCUS, wxFocusEventHandler( mainFrame::corpseManagerFocus ), NULL, this );
 	m_missionBackground->Connect( wxEVT_COMMAND_FILEPICKER_CHANGED, wxFileDirPickerEventHandler( mainFrame::onMissionBackground ), NULL, this );
 	m_worldBackground->Connect( wxEVT_COMMAND_FILEPICKER_CHANGED, wxFileDirPickerEventHandler( mainFrame::onMapBackground ), NULL, this );
-	m_respawnType->Connect( wxEVT_SET_FOCUS, wxFocusEventHandler( mainFrame::respwanTypeFocus ), NULL, this );
+	m_respawnType->Connect( wxEVT_SET_FOCUS, wxFocusEventHandler( mainFrame::respawnTypeFocus ), NULL, this );
 	m_startRespawn->Connect( wxEVT_SET_FOCUS, wxFocusEventHandler( mainFrame::startRespawnFocus ), NULL, this );
 	m_respawnDelaySlider->Connect( wxEVT_SLIDER, wxCommandEventHandler( mainFrame::respawnDelaySliderUpdate ), NULL, this );
 	m_respawnDelay->Connect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( mainFrame::respawnDelayUpdate ), NULL, this );
@@ -1541,7 +1544,7 @@ mainFrame::~mainFrame()
 	m_wreckManager->Disconnect( wxEVT_SET_FOCUS, wxFocusEventHandler( mainFrame::corpseManagerFocus ), NULL, this );
 	m_missionBackground->Disconnect( wxEVT_COMMAND_FILEPICKER_CHANGED, wxFileDirPickerEventHandler( mainFrame::onMissionBackground ), NULL, this );
 	m_worldBackground->Disconnect( wxEVT_COMMAND_FILEPICKER_CHANGED, wxFileDirPickerEventHandler( mainFrame::onMapBackground ), NULL, this );
-	m_respawnType->Disconnect( wxEVT_SET_FOCUS, wxFocusEventHandler( mainFrame::respwanTypeFocus ), NULL, this );
+	m_respawnType->Disconnect( wxEVT_SET_FOCUS, wxFocusEventHandler( mainFrame::respawnTypeFocus ), NULL, this );
 	m_startRespawn->Disconnect( wxEVT_SET_FOCUS, wxFocusEventHandler( mainFrame::startRespawnFocus ), NULL, this );
 	m_respawnDelaySlider->Disconnect( wxEVT_SLIDER, wxCommandEventHandler( mainFrame::respawnDelaySliderUpdate ), NULL, this );
 	m_respawnDelay->Disconnect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( mainFrame::respawnDelayUpdate ), NULL, this );
