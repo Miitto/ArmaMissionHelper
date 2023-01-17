@@ -59,6 +59,12 @@ public:
 		return mainSettings;
 	}
 
+	~cSettings()
+	{
+		delete channels;
+		delete loadouts;
+	}
+
 
 	// Vars
 	wxString gameType = "COOP";

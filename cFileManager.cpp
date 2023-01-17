@@ -240,6 +240,35 @@ bool cFileManager::readSettings(const wxString path, cSettings* set)
                     curClass = i->Mid(5).BeforeFirst('{').Trim().Trim(false);
                     do {
                         i->Trim().Trim(false);
+
+                        wxString start1, end1; // Up here, Since needs to not be made lower to keep end1 true to config
+                        start1 = *i;
+                        parseOption(start1, end1, false);
+                        if (start1.Lower().starts_with("uniformclass"))
+                        {
+                            end1.Replace("\"", "", true);
+                            end1.RemoveLast(); // Remove trailing semi colon
+                            uniform = end1;
+                        }
+                        else if (start1.Lower().starts_with("backpack"))
+                        {
+                            end1.Replace("\"", "", true);
+                            end1.RemoveLast();
+                            backpack = end1;
+                        }
+                        else if (start1.Lower().starts_with("displayname"))
+                        {
+                            end1.Replace("\"", "", true);
+                            end1.RemoveLast();
+                            dispName = end1;
+                        }
+                        else if (start1.Lower().starts_with("role"))
+                        {
+                            end1.Replace("\"", "", true);
+                            end1.RemoveLast();
+                            role = end1;
+                        }
+
                         *i = i->Lower();
                         if (i->starts_with("weapons[]"))
                         {
@@ -313,30 +342,6 @@ bool cFileManager::readSettings(const wxString path, cSettings* set)
                             ++i;
                             continue;
                         }
-                        wxString start1, end1;
-                        start1 = *i;
-                        parseOption(start1, end1);
-                        if (start1.starts_with("uniformclass"))
-                        {
-                            end1.Replace("\"", "", true);
-                            uniform = end1;
-                        }
-                        else if (start1.starts_with("backpack"))
-                        {
-                            end1.Replace("\"", "", true);
-                            backpack = end1;
-                        }
-                        else if (start1.starts_with("displayname"))
-                        {
-                            end1.Replace("\"", "", true);
-                            dispName = end1;
-                        }
-                        else if (start1.starts_with("role"))
-                        {
-                            end1.Replace("\"", "", true);
-                            role = end1;
-                        }
-
                         ++i;
                     } while (!i->Contains("};"));
                     if (i->AfterFirst('}').Contains("};")) // Class closing, make sure we arn't moving out 2 scopes at once
@@ -427,11 +432,13 @@ bool cFileManager::readSettings(const wxString path, cSettings* set)
     return true;
 }
 
-void cFileManager::parseOption(wxString& start, wxString& end)
+void cFileManager::parseOption(wxString& start, wxString& end, bool makeLower)
 {
     start = start.Trim().Trim(false);
     end = start.AfterFirst('=').Trim(false);
-    start = start.Lower();
+    if (makeLower) {
+        start = start.Lower();
+    }
     start = start.BeforeFirst('=').Trim();
     if (end.ends_with(';')) end.RemoveLast();
     end.Replace(wxString("\""), wxString(""), true); // Remove Speech marks

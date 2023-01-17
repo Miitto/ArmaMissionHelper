@@ -13817,7 +13817,7 @@
                 <property name="window_style"></property>
             </object>
         </object>
-        <object class="Panel" expanded="0">
+        <object class="Panel" expanded="1">
             <property name="aui_managed">0</property>
             <property name="aui_manager_style">wxAUI_MGR_DEFAULT</property>
             <property name="bg">192,192,192</property>
@@ -13840,16 +13840,16 @@
             <property name="window_extra_style"></property>
             <property name="window_name"></property>
             <property name="window_style">wxTAB_TRAVERSAL</property>
-            <object class="wxBoxSizer" expanded="0">
+            <object class="wxBoxSizer" expanded="1">
                 <property name="minimum_size"></property>
                 <property name="name">loadoutPanelSizer</property>
                 <property name="orient">wxVERTICAL</property>
                 <property name="permission">none</property>
-                <object class="sizeritem" expanded="0">
+                <object class="sizeritem" expanded="1">
                     <property name="border">5</property>
                     <property name="flag">wxEXPAND | wxALL</property>
                     <property name="proportion">1</property>
-                    <object class="wxScrolledWindow" expanded="0">
+                    <object class="wxScrolledWindow" expanded="1">
                         <property name="BottomDockable">1</property>
                         <property name="LeftDockable">1</property>
                         <property name="RightDockable">1</property>
@@ -13888,7 +13888,7 @@
                         <property name="pane_border">1</property>
                         <property name="pane_position"></property>
                         <property name="pane_size"></property>
-                        <property name="permission">protected</property>
+                        <property name="permission">public</property>
                         <property name="pin_button">1</property>
                         <property name="pos"></property>
                         <property name="resize">Resizable</property>
@@ -13902,7 +13902,7 @@
                         <property name="window_extra_style"></property>
                         <property name="window_name"></property>
                         <property name="window_style">wxVSCROLL</property>
-                        <object class="wxFlexGridSizer" expanded="0">
+                        <object class="wxFlexGridSizer" expanded="1">
                             <property name="cols">1</property>
                             <property name="flexible_direction">wxBOTH</property>
                             <property name="growablecols"></property>
@@ -13914,11 +13914,11 @@
                             <property name="permission">none</property>
                             <property name="rows">0</property>
                             <property name="vgap">0</property>
-                            <object class="sizeritem" expanded="0">
+                            <object class="sizeritem" expanded="1">
                                 <property name="border">5</property>
                                 <property name="flag">wxEXPAND</property>
                                 <property name="proportion">1</property>
-                                <object class="wxFlexGridSizer" expanded="0">
+                                <object class="wxFlexGridSizer" expanded="1">
                                     <property name="cols">0</property>
                                     <property name="flexible_direction">wxBOTH</property>
                                     <property name="growablecols"></property>
@@ -13930,11 +13930,11 @@
                                     <property name="permission">none</property>
                                     <property name="rows">1</property>
                                     <property name="vgap">0</property>
-                                    <object class="sizeritem" expanded="0">
+                                    <object class="sizeritem" expanded="1">
                                         <property name="border">5</property>
                                         <property name="flag">wxEXPAND</property>
                                         <property name="proportion">1</property>
-                                        <object class="wxFlexGridSizer" expanded="0">
+                                        <object class="wxFlexGridSizer" expanded="1">
                                             <property name="cols">2</property>
                                             <property name="flexible_direction">wxBOTH</property>
                                             <property name="growablecols"></property>
@@ -14047,11 +14047,11 @@
                                                     <property name="minimize_button">0</property>
                                                     <property name="minimum_size"></property>
                                                     <property name="moveable">1</property>
-                                                    <property name="name">m_loadoutDispName1</property>
+                                                    <property name="name">m_loadoutDispName</property>
                                                     <property name="pane_border">1</property>
                                                     <property name="pane_position"></property>
                                                     <property name="pane_size"></property>
-                                                    <property name="permission">protected</property>
+                                                    <property name="permission">public</property>
                                                     <property name="pin_button">1</property>
                                                     <property name="pos"></property>
                                                     <property name="resize">Resizable</property>
@@ -14172,11 +14172,11 @@
                                                     <property name="minimize_button">0</property>
                                                     <property name="minimum_size"></property>
                                                     <property name="moveable">1</property>
-                                                    <property name="name">Assault1</property>
+                                                    <property name="name">m_role</property>
                                                     <property name="pane_border">1</property>
                                                     <property name="pane_position"></property>
                                                     <property name="pane_size"></property>
-                                                    <property name="permission">protected</property>
+                                                    <property name="permission">public</property>
                                                     <property name="pin_button">1</property>
                                                     <property name="pos"></property>
                                                     <property name="resize">Resizable</property>
@@ -14196,11 +14196,11 @@
                                                     <property name="window_style"></property>
                                                 </object>
                                             </object>
-                                            <object class="sizeritem" expanded="0">
+                                            <object class="sizeritem" expanded="1">
                                                 <property name="border">5</property>
                                                 <property name="flag">wxEXPAND</property>
                                                 <property name="proportion">1</property>
-                                                <object class="wxFlexGridSizer" expanded="0">
+                                                <object class="wxFlexGridSizer" expanded="1">
                                                     <property name="cols">1</property>
                                                     <property name="flexible_direction">wxBOTH</property>
                                                     <property name="growablecols"></property>
@@ -14313,11 +14313,11 @@
                                                             <property name="minimize_button">0</property>
                                                             <property name="minimum_size">150,25</property>
                                                             <property name="moveable">1</property>
-                                                            <property name="name">m_uniform1</property>
+                                                            <property name="name">m_uniform</property>
                                                             <property name="pane_border">1</property>
                                                             <property name="pane_position"></property>
                                                             <property name="pane_size"></property>
-                                                            <property name="permission">protected</property>
+                                                            <property name="permission">public</property>
                                                             <property name="pin_button">1</property>
                                                             <property name="pos"></property>
                                                             <property name="resize">Resizable</property>
@@ -14377,11 +14377,11 @@
                                                             <property name="minimize_button">0</property>
                                                             <property name="minimum_size">150,150</property>
                                                             <property name="moveable">1</property>
-                                                            <property name="name">m_uniformLB1</property>
+                                                            <property name="name">m_uniformLB</property>
                                                             <property name="pane_border">1</property>
                                                             <property name="pane_position"></property>
                                                             <property name="pane_size"></property>
-                                                            <property name="permission">protected</property>
+                                                            <property name="permission">public</property>
                                                             <property name="pin_button">1</property>
                                                             <property name="pos"></property>
                                                             <property name="resize">Resizable</property>
@@ -14520,11 +14520,11 @@
                                                             <property name="minimize_button">0</property>
                                                             <property name="minimum_size">150,25</property>
                                                             <property name="moveable">1</property>
-                                                            <property name="name">m_backpack1</property>
+                                                            <property name="name">m_backpack</property>
                                                             <property name="pane_border">1</property>
                                                             <property name="pane_position"></property>
                                                             <property name="pane_size"></property>
-                                                            <property name="permission">protected</property>
+                                                            <property name="permission">public</property>
                                                             <property name="pin_button">1</property>
                                                             <property name="pos"></property>
                                                             <property name="resize">Resizable</property>
@@ -14584,11 +14584,11 @@
                                                             <property name="minimize_button">0</property>
                                                             <property name="minimum_size">150,150</property>
                                                             <property name="moveable">1</property>
-                                                            <property name="name">m_backpackLB1</property>
+                                                            <property name="name">m_backpackLB</property>
                                                             <property name="pane_border">1</property>
                                                             <property name="pane_position"></property>
                                                             <property name="pane_size"></property>
-                                                            <property name="permission">protected</property>
+                                                            <property name="permission">public</property>
                                                             <property name="pin_button">1</property>
                                                             <property name="pos"></property>
                                                             <property name="resize">Resizable</property>
@@ -14745,11 +14745,11 @@
                                                             <property name="minimize_button">0</property>
                                                             <property name="minimum_size">150,25</property>
                                                             <property name="moveable">1</property>
-                                                            <property name="name">m_primary1</property>
+                                                            <property name="name">m_primary</property>
                                                             <property name="pane_border">1</property>
                                                             <property name="pane_position"></property>
                                                             <property name="pane_size"></property>
-                                                            <property name="permission">protected</property>
+                                                            <property name="permission">public</property>
                                                             <property name="pin_button">1</property>
                                                             <property name="pos"></property>
                                                             <property name="resize">Resizable</property>
@@ -14809,11 +14809,11 @@
                                                             <property name="minimize_button">0</property>
                                                             <property name="minimum_size">150,217</property>
                                                             <property name="moveable">1</property>
-                                                            <property name="name">m_primaryLB1</property>
+                                                            <property name="name">m_primaryLB</property>
                                                             <property name="pane_border">1</property>
                                                             <property name="pane_position"></property>
                                                             <property name="pane_size"></property>
-                                                            <property name="permission">protected</property>
+                                                            <property name="permission">public</property>
                                                             <property name="pin_button">1</property>
                                                             <property name="pos"></property>
                                                             <property name="resize">Resizable</property>
@@ -14952,7 +14952,7 @@
                                                             <property name="minimize_button">0</property>
                                                             <property name="minimum_size">150,25</property>
                                                             <property name="moveable">1</property>
-                                                            <property name="name">m_secondary1</property>
+                                                            <property name="name">m_secondary</property>
                                                             <property name="pane_border">1</property>
                                                             <property name="pane_position"></property>
                                                             <property name="pane_size"></property>
@@ -15016,7 +15016,7 @@
                                                             <property name="minimize_button">0</property>
                                                             <property name="minimum_size">150,217</property>
                                                             <property name="moveable">1</property>
-                                                            <property name="name">m_secondaryLB1</property>
+                                                            <property name="name">m_secondaryLB</property>
                                                             <property name="pane_border">1</property>
                                                             <property name="pane_position"></property>
                                                             <property name="pane_size"></property>
@@ -15269,7 +15269,7 @@
                                                                     <property name="minimize_button">0</property>
                                                                     <property name="minimum_size"></property>
                                                                     <property name="moveable">1</property>
-                                                                    <property name="name">m_linkedCustom1</property>
+                                                                    <property name="name">m_linkedCustom</property>
                                                                     <property name="pane_border">1</property>
                                                                     <property name="pane_position"></property>
                                                                     <property name="pane_size"></property>
@@ -15341,7 +15341,7 @@
                                                                     <property name="minimize_button">0</property>
                                                                     <property name="minimum_size"></property>
                                                                     <property name="moveable">1</property>
-                                                                    <property name="name">m_addLinkedCustom1</property>
+                                                                    <property name="name">m_addLinkedCustom&#x0A;</property>
                                                                     <property name="pane_border">1</property>
                                                                     <property name="pane_position"></property>
                                                                     <property name="pane_size"></property>
@@ -15407,7 +15407,7 @@
                                                                     <property name="minimize_button">0</property>
                                                                     <property name="minimum_size">130,150</property>
                                                                     <property name="moveable">1</property>
-                                                                    <property name="name">m_linkedPresets1</property>
+                                                                    <property name="name">m_linkedPresets</property>
                                                                     <property name="pane_border">1</property>
                                                                     <property name="pane_position"></property>
                                                                     <property name="pane_size"></property>
@@ -15494,7 +15494,7 @@
                                                                             <property name="minimize_button">0</property>
                                                                             <property name="minimum_size"></property>
                                                                             <property name="moveable">1</property>
-                                                                            <property name="name">m_addLinkPreset1</property>
+                                                                            <property name="name">m_addLinkPreset&#x0A;</property>
                                                                             <property name="pane_border">1</property>
                                                                             <property name="pane_position"></property>
                                                                             <property name="pane_size"></property>
@@ -15568,7 +15568,7 @@
                                                                             <property name="minimize_button">0</property>
                                                                             <property name="minimum_size"></property>
                                                                             <property name="moveable">1</property>
-                                                                            <property name="name">m_removeLinkPreset1</property>
+                                                                            <property name="name">m_removeLinkPreset</property>
                                                                             <property name="pane_border">1</property>
                                                                             <property name="pane_position"></property>
                                                                             <property name="pane_size"></property>
@@ -15642,7 +15642,7 @@
                                                                             <property name="minimize_button">0</property>
                                                                             <property name="minimum_size"></property>
                                                                             <property name="moveable">1</property>
-                                                                            <property name="name">m_removeLinkEquip1</property>
+                                                                            <property name="name">m_removeLinkEquip</property>
                                                                             <property name="pane_border">1</property>
                                                                             <property name="pane_position"></property>
                                                                             <property name="pane_size"></property>
@@ -15712,7 +15712,7 @@
                                                             <property name="minimize_button">0</property>
                                                             <property name="minimum_size">150,185</property>
                                                             <property name="moveable">1</property>
-                                                            <property name="name">m_linkedItemsLB1</property>
+                                                            <property name="name">m_linkedItemsLB</property>
                                                             <property name="pane_border">1</property>
                                                             <property name="pane_position"></property>
                                                             <property name="pane_size"></property>
@@ -15866,7 +15866,7 @@
                                                     <property name="minimize_button">0</property>
                                                     <property name="minimum_size">150,25</property>
                                                     <property name="moveable">1</property>
-                                                    <property name="name">m_vest1</property>
+                                                    <property name="name">m_vest</property>
                                                     <property name="pane_border">1</property>
                                                     <property name="pane_position"></property>
                                                     <property name="pane_size"></property>
@@ -15930,7 +15930,7 @@
                                                     <property name="minimize_button">0</property>
                                                     <property name="minimum_size">150,150</property>
                                                     <property name="moveable">1</property>
-                                                    <property name="name">m_vestLB1</property>
+                                                    <property name="name">m_vestLB</property>
                                                     <property name="pane_border">1</property>
                                                     <property name="pane_position"></property>
                                                     <property name="pane_size"></property>
@@ -16181,7 +16181,7 @@
                                                                     <property name="minimize_button">0</property>
                                                                     <property name="minimum_size"></property>
                                                                     <property name="moveable">1</property>
-                                                                    <property name="name">m_weapCustom1</property>
+                                                                    <property name="name">m_weapCustom</property>
                                                                     <property name="pane_border">1</property>
                                                                     <property name="pane_position"></property>
                                                                     <property name="pane_size"></property>
@@ -16253,7 +16253,7 @@
                                                                     <property name="minimize_button">0</property>
                                                                     <property name="minimum_size"></property>
                                                                     <property name="moveable">1</property>
-                                                                    <property name="name">m_addWeapCustom1</property>
+                                                                    <property name="name">m_addWeapCustom</property>
                                                                     <property name="pane_border">1</property>
                                                                     <property name="pane_position"></property>
                                                                     <property name="pane_size"></property>
@@ -16319,7 +16319,7 @@
                                                                     <property name="minimize_button">0</property>
                                                                     <property name="minimum_size">130,150</property>
                                                                     <property name="moveable">1</property>
-                                                                    <property name="name">m_weapPresets1</property>
+                                                                    <property name="name">m_weapPresets</property>
                                                                     <property name="pane_border">1</property>
                                                                     <property name="pane_position"></property>
                                                                     <property name="pane_size"></property>
@@ -16406,7 +16406,7 @@
                                                                             <property name="minimize_button">0</property>
                                                                             <property name="minimum_size"></property>
                                                                             <property name="moveable">1</property>
-                                                                            <property name="name">m_addWeapPreset1</property>
+                                                                            <property name="name">m_addWeapPreset</property>
                                                                             <property name="pane_border">1</property>
                                                                             <property name="pane_position"></property>
                                                                             <property name="pane_size"></property>
@@ -16480,7 +16480,7 @@
                                                                             <property name="minimize_button">0</property>
                                                                             <property name="minimum_size"></property>
                                                                             <property name="moveable">1</property>
-                                                                            <property name="name">m_removeWeapPreset1</property>
+                                                                            <property name="name">m_removeWeapPreset</property>
                                                                             <property name="pane_border">1</property>
                                                                             <property name="pane_position"></property>
                                                                             <property name="pane_size"></property>
@@ -16554,7 +16554,7 @@
                                                                             <property name="minimize_button">0</property>
                                                                             <property name="minimum_size"></property>
                                                                             <property name="moveable">1</property>
-                                                                            <property name="name">m_removeWeapEquip1</property>
+                                                                            <property name="name">m_removeWeapEquip</property>
                                                                             <property name="pane_border">1</property>
                                                                             <property name="pane_position"></property>
                                                                             <property name="pane_size"></property>
@@ -16624,7 +16624,7 @@
                                                             <property name="minimize_button">0</property>
                                                             <property name="minimum_size">150,185</property>
                                                             <property name="moveable">1</property>
-                                                            <property name="name">m_weaponsLB1</property>
+                                                            <property name="name">m_weaponsLB</property>
                                                             <property name="pane_border">1</property>
                                                             <property name="pane_position"></property>
                                                             <property name="pane_size"></property>
@@ -16778,7 +16778,7 @@
                                                     <property name="minimize_button">0</property>
                                                     <property name="minimum_size">150,25</property>
                                                     <property name="moveable">1</property>
-                                                    <property name="name">m_helmet1</property>
+                                                    <property name="name">m_helmet</property>
                                                     <property name="pane_border">1</property>
                                                     <property name="pane_position"></property>
                                                     <property name="pane_size"></property>
@@ -16842,7 +16842,7 @@
                                                     <property name="minimize_button">0</property>
                                                     <property name="minimum_size">150,150</property>
                                                     <property name="moveable">1</property>
-                                                    <property name="name">m_helmetLB1</property>
+                                                    <property name="name">m_helmetLB</property>
                                                     <property name="pane_border">1</property>
                                                     <property name="pane_position"></property>
                                                     <property name="pane_size"></property>
@@ -16928,11 +16928,11 @@
                                     <property name="window_style"></property>
                                 </object>
                             </object>
-                            <object class="sizeritem" expanded="0">
+                            <object class="sizeritem" expanded="1">
                                 <property name="border">5</property>
                                 <property name="flag">wxEXPAND</property>
                                 <property name="proportion">1</property>
-                                <object class="wxFlexGridSizer" expanded="0">
+                                <object class="wxFlexGridSizer" expanded="1">
                                     <property name="cols">0</property>
                                     <property name="flexible_direction">wxBOTH</property>
                                     <property name="growablecols">0</property>
@@ -16944,11 +16944,11 @@
                                     <property name="permission">none</property>
                                     <property name="rows">1</property>
                                     <property name="vgap">0</property>
-                                    <object class="sizeritem" expanded="0">
+                                    <object class="sizeritem" expanded="1">
                                         <property name="border">5</property>
                                         <property name="flag">wxEXPAND</property>
                                         <property name="proportion">1</property>
-                                        <object class="wxFlexGridSizer" expanded="0">
+                                        <object class="wxFlexGridSizer" expanded="1">
                                             <property name="cols">1</property>
                                             <property name="flexible_direction">wxBOTH</property>
                                             <property name="growablecols"></property>
@@ -17021,11 +17021,11 @@
                                                     <property name="wrap">-1</property>
                                                 </object>
                                             </object>
-                                            <object class="sizeritem" expanded="0">
+                                            <object class="sizeritem" expanded="1">
                                                 <property name="border">5</property>
                                                 <property name="flag">wxEXPAND</property>
                                                 <property name="proportion">1</property>
-                                                <object class="wxFlexGridSizer" expanded="0">
+                                                <object class="wxFlexGridSizer" expanded="1">
                                                     <property name="cols">0</property>
                                                     <property name="flexible_direction">wxBOTH</property>
                                                     <property name="growablecols"></property>
@@ -17037,11 +17037,11 @@
                                                     <property name="permission">none</property>
                                                     <property name="rows">1</property>
                                                     <property name="vgap">0</property>
-                                                    <object class="sizeritem" expanded="0">
+                                                    <object class="sizeritem" expanded="1">
                                                         <property name="border">5</property>
                                                         <property name="flag">wxEXPAND</property>
                                                         <property name="proportion">1</property>
-                                                        <object class="wxFlexGridSizer" expanded="0">
+                                                        <object class="wxFlexGridSizer" expanded="1">
                                                             <property name="cols">2</property>
                                                             <property name="flexible_direction">wxBOTH</property>
                                                             <property name="growablecols"></property>
@@ -17093,7 +17093,7 @@
                                                                     <property name="minimize_button">0</property>
                                                                     <property name="minimum_size"></property>
                                                                     <property name="moveable">1</property>
-                                                                    <property name="name">m_magCustom1</property>
+                                                                    <property name="name">m_magCustom</property>
                                                                     <property name="pane_border">1</property>
                                                                     <property name="pane_position"></property>
                                                                     <property name="pane_size"></property>
@@ -17165,7 +17165,7 @@
                                                                     <property name="minimize_button">0</property>
                                                                     <property name="minimum_size"></property>
                                                                     <property name="moveable">1</property>
-                                                                    <property name="name">m_addMagCustom1</property>
+                                                                    <property name="name">m_addMagCustom</property>
                                                                     <property name="pane_border">1</property>
                                                                     <property name="pane_position"></property>
                                                                     <property name="pane_size"></property>
@@ -17231,7 +17231,7 @@
                                                                     <property name="minimize_button">0</property>
                                                                     <property name="minimum_size">130,150</property>
                                                                     <property name="moveable">1</property>
-                                                                    <property name="name">m_magPresets1</property>
+                                                                    <property name="name">m_magPresets</property>
                                                                     <property name="pane_border">1</property>
                                                                     <property name="pane_position"></property>
                                                                     <property name="pane_size"></property>
@@ -17254,11 +17254,11 @@
                                                                     <property name="window_style"></property>
                                                                 </object>
                                                             </object>
-                                                            <object class="sizeritem" expanded="0">
+                                                            <object class="sizeritem" expanded="1">
                                                                 <property name="border">5</property>
                                                                 <property name="flag">wxEXPAND</property>
                                                                 <property name="proportion">1</property>
-                                                                <object class="wxFlexGridSizer" expanded="0">
+                                                                <object class="wxFlexGridSizer" expanded="1">
                                                                     <property name="cols">1</property>
                                                                     <property name="flexible_direction">wxBOTH</property>
                                                                     <property name="growablecols"></property>
@@ -17318,7 +17318,7 @@
                                                                             <property name="minimize_button">0</property>
                                                                             <property name="minimum_size"></property>
                                                                             <property name="moveable">1</property>
-                                                                            <property name="name">m_addMagPreset1</property>
+                                                                            <property name="name">m_addMagPreset</property>
                                                                             <property name="pane_border">1</property>
                                                                             <property name="pane_position"></property>
                                                                             <property name="pane_size"></property>
@@ -17392,7 +17392,7 @@
                                                                             <property name="minimize_button">0</property>
                                                                             <property name="minimum_size"></property>
                                                                             <property name="moveable">1</property>
-                                                                            <property name="name">m_removeMagPreset1</property>
+                                                                            <property name="name">m_removeMagPreset</property>
                                                                             <property name="pane_border">1</property>
                                                                             <property name="pane_position"></property>
                                                                             <property name="pane_size"></property>
@@ -17426,11 +17426,11 @@
                                             </object>
                                         </object>
                                     </object>
-                                    <object class="sizeritem" expanded="0">
+                                    <object class="sizeritem" expanded="1">
                                         <property name="border">5</property>
                                         <property name="flag">wxEXPAND</property>
                                         <property name="proportion">1</property>
-                                        <object class="wxFlexGridSizer" expanded="0">
+                                        <object class="wxFlexGridSizer" expanded="1">
                                             <property name="cols">1</property>
                                             <property name="flexible_direction">wxBOTH</property>
                                             <property name="growablecols"></property>
@@ -17483,7 +17483,7 @@
                                                     <property name="minimize_button">0</property>
                                                     <property name="minimum_size"></property>
                                                     <property name="moveable">1</property>
-                                                    <property name="name">m_magAmountTxt1</property>
+                                                    <property name="name">m_magAmountTxt</property>
                                                     <property name="pane_border">1</property>
                                                     <property name="pane_position"></property>
                                                     <property name="pane_size"></property>
@@ -17543,7 +17543,7 @@
                                                     <property name="minimize_button">0</property>
                                                     <property name="minimum_size">120,-1</property>
                                                     <property name="moveable">1</property>
-                                                    <property name="name">m_magAmount1</property>
+                                                    <property name="name">m_magAmount</property>
                                                     <property name="pane_border">1</property>
                                                     <property name="pane_position"></property>
                                                     <property name="pane_size"></property>
@@ -17615,7 +17615,7 @@
                                                     <property name="minimize_button">0</property>
                                                     <property name="minimum_size">120,-1</property>
                                                     <property name="moveable">1</property>
-                                                    <property name="name">m_updateMagAmount1</property>
+                                                    <property name="name">m_updateMagAmount</property>
                                                     <property name="pane_border">1</property>
                                                     <property name="pane_position"></property>
                                                     <property name="pane_size"></property>
@@ -17689,7 +17689,7 @@
                                                     <property name="minimize_button">0</property>
                                                     <property name="minimum_size">120,-1</property>
                                                     <property name="moveable">1</property>
-                                                    <property name="name">m_magRemove1</property>
+                                                    <property name="name">m_magRemove</property>
                                                     <property name="pane_border">1</property>
                                                     <property name="pane_position"></property>
                                                     <property name="pane_size"></property>
@@ -17717,11 +17717,11 @@
                                             </object>
                                         </object>
                                     </object>
-                                    <object class="sizeritem" expanded="0">
+                                    <object class="sizeritem" expanded="1">
                                         <property name="border">5</property>
                                         <property name="flag">wxEXPAND</property>
                                         <property name="proportion">1</property>
-                                        <object class="wxFlexGridSizer" expanded="0">
+                                        <object class="wxFlexGridSizer" expanded="1">
                                             <property name="cols">2</property>
                                             <property name="flexible_direction">wxBOTH</property>
                                             <property name="growablecols"></property>
@@ -17773,7 +17773,7 @@
                                                     <property name="minimize_button">0</property>
                                                     <property name="minimum_size">150,215</property>
                                                     <property name="moveable">1</property>
-                                                    <property name="name">m_magLB1</property>
+                                                    <property name="name">m_magLB</property>
                                                     <property name="pane_border">1</property>
                                                     <property name="pane_position"></property>
                                                     <property name="pane_size"></property>
@@ -17858,11 +17858,11 @@
                                     <property name="window_style"></property>
                                 </object>
                             </object>
-                            <object class="sizeritem" expanded="0">
+                            <object class="sizeritem" expanded="1">
                                 <property name="border">5</property>
                                 <property name="flag">wxEXPAND</property>
                                 <property name="proportion">1</property>
-                                <object class="wxFlexGridSizer" expanded="0">
+                                <object class="wxFlexGridSizer" expanded="1">
                                     <property name="cols">0</property>
                                     <property name="flexible_direction">wxBOTH</property>
                                     <property name="growablecols">0</property>
@@ -17874,11 +17874,11 @@
                                     <property name="permission">none</property>
                                     <property name="rows">1</property>
                                     <property name="vgap">0</property>
-                                    <object class="sizeritem" expanded="0">
+                                    <object class="sizeritem" expanded="1">
                                         <property name="border">5</property>
                                         <property name="flag">wxEXPAND</property>
                                         <property name="proportion">1</property>
-                                        <object class="wxFlexGridSizer" expanded="0">
+                                        <object class="wxFlexGridSizer" expanded="1">
                                             <property name="cols">1</property>
                                             <property name="flexible_direction">wxBOTH</property>
                                             <property name="growablecols"></property>
@@ -17951,11 +17951,11 @@
                                                     <property name="wrap">-1</property>
                                                 </object>
                                             </object>
-                                            <object class="sizeritem" expanded="0">
+                                            <object class="sizeritem" expanded="1">
                                                 <property name="border">5</property>
                                                 <property name="flag">wxEXPAND</property>
                                                 <property name="proportion">1</property>
-                                                <object class="wxFlexGridSizer" expanded="0">
+                                                <object class="wxFlexGridSizer" expanded="1">
                                                     <property name="cols">0</property>
                                                     <property name="flexible_direction">wxBOTH</property>
                                                     <property name="growablecols"></property>
@@ -17967,11 +17967,11 @@
                                                     <property name="permission">none</property>
                                                     <property name="rows">1</property>
                                                     <property name="vgap">0</property>
-                                                    <object class="sizeritem" expanded="0">
+                                                    <object class="sizeritem" expanded="1">
                                                         <property name="border">5</property>
                                                         <property name="flag">wxEXPAND</property>
                                                         <property name="proportion">1</property>
-                                                        <object class="wxFlexGridSizer" expanded="0">
+                                                        <object class="wxFlexGridSizer" expanded="1">
                                                             <property name="cols">2</property>
                                                             <property name="flexible_direction">wxBOTH</property>
                                                             <property name="growablecols"></property>
@@ -18023,7 +18023,7 @@
                                                                     <property name="minimize_button">0</property>
                                                                     <property name="minimum_size"></property>
                                                                     <property name="moveable">1</property>
-                                                                    <property name="name">m_itemCustom1</property>
+                                                                    <property name="name">m_itemCustom</property>
                                                                     <property name="pane_border">1</property>
                                                                     <property name="pane_position"></property>
                                                                     <property name="pane_size"></property>
@@ -18095,7 +18095,7 @@
                                                                     <property name="minimize_button">0</property>
                                                                     <property name="minimum_size"></property>
                                                                     <property name="moveable">1</property>
-                                                                    <property name="name">m_addItemCustom1</property>
+                                                                    <property name="name">m_addItemCustom</property>
                                                                     <property name="pane_border">1</property>
                                                                     <property name="pane_position"></property>
                                                                     <property name="pane_size"></property>
@@ -18161,7 +18161,7 @@
                                                                     <property name="minimize_button">0</property>
                                                                     <property name="minimum_size">130,150</property>
                                                                     <property name="moveable">1</property>
-                                                                    <property name="name">m_itemPresets1</property>
+                                                                    <property name="name">m_itemPresets</property>
                                                                     <property name="pane_border">1</property>
                                                                     <property name="pane_position"></property>
                                                                     <property name="pane_size"></property>
@@ -18184,11 +18184,11 @@
                                                                     <property name="window_style"></property>
                                                                 </object>
                                                             </object>
-                                                            <object class="sizeritem" expanded="0">
+                                                            <object class="sizeritem" expanded="1">
                                                                 <property name="border">5</property>
                                                                 <property name="flag">wxEXPAND</property>
                                                                 <property name="proportion">1</property>
-                                                                <object class="wxFlexGridSizer" expanded="0">
+                                                                <object class="wxFlexGridSizer" expanded="1">
                                                                     <property name="cols">1</property>
                                                                     <property name="flexible_direction">wxBOTH</property>
                                                                     <property name="growablecols"></property>
@@ -18248,7 +18248,7 @@
                                                                             <property name="minimize_button">0</property>
                                                                             <property name="minimum_size"></property>
                                                                             <property name="moveable">1</property>
-                                                                            <property name="name">m_addItemPreset1</property>
+                                                                            <property name="name">m_addItemPreset</property>
                                                                             <property name="pane_border">1</property>
                                                                             <property name="pane_position"></property>
                                                                             <property name="pane_size"></property>
@@ -18322,7 +18322,7 @@
                                                                             <property name="minimize_button">0</property>
                                                                             <property name="minimum_size"></property>
                                                                             <property name="moveable">1</property>
-                                                                            <property name="name">m_removeItemPreset1</property>
+                                                                            <property name="name">m_removeItemPreset</property>
                                                                             <property name="pane_border">1</property>
                                                                             <property name="pane_position"></property>
                                                                             <property name="pane_size"></property>
@@ -18356,11 +18356,11 @@
                                             </object>
                                         </object>
                                     </object>
-                                    <object class="sizeritem" expanded="0">
+                                    <object class="sizeritem" expanded="1">
                                         <property name="border">5</property>
                                         <property name="flag">wxEXPAND</property>
                                         <property name="proportion">1</property>
-                                        <object class="wxFlexGridSizer" expanded="0">
+                                        <object class="wxFlexGridSizer" expanded="1">
                                             <property name="cols">1</property>
                                             <property name="flexible_direction">wxBOTH</property>
                                             <property name="growablecols"></property>
@@ -18473,7 +18473,7 @@
                                                     <property name="minimize_button">0</property>
                                                     <property name="minimum_size">120,-1</property>
                                                     <property name="moveable">1</property>
-                                                    <property name="name">m_itemAmount1</property>
+                                                    <property name="name">m_itemAmount</property>
                                                     <property name="pane_border">1</property>
                                                     <property name="pane_position"></property>
                                                     <property name="pane_size"></property>
@@ -18545,7 +18545,7 @@
                                                     <property name="minimize_button">0</property>
                                                     <property name="minimum_size">120,-1</property>
                                                     <property name="moveable">1</property>
-                                                    <property name="name">m_itemUpdateAmount1</property>
+                                                    <property name="name">m_itemUpdateAmount</property>
                                                     <property name="pane_border">1</property>
                                                     <property name="pane_position"></property>
                                                     <property name="pane_size"></property>
@@ -18619,7 +18619,7 @@
                                                     <property name="minimize_button">0</property>
                                                     <property name="minimum_size">120,-1</property>
                                                     <property name="moveable">1</property>
-                                                    <property name="name">m_itemRemove1</property>
+                                                    <property name="name">m_itemRemove</property>
                                                     <property name="pane_border">1</property>
                                                     <property name="pane_position"></property>
                                                     <property name="pane_size"></property>
@@ -18647,11 +18647,11 @@
                                             </object>
                                         </object>
                                     </object>
-                                    <object class="sizeritem" expanded="0">
+                                    <object class="sizeritem" expanded="1">
                                         <property name="border">5</property>
                                         <property name="flag">wxEXPAND</property>
                                         <property name="proportion">1</property>
-                                        <object class="wxFlexGridSizer" expanded="0">
+                                        <object class="wxFlexGridSizer" expanded="1">
                                             <property name="cols">2</property>
                                             <property name="flexible_direction">wxBOTH</property>
                                             <property name="growablecols"></property>
@@ -18703,7 +18703,7 @@
                                                     <property name="minimize_button">0</property>
                                                     <property name="minimum_size">150,215</property>
                                                     <property name="moveable">1</property>
-                                                    <property name="name">m_itemLB1</property>
+                                                    <property name="name">m_itemLB</property>
                                                     <property name="pane_border">1</property>
                                                     <property name="pane_position"></property>
                                                     <property name="pane_size"></property>

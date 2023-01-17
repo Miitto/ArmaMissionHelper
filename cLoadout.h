@@ -32,6 +32,14 @@ class cLoadoutDir
 public:
 	cLoadoutDir();
 
+	~cLoadoutDir()
+	{
+		for (std::vector<cLoadout*>::iterator i = loadouts.begin(); i != loadouts.end(); ++i)
+		{
+			delete (*i);
+		}
+	}
+
 	void addLoadout(cLoadout* load);
 	void removeLoadout(cLoadout* load);
 	void removeLoadout(int idx);

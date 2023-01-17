@@ -90,6 +90,7 @@ void cMain::open_new_path(const wxString path) {
 
 	cFileManager::readSettings(path + "description.ext", cSettings::mainSettings);
 	setSettings();
+	setLoadouts();
 	cFileManager::readLoadScreen(path + "description.ext", cLoadScreen::getLoadScreen());
 	setLoadScreen();
 }
@@ -151,4 +152,27 @@ void cMain::setLoadScreen()
 	setMissionAuthor(set->missionAuthor);
 	setMissionBackground(set->missionBackground);
 	setMapBackground(set->mapBackground);
+}
+
+void cMain::setLoadouts()
+{
+	cSettings* set = cSettings::getMain();
+
+	cLoadoutDir* loadDir = set->loadouts;
+	std::vector<cLoadout*> loadouts = loadDir->loadouts;
+
+	m_loadoutBook->DeleteAllPages(); // Clean slate
+
+	for (std::vector<cLoadout*>::iterator i = loadouts.begin(); i != loadouts.end(); ++i)
+	{
+		cLoadout* load = *i;
+
+
+		cLoadoutPanel* loadPage = new cLoadoutPanel(m_loadoutBook);
+		loadPage->m_loadoutDispName->SetValue(load->dispName);
+		loadPage->m_role->SetValue(load->role);
+
+		m_loadoutBook->AddPage(loadPage, load->className, false);
+	}
+
 }

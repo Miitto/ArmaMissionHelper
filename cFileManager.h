@@ -21,7 +21,7 @@ public:
 	static HRESULT basicFolderOpen(WCHAR*& path);
 	static HRESULT basicFolderOpen(wxString& path);
 	static bool readSettings(wxString path, cSettings* set);
-	static void parseOption(wxString& start, wxString& end);
+	static void parseOption(wxString& start, wxString& end, bool makeLower = true);
 	static bool readLoadScreen(wxString path, cLoadScreen* set);
 	static bool writeSettings(wxString path, cSettings* set, cLoadScreen* load);
 };

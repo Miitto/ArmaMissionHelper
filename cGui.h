@@ -330,71 +330,64 @@ class LoadoutPanel : public wxPanel
 	private:
 
 	protected:
-		wxScrolledWindow* m_defaultLoadout;
 		wxStaticText* m_loadoutDispNameTxt1;
-		wxTextCtrl* m_loadoutDispName1;
 		wxStaticText* m_loadoutRoleTxt1;
-		wxTextCtrl* Assault1;
 		wxStaticText* m_uniformTxt1;
-		wxTextCtrl* m_uniform1;
-		wxListBox* m_uniformLB1;
 		wxStaticText* m_backpackTxt1;
-		wxTextCtrl* m_backpack1;
-		wxListBox* m_backpackLB1;
 		wxStaticText* m_primaryTxt1;
-		wxTextCtrl* m_primary1;
-		wxListBox* m_primaryLB1;
 		wxStaticText* m_secondaryTxt1;
-		wxTextCtrl* m_secondary1;
-		wxListBox* m_secondaryLB1;
+		wxTextCtrl* m_secondary;
+		wxListBox* m_secondaryLB;
 		wxStaticLine* m_staticline51;
 		wxStaticText* m_otherEquip1;
-		wxTextCtrl* m_linkedCustom1;
-		wxButton* m_addLinkedCustom1;
-		wxListBox* m_linkedPresets1;
-		wxButton* m_addLinkPreset1;
-		wxButton* m_removeLinkPreset1;
-		wxButton* m_removeLinkEquip1;
-		wxListBox* m_linkedItemsLB1;
+		wxTextCtrl* m_linkedCustom;
+		wxButton* m_addLinkedCustom
+		;
+		wxListBox* m_linkedPresets;
+		wxButton* m_addLinkPreset
+		;
+		wxButton* m_removeLinkPreset;
+		wxButton* m_removeLinkEquip;
+		wxListBox* m_linkedItemsLB;
 		wxStaticText* m_vestTxt1;
-		wxTextCtrl* m_vest1;
-		wxListBox* m_vestLB1;
+		wxTextCtrl* m_vest;
+		wxListBox* m_vestLB;
 		wxStaticLine* m_staticline61;
 		wxStaticText* m_otherWeap1;
-		wxTextCtrl* m_weapCustom1;
-		wxButton* m_addWeapCustom1;
-		wxListBox* m_weapPresets1;
-		wxButton* m_addWeapPreset1;
-		wxButton* m_removeWeapPreset1;
-		wxButton* m_removeWeapEquip1;
-		wxListBox* m_weaponsLB1;
+		wxTextCtrl* m_weapCustom;
+		wxButton* m_addWeapCustom;
+		wxListBox* m_weapPresets;
+		wxButton* m_addWeapPreset;
+		wxButton* m_removeWeapPreset;
+		wxButton* m_removeWeapEquip;
+		wxListBox* m_weaponsLB;
 		wxStaticText* m_helmetTxt1;
-		wxTextCtrl* m_helmet1;
-		wxListBox* m_helmetLB1;
+		wxTextCtrl* m_helmet;
+		wxListBox* m_helmetLB;
 		wxStaticLine* m_staticline81;
 		wxStaticText* m_magsTxt1;
-		wxTextCtrl* m_magCustom1;
-		wxButton* m_addMagCustom1;
-		wxListBox* m_magPresets1;
-		wxButton* m_addMagPreset1;
-		wxButton* m_removeMagPreset1;
-		wxStaticText* m_magAmountTxt1;
-		wxTextCtrl* m_magAmount1;
-		wxButton* m_updateMagAmount1;
-		wxButton* m_magRemove1;
-		wxListBox* m_magLB1;
+		wxTextCtrl* m_magCustom;
+		wxButton* m_addMagCustom;
+		wxListBox* m_magPresets;
+		wxButton* m_addMagPreset;
+		wxButton* m_removeMagPreset;
+		wxStaticText* m_magAmountTxt;
+		wxTextCtrl* m_magAmount;
+		wxButton* m_updateMagAmount;
+		wxButton* m_magRemove;
+		wxListBox* m_magLB;
 		wxStaticLine* m_staticline71;
 		wxStaticText* m_itemTxt1;
-		wxTextCtrl* m_itemCustom1;
-		wxButton* m_addItemCustom1;
-		wxListBox* m_itemPresets1;
-		wxButton* m_addItemPreset1;
-		wxButton* m_removeItemPreset1;
+		wxTextCtrl* m_itemCustom;
+		wxButton* m_addItemCustom;
+		wxListBox* m_itemPresets;
+		wxButton* m_addItemPreset;
+		wxButton* m_removeItemPreset;
 		wxStaticText* m_itemAmountTxt1;
-		wxTextCtrl* m_itemAmount1;
-		wxButton* m_itemUpdateAmount1;
-		wxButton* m_itemRemove1;
-		wxListBox* m_itemLB1;
+		wxTextCtrl* m_itemAmount;
+		wxButton* m_itemUpdateAmount;
+		wxButton* m_itemRemove;
+		wxListBox* m_itemLB;
 
 		// Virtual event handlers, override them in your derived class
 		virtual void onUniformChange( wxCommandEvent& event ) { event.Skip(); }
@@ -424,6 +417,15 @@ class LoadoutPanel : public wxPanel
 
 
 	public:
+		wxScrolledWindow* m_defaultLoadout;
+		wxTextCtrl* m_loadoutDispName;
+		wxTextCtrl* m_role;
+		wxTextCtrl* m_uniform;
+		wxListBox* m_uniformLB;
+		wxTextCtrl* m_backpack;
+		wxListBox* m_backpackLB;
+		wxTextCtrl* m_primary;
+		wxListBox* m_primaryLB;
 
 		LoadoutPanel( wxWindow* parent, wxWindowID id = wxID_ANY, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 666,756 ), long style = wxTAB_TRAVERSAL, const wxString& name = wxEmptyString );
 

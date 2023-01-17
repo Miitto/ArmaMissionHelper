@@ -42,6 +42,8 @@ class cLoadoutPanel : public LoadoutPanel
 	public:
 		/** Constructor */
 		cLoadoutPanel( wxWindow* parent );
+
+		friend class cMain;
 	//// end generated class members
 
 };

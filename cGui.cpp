@@ -1614,15 +1614,15 @@ LoadoutPanel::LoadoutPanel( wxWindow* parent, wxWindowID id, const wxPoint& pos,
 	m_loadoutDispNameTxt1->Wrap( -1 );
 	fgSizer211->Add( m_loadoutDispNameTxt1, 0, wxALL, 5 );
 
-	m_loadoutDispName1 = new wxTextCtrl( m_defaultLoadout, wxID_ANY, wxT("Light"), wxDefaultPosition, wxDefaultSize, 0 );
-	fgSizer211->Add( m_loadoutDispName1, 0, wxALL, 5 );
+	m_loadoutDispName = new wxTextCtrl( m_defaultLoadout, wxID_ANY, wxT("Light"), wxDefaultPosition, wxDefaultSize, 0 );
+	fgSizer211->Add( m_loadoutDispName, 0, wxALL, 5 );
 
 	m_loadoutRoleTxt1 = new wxStaticText( m_defaultLoadout, wxID_ANY, wxT("Role (Optional)"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_loadoutRoleTxt1->Wrap( -1 );
 	fgSizer211->Add( m_loadoutRoleTxt1, 0, wxALL, 5 );
 
-	Assault1 = new wxTextCtrl( m_defaultLoadout, wxID_ANY, wxT("Assault"), wxDefaultPosition, wxDefaultSize, 0 );
-	fgSizer211->Add( Assault1, 0, wxALL, 5 );
+	m_role = new wxTextCtrl( m_defaultLoadout, wxID_ANY, wxT("Assault"), wxDefaultPosition, wxDefaultSize, 0 );
+	fgSizer211->Add( m_role, 0, wxALL, 5 );
 
 	wxFlexGridSizer* uniformSizer1;
 	uniformSizer1 = new wxFlexGridSizer( 0, 1, 0, 0 );
@@ -1635,17 +1635,17 @@ LoadoutPanel::LoadoutPanel( wxWindow* parent, wxWindowID id, const wxPoint& pos,
 
 	uniformSizer1->Add( m_uniformTxt1, 0, wxALL, 5 );
 
-	m_uniform1 = new wxTextCtrl( m_defaultLoadout, wxID_ANY, wxT("U_B_CombatUniform_mcam_tshirt"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_uniform1->SetMinSize( wxSize( 150,25 ) );
-	m_uniform1->SetMaxSize( wxSize( 150,25 ) );
+	m_uniform = new wxTextCtrl( m_defaultLoadout, wxID_ANY, wxT("U_B_CombatUniform_mcam_tshirt"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_uniform->SetMinSize( wxSize( 150,25 ) );
+	m_uniform->SetMaxSize( wxSize( 150,25 ) );
 
-	uniformSizer1->Add( m_uniform1, 0, wxALL, 5 );
+	uniformSizer1->Add( m_uniform, 0, wxALL, 5 );
 
-	m_uniformLB1 = new wxListBox( m_defaultLoadout, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, 0 );
-	m_uniformLB1->SetMinSize( wxSize( 150,150 ) );
-	m_uniformLB1->SetMaxSize( wxSize( 150,250 ) );
+	m_uniformLB = new wxListBox( m_defaultLoadout, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, 0 );
+	m_uniformLB->SetMinSize( wxSize( 150,150 ) );
+	m_uniformLB->SetMaxSize( wxSize( 150,250 ) );
 
-	uniformSizer1->Add( m_uniformLB1, 0, wxALL, 5 );
+	uniformSizer1->Add( m_uniformLB, 0, wxALL, 5 );
 
 
 	fgSizer211->Add( uniformSizer1, 1, wxEXPAND, 5 );
@@ -1661,17 +1661,17 @@ LoadoutPanel::LoadoutPanel( wxWindow* parent, wxWindowID id, const wxPoint& pos,
 
 	backpackSizer1->Add( m_backpackTxt1, 0, wxALL, 5 );
 
-	m_backpack1 = new wxTextCtrl( m_defaultLoadout, wxID_ANY, wxT("B_AssaultPack_mcamo"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_backpack1->SetMinSize( wxSize( 150,25 ) );
-	m_backpack1->SetMaxSize( wxSize( 150,25 ) );
+	m_backpack = new wxTextCtrl( m_defaultLoadout, wxID_ANY, wxT("B_AssaultPack_mcamo"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_backpack->SetMinSize( wxSize( 150,25 ) );
+	m_backpack->SetMaxSize( wxSize( 150,25 ) );
 
-	backpackSizer1->Add( m_backpack1, 0, wxALL, 5 );
+	backpackSizer1->Add( m_backpack, 0, wxALL, 5 );
 
-	m_backpackLB1 = new wxListBox( m_defaultLoadout, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, 0 );
-	m_backpackLB1->SetMinSize( wxSize( 150,150 ) );
-	m_backpackLB1->SetMaxSize( wxSize( 150,250 ) );
+	m_backpackLB = new wxListBox( m_defaultLoadout, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, 0 );
+	m_backpackLB->SetMinSize( wxSize( 150,150 ) );
+	m_backpackLB->SetMaxSize( wxSize( 150,250 ) );
 
-	backpackSizer1->Add( m_backpackLB1, 0, wxALL, 5 );
+	backpackSizer1->Add( m_backpackLB, 0, wxALL, 5 );
 
 
 	fgSizer211->Add( backpackSizer1, 1, wxEXPAND, 5 );
@@ -1695,17 +1695,17 @@ LoadoutPanel::LoadoutPanel( wxWindow* parent, wxWindowID id, const wxPoint& pos,
 
 	primarySizer1->Add( m_primaryTxt1, 0, wxALL, 5 );
 
-	m_primary1 = new wxTextCtrl( m_defaultLoadout, wxID_ANY, wxT("arifle_MXC_F"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_primary1->SetMinSize( wxSize( 150,25 ) );
-	m_primary1->SetMaxSize( wxSize( 150,25 ) );
+	m_primary = new wxTextCtrl( m_defaultLoadout, wxID_ANY, wxT("arifle_MXC_F"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_primary->SetMinSize( wxSize( 150,25 ) );
+	m_primary->SetMaxSize( wxSize( 150,25 ) );
 
-	primarySizer1->Add( m_primary1, 0, wxALL, 5 );
+	primarySizer1->Add( m_primary, 0, wxALL, 5 );
 
-	m_primaryLB1 = new wxListBox( m_defaultLoadout, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, 0 );
-	m_primaryLB1->SetMinSize( wxSize( 150,217 ) );
-	m_primaryLB1->SetMaxSize( wxSize( 150,250 ) );
+	m_primaryLB = new wxListBox( m_defaultLoadout, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, 0 );
+	m_primaryLB->SetMinSize( wxSize( 150,217 ) );
+	m_primaryLB->SetMaxSize( wxSize( 150,250 ) );
 
-	primarySizer1->Add( m_primaryLB1, 0, wxALL, 5 );
+	primarySizer1->Add( m_primaryLB, 0, wxALL, 5 );
 
 
 	fgSizer221->Add( primarySizer1, 1, wxEXPAND, 5 );
@@ -1721,17 +1721,17 @@ LoadoutPanel::LoadoutPanel( wxWindow* parent, wxWindowID id, const wxPoint& pos,
 
 	secondarySizer1->Add( m_secondaryTxt1, 0, wxALL, 5 );
 
-	m_secondary1 = new wxTextCtrl( m_defaultLoadout, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-	m_secondary1->SetMinSize( wxSize( 150,25 ) );
-	m_secondary1->SetMaxSize( wxSize( 150,25 ) );
+	m_secondary = new wxTextCtrl( m_defaultLoadout, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	m_secondary->SetMinSize( wxSize( 150,25 ) );
+	m_secondary->SetMaxSize( wxSize( 150,25 ) );
 
-	secondarySizer1->Add( m_secondary1, 0, wxALL, 5 );
+	secondarySizer1->Add( m_secondary, 0, wxALL, 5 );
 
-	m_secondaryLB1 = new wxListBox( m_defaultLoadout, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, 0 );
-	m_secondaryLB1->SetMinSize( wxSize( 150,217 ) );
-	m_secondaryLB1->SetMaxSize( wxSize( 150,250 ) );
+	m_secondaryLB = new wxListBox( m_defaultLoadout, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, 0 );
+	m_secondaryLB->SetMinSize( wxSize( 150,217 ) );
+	m_secondaryLB->SetMaxSize( wxSize( 150,250 ) );
 
-	secondarySizer1->Add( m_secondaryLB1, 0, wxALL, 5 );
+	secondarySizer1->Add( m_secondaryLB, 0, wxALL, 5 );
 
 
 	fgSizer221->Add( secondarySizer1, 1, wxEXPAND, 5 );
@@ -1771,21 +1771,23 @@ LoadoutPanel::LoadoutPanel( wxWindow* parent, wxWindowID id, const wxPoint& pos,
 	fgSizer332->SetFlexibleDirection( wxBOTH );
 	fgSizer332->SetNonFlexibleGrowMode( wxFLEX_GROWMODE_SPECIFIED );
 
-	m_linkedCustom1 = new wxTextCtrl( m_defaultLoadout, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-	fgSizer332->Add( m_linkedCustom1, 0, wxALL, 5 );
+	m_linkedCustom = new wxTextCtrl( m_defaultLoadout, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	fgSizer332->Add( m_linkedCustom, 0, wxALL, 5 );
 
-	m_addLinkedCustom1 = new wxButton( m_defaultLoadout, wxID_ANY, wxT("Add Custom"), wxDefaultPosition, wxDefaultSize, 0 );
-	fgSizer332->Add( m_addLinkedCustom1, 0, wxALL, 5 );
+	m_addLinkedCustom
+	= new wxButton( m_defaultLoadout, wxID_ANY, wxT("Add Custom"), wxDefaultPosition, wxDefaultSize, 0 );
+	fgSizer332->Add( m_addLinkedCustom
+	, 0, wxALL, 5 );
 
-	m_linkedPresets1 = new wxListBox( m_defaultLoadout, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, 0 );
-	m_linkedPresets1->Append( wxT("Map : ItemMap") );
-	m_linkedPresets1->Append( wxT("Compass : ItemCompass") );
-	m_linkedPresets1->Append( wxT("Watch : ItemWatch") );
-	m_linkedPresets1->Append( wxT("Radio : ItemRadio") );
-	m_linkedPresets1->SetMinSize( wxSize( 130,150 ) );
-	m_linkedPresets1->SetMaxSize( wxSize( 150,-1 ) );
+	m_linkedPresets = new wxListBox( m_defaultLoadout, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, 0 );
+	m_linkedPresets->Append( wxT("Map : ItemMap") );
+	m_linkedPresets->Append( wxT("Compass : ItemCompass") );
+	m_linkedPresets->Append( wxT("Watch : ItemWatch") );
+	m_linkedPresets->Append( wxT("Radio : ItemRadio") );
+	m_linkedPresets->SetMinSize( wxSize( 130,150 ) );
+	m_linkedPresets->SetMaxSize( wxSize( 150,-1 ) );
 
-	fgSizer332->Add( m_linkedPresets1, 0, wxALL, 5 );
+	fgSizer332->Add( m_linkedPresets, 0, wxALL, 5 );
 
 	wxFlexGridSizer* fgSizer352;
 	fgSizer352 = new wxFlexGridSizer( 0, 1, 0, 0 );
@@ -1793,14 +1795,16 @@ LoadoutPanel::LoadoutPanel( wxWindow* parent, wxWindowID id, const wxPoint& pos,
 	fgSizer352->SetFlexibleDirection( wxBOTH );
 	fgSizer352->SetNonFlexibleGrowMode( wxFLEX_GROWMODE_SPECIFIED );
 
-	m_addLinkPreset1 = new wxButton( m_defaultLoadout, wxID_ANY, wxT("Add Preset"), wxDefaultPosition, wxDefaultSize, 0 );
-	fgSizer352->Add( m_addLinkPreset1, 0, wxALL, 5 );
+	m_addLinkPreset
+	= new wxButton( m_defaultLoadout, wxID_ANY, wxT("Add Preset"), wxDefaultPosition, wxDefaultSize, 0 );
+	fgSizer352->Add( m_addLinkPreset
+	, 0, wxALL, 5 );
 
-	m_removeLinkPreset1 = new wxButton( m_defaultLoadout, wxID_ANY, wxT("Remove Preset"), wxDefaultPosition, wxDefaultSize, 0 );
-	fgSizer352->Add( m_removeLinkPreset1, 0, wxALL, 5 );
+	m_removeLinkPreset = new wxButton( m_defaultLoadout, wxID_ANY, wxT("Remove Preset"), wxDefaultPosition, wxDefaultSize, 0 );
+	fgSizer352->Add( m_removeLinkPreset, 0, wxALL, 5 );
 
-	m_removeLinkEquip1 = new wxButton( m_defaultLoadout, wxID_ANY, wxT("Remove ->"), wxDefaultPosition, wxDefaultSize, 0 );
-	fgSizer352->Add( m_removeLinkEquip1, 0, wxALL, 5 );
+	m_removeLinkEquip = new wxButton( m_defaultLoadout, wxID_ANY, wxT("Remove ->"), wxDefaultPosition, wxDefaultSize, 0 );
+	fgSizer352->Add( m_removeLinkEquip, 0, wxALL, 5 );
 
 
 	fgSizer332->Add( fgSizer352, 1, wxEXPAND, 5 );
@@ -1808,17 +1812,17 @@ LoadoutPanel::LoadoutPanel( wxWindow* parent, wxWindowID id, const wxPoint& pos,
 
 	fgSizer322->Add( fgSizer332, 1, wxEXPAND, 5 );
 
-	m_linkedItemsLB1 = new wxListBox( m_defaultLoadout, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, 0 );
-	m_linkedItemsLB1->Append( wxT("ItemMap") );
-	m_linkedItemsLB1->Append( wxT("ItemCompass") );
-	m_linkedItemsLB1->Append( wxT("ItemWatch") );
-	m_linkedItemsLB1->Append( wxT("ItemRadio") );
-	m_linkedItemsLB1->Append( wxT("optic_Aco") );
-	m_linkedItemsLB1->Append( wxT("acc_flashlight") );
-	m_linkedItemsLB1->SetMinSize( wxSize( 150,185 ) );
-	m_linkedItemsLB1->SetMaxSize( wxSize( 150,500 ) );
+	m_linkedItemsLB = new wxListBox( m_defaultLoadout, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, 0 );
+	m_linkedItemsLB->Append( wxT("ItemMap") );
+	m_linkedItemsLB->Append( wxT("ItemCompass") );
+	m_linkedItemsLB->Append( wxT("ItemWatch") );
+	m_linkedItemsLB->Append( wxT("ItemRadio") );
+	m_linkedItemsLB->Append( wxT("optic_Aco") );
+	m_linkedItemsLB->Append( wxT("acc_flashlight") );
+	m_linkedItemsLB->SetMinSize( wxSize( 150,185 ) );
+	m_linkedItemsLB->SetMaxSize( wxSize( 150,500 ) );
 
-	fgSizer322->Add( m_linkedItemsLB1, 0, wxALL, 5 );
+	fgSizer322->Add( m_linkedItemsLB, 0, wxALL, 5 );
 
 
 	linkedSizer1->Add( fgSizer322, 1, wxEXPAND, 5 );
@@ -1840,17 +1844,17 @@ LoadoutPanel::LoadoutPanel( wxWindow* parent, wxWindowID id, const wxPoint& pos,
 
 	vestSizer1->Add( m_vestTxt1, 0, wxALL, 5 );
 
-	m_vest1 = new wxTextCtrl( m_defaultLoadout, wxID_ANY, wxT("V_Chestrig_khk"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_vest1->SetMinSize( wxSize( 150,25 ) );
-	m_vest1->SetMaxSize( wxSize( 150,25 ) );
+	m_vest = new wxTextCtrl( m_defaultLoadout, wxID_ANY, wxT("V_Chestrig_khk"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_vest->SetMinSize( wxSize( 150,25 ) );
+	m_vest->SetMaxSize( wxSize( 150,25 ) );
 
-	vestSizer1->Add( m_vest1, 0, wxALL, 5 );
+	vestSizer1->Add( m_vest, 0, wxALL, 5 );
 
-	m_vestLB1 = new wxListBox( m_defaultLoadout, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, 0 );
-	m_vestLB1->SetMinSize( wxSize( 150,150 ) );
-	m_vestLB1->SetMaxSize( wxSize( 150,250 ) );
+	m_vestLB = new wxListBox( m_defaultLoadout, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, 0 );
+	m_vestLB->SetMinSize( wxSize( 150,150 ) );
+	m_vestLB->SetMaxSize( wxSize( 150,250 ) );
 
-	vestSizer1->Add( m_vestLB1, 0, wxALL, 5 );
+	vestSizer1->Add( m_vestLB, 0, wxALL, 5 );
 
 
 	loadoutRow2Sizer1->Add( vestSizer1, 1, wxEXPAND, 5 );
@@ -1887,18 +1891,18 @@ LoadoutPanel::LoadoutPanel( wxWindow* parent, wxWindowID id, const wxPoint& pos,
 	fgSizer3312->SetFlexibleDirection( wxBOTH );
 	fgSizer3312->SetNonFlexibleGrowMode( wxFLEX_GROWMODE_SPECIFIED );
 
-	m_weapCustom1 = new wxTextCtrl( m_defaultLoadout, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-	fgSizer3312->Add( m_weapCustom1, 0, wxALL, 5 );
+	m_weapCustom = new wxTextCtrl( m_defaultLoadout, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	fgSizer3312->Add( m_weapCustom, 0, wxALL, 5 );
 
-	m_addWeapCustom1 = new wxButton( m_defaultLoadout, wxID_ANY, wxT("Add Custom"), wxDefaultPosition, wxDefaultSize, 0 );
-	fgSizer3312->Add( m_addWeapCustom1, 0, wxALL, 5 );
+	m_addWeapCustom = new wxButton( m_defaultLoadout, wxID_ANY, wxT("Add Custom"), wxDefaultPosition, wxDefaultSize, 0 );
+	fgSizer3312->Add( m_addWeapCustom, 0, wxALL, 5 );
 
-	m_weapPresets1 = new wxListBox( m_defaultLoadout, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, 0 );
-	m_weapPresets1->Append( wxT("Binocular") );
-	m_weapPresets1->SetMinSize( wxSize( 130,150 ) );
-	m_weapPresets1->SetMaxSize( wxSize( 150,-1 ) );
+	m_weapPresets = new wxListBox( m_defaultLoadout, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, 0 );
+	m_weapPresets->Append( wxT("Binocular") );
+	m_weapPresets->SetMinSize( wxSize( 130,150 ) );
+	m_weapPresets->SetMaxSize( wxSize( 150,-1 ) );
 
-	fgSizer3312->Add( m_weapPresets1, 0, wxALL, 5 );
+	fgSizer3312->Add( m_weapPresets, 0, wxALL, 5 );
 
 	wxFlexGridSizer* fgSizer3512;
 	fgSizer3512 = new wxFlexGridSizer( 0, 1, 0, 0 );
@@ -1906,14 +1910,14 @@ LoadoutPanel::LoadoutPanel( wxWindow* parent, wxWindowID id, const wxPoint& pos,
 	fgSizer3512->SetFlexibleDirection( wxBOTH );
 	fgSizer3512->SetNonFlexibleGrowMode( wxFLEX_GROWMODE_SPECIFIED );
 
-	m_addWeapPreset1 = new wxButton( m_defaultLoadout, wxID_ANY, wxT("Add Preset"), wxDefaultPosition, wxDefaultSize, 0 );
-	fgSizer3512->Add( m_addWeapPreset1, 0, wxALL, 5 );
+	m_addWeapPreset = new wxButton( m_defaultLoadout, wxID_ANY, wxT("Add Preset"), wxDefaultPosition, wxDefaultSize, 0 );
+	fgSizer3512->Add( m_addWeapPreset, 0, wxALL, 5 );
 
-	m_removeWeapPreset1 = new wxButton( m_defaultLoadout, wxID_ANY, wxT("Remove Preset"), wxDefaultPosition, wxDefaultSize, 0 );
-	fgSizer3512->Add( m_removeWeapPreset1, 0, wxALL, 5 );
+	m_removeWeapPreset = new wxButton( m_defaultLoadout, wxID_ANY, wxT("Remove Preset"), wxDefaultPosition, wxDefaultSize, 0 );
+	fgSizer3512->Add( m_removeWeapPreset, 0, wxALL, 5 );
 
-	m_removeWeapEquip1 = new wxButton( m_defaultLoadout, wxID_ANY, wxT("Remove ->"), wxDefaultPosition, wxDefaultSize, 0 );
-	fgSizer3512->Add( m_removeWeapEquip1, 0, wxALL, 5 );
+	m_removeWeapEquip = new wxButton( m_defaultLoadout, wxID_ANY, wxT("Remove ->"), wxDefaultPosition, wxDefaultSize, 0 );
+	fgSizer3512->Add( m_removeWeapEquip, 0, wxALL, 5 );
 
 
 	fgSizer3312->Add( fgSizer3512, 1, wxEXPAND, 5 );
@@ -1921,12 +1925,12 @@ LoadoutPanel::LoadoutPanel( wxWindow* parent, wxWindowID id, const wxPoint& pos,
 
 	fgSizer3212->Add( fgSizer3312, 1, wxEXPAND, 5 );
 
-	m_weaponsLB1 = new wxListBox( m_defaultLoadout, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, 0 );
-	m_weaponsLB1->Append( wxT("Binocular") );
-	m_weaponsLB1->SetMinSize( wxSize( 150,185 ) );
-	m_weaponsLB1->SetMaxSize( wxSize( 150,500 ) );
+	m_weaponsLB = new wxListBox( m_defaultLoadout, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, 0 );
+	m_weaponsLB->Append( wxT("Binocular") );
+	m_weaponsLB->SetMinSize( wxSize( 150,185 ) );
+	m_weaponsLB->SetMaxSize( wxSize( 150,500 ) );
 
-	fgSizer3212->Add( m_weaponsLB1, 0, wxALL, 5 );
+	fgSizer3212->Add( m_weaponsLB, 0, wxALL, 5 );
 
 
 	otherWeapSizer1->Add( fgSizer3212, 1, wxEXPAND, 5 );
@@ -1948,17 +1952,17 @@ LoadoutPanel::LoadoutPanel( wxWindow* parent, wxWindowID id, const wxPoint& pos,
 
 	helmetSizer1->Add( m_helmetTxt1, 0, wxALL, 5 );
 
-	m_helmet1 = new wxTextCtrl( m_defaultLoadout, wxID_ANY, wxT("H_Watchcap_blk"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_helmet1->SetMinSize( wxSize( 150,25 ) );
-	m_helmet1->SetMaxSize( wxSize( 150,25 ) );
+	m_helmet = new wxTextCtrl( m_defaultLoadout, wxID_ANY, wxT("H_Watchcap_blk"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_helmet->SetMinSize( wxSize( 150,25 ) );
+	m_helmet->SetMaxSize( wxSize( 150,25 ) );
 
-	helmetSizer1->Add( m_helmet1, 0, wxALL, 5 );
+	helmetSizer1->Add( m_helmet, 0, wxALL, 5 );
 
-	m_helmetLB1 = new wxListBox( m_defaultLoadout, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, 0 );
-	m_helmetLB1->SetMinSize( wxSize( 150,150 ) );
-	m_helmetLB1->SetMaxSize( wxSize( 150,250 ) );
+	m_helmetLB = new wxListBox( m_defaultLoadout, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, 0 );
+	m_helmetLB->SetMinSize( wxSize( 150,150 ) );
+	m_helmetLB->SetMaxSize( wxSize( 150,250 ) );
 
-	helmetSizer1->Add( m_helmetLB1, 0, wxALL, 5 );
+	helmetSizer1->Add( m_helmetLB, 0, wxALL, 5 );
 
 
 	loadoutRow3Sizer1->Add( helmetSizer1, 1, wxEXPAND, 5 );
@@ -1996,18 +2000,18 @@ LoadoutPanel::LoadoutPanel( wxWindow* parent, wxWindowID id, const wxPoint& pos,
 	fgSizer33112->SetFlexibleDirection( wxBOTH );
 	fgSizer33112->SetNonFlexibleGrowMode( wxFLEX_GROWMODE_SPECIFIED );
 
-	m_magCustom1 = new wxTextCtrl( m_defaultLoadout, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-	fgSizer33112->Add( m_magCustom1, 0, wxALL, 5 );
+	m_magCustom = new wxTextCtrl( m_defaultLoadout, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	fgSizer33112->Add( m_magCustom, 0, wxALL, 5 );
 
-	m_addMagCustom1 = new wxButton( m_defaultLoadout, wxID_ANY, wxT("Add Custom"), wxDefaultPosition, wxDefaultSize, 0 );
-	fgSizer33112->Add( m_addMagCustom1, 0, wxALL, 5 );
+	m_addMagCustom = new wxButton( m_defaultLoadout, wxID_ANY, wxT("Add Custom"), wxDefaultPosition, wxDefaultSize, 0 );
+	fgSizer33112->Add( m_addMagCustom, 0, wxALL, 5 );
 
-	m_magPresets1 = new wxListBox( m_defaultLoadout, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, 0 );
-	m_magPresets1->Append( wxT("30Rnd_65x39_caseless_mag") );
-	m_magPresets1->SetMinSize( wxSize( 130,150 ) );
-	m_magPresets1->SetMaxSize( wxSize( 150,-1 ) );
+	m_magPresets = new wxListBox( m_defaultLoadout, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, 0 );
+	m_magPresets->Append( wxT("30Rnd_65x39_caseless_mag") );
+	m_magPresets->SetMinSize( wxSize( 130,150 ) );
+	m_magPresets->SetMaxSize( wxSize( 150,-1 ) );
 
-	fgSizer33112->Add( m_magPresets1, 0, wxALL, 5 );
+	fgSizer33112->Add( m_magPresets, 0, wxALL, 5 );
 
 	wxFlexGridSizer* fgSizer35112;
 	fgSizer35112 = new wxFlexGridSizer( 0, 1, 0, 0 );
@@ -2015,11 +2019,11 @@ LoadoutPanel::LoadoutPanel( wxWindow* parent, wxWindowID id, const wxPoint& pos,
 	fgSizer35112->SetFlexibleDirection( wxBOTH );
 	fgSizer35112->SetNonFlexibleGrowMode( wxFLEX_GROWMODE_SPECIFIED );
 
-	m_addMagPreset1 = new wxButton( m_defaultLoadout, wxID_ANY, wxT("Add Preset"), wxDefaultPosition, wxDefaultSize, 0 );
-	fgSizer35112->Add( m_addMagPreset1, 0, wxALL, 5 );
+	m_addMagPreset = new wxButton( m_defaultLoadout, wxID_ANY, wxT("Add Preset"), wxDefaultPosition, wxDefaultSize, 0 );
+	fgSizer35112->Add( m_addMagPreset, 0, wxALL, 5 );
 
-	m_removeMagPreset1 = new wxButton( m_defaultLoadout, wxID_ANY, wxT("Remove Preset"), wxDefaultPosition, wxDefaultSize, 0 );
-	fgSizer35112->Add( m_removeMagPreset1, 0, wxALL, 5 );
+	m_removeMagPreset = new wxButton( m_defaultLoadout, wxID_ANY, wxT("Remove Preset"), wxDefaultPosition, wxDefaultSize, 0 );
+	fgSizer35112->Add( m_removeMagPreset, 0, wxALL, 5 );
 
 
 	fgSizer33112->Add( fgSizer35112, 1, wxEXPAND, 5 );
@@ -2039,24 +2043,24 @@ LoadoutPanel::LoadoutPanel( wxWindow* parent, wxWindowID id, const wxPoint& pos,
 	magMiddle1->SetFlexibleDirection( wxBOTH );
 	magMiddle1->SetNonFlexibleGrowMode( wxFLEX_GROWMODE_SPECIFIED );
 
-	m_magAmountTxt1 = new wxStaticText( m_defaultLoadout, wxID_ANY, wxT("Amount"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_magAmountTxt1->Wrap( -1 );
-	magMiddle1->Add( m_magAmountTxt1, 0, wxALL, 5 );
+	m_magAmountTxt = new wxStaticText( m_defaultLoadout, wxID_ANY, wxT("Amount"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_magAmountTxt->Wrap( -1 );
+	magMiddle1->Add( m_magAmountTxt, 0, wxALL, 5 );
 
-	m_magAmount1 = new wxTextCtrl( m_defaultLoadout, wxID_ANY, wxT("1"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_magAmount1->SetMinSize( wxSize( 120,-1 ) );
+	m_magAmount = new wxTextCtrl( m_defaultLoadout, wxID_ANY, wxT("1"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_magAmount->SetMinSize( wxSize( 120,-1 ) );
 
-	magMiddle1->Add( m_magAmount1, 0, wxALL, 5 );
+	magMiddle1->Add( m_magAmount, 0, wxALL, 5 );
 
-	m_updateMagAmount1 = new wxButton( m_defaultLoadout, wxID_ANY, wxT("Update Amount ->"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_updateMagAmount1->SetMinSize( wxSize( 120,-1 ) );
+	m_updateMagAmount = new wxButton( m_defaultLoadout, wxID_ANY, wxT("Update Amount ->"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_updateMagAmount->SetMinSize( wxSize( 120,-1 ) );
 
-	magMiddle1->Add( m_updateMagAmount1, 0, wxALL, 5 );
+	magMiddle1->Add( m_updateMagAmount, 0, wxALL, 5 );
 
-	m_magRemove1 = new wxButton( m_defaultLoadout, wxID_ANY, wxT("Remove -->"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_magRemove1->SetMinSize( wxSize( 120,-1 ) );
+	m_magRemove = new wxButton( m_defaultLoadout, wxID_ANY, wxT("Remove -->"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_magRemove->SetMinSize( wxSize( 120,-1 ) );
 
-	magMiddle1->Add( m_magRemove1, 0, wxALL, 5 );
+	magMiddle1->Add( m_magRemove, 0, wxALL, 5 );
 
 
 	loadoutRow4Sizer1->Add( magMiddle1, 1, wxEXPAND, 5 );
@@ -2066,13 +2070,13 @@ LoadoutPanel::LoadoutPanel( wxWindow* parent, wxWindowID id, const wxPoint& pos,
 	magRightSide1->SetFlexibleDirection( wxBOTH );
 	magRightSide1->SetNonFlexibleGrowMode( wxFLEX_GROWMODE_SPECIFIED );
 
-	m_magLB1 = new wxListBox( m_defaultLoadout, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, 0 );
-	m_magLB1->Append( wxT("30Rnd_65x39_caseless_mag|2") );
-	m_magLB1->Append( wxT("SmokeShell") );
-	m_magLB1->SetMinSize( wxSize( 150,215 ) );
-	m_magLB1->SetMaxSize( wxSize( 150,500 ) );
+	m_magLB = new wxListBox( m_defaultLoadout, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, 0 );
+	m_magLB->Append( wxT("30Rnd_65x39_caseless_mag|2") );
+	m_magLB->Append( wxT("SmokeShell") );
+	m_magLB->SetMinSize( wxSize( 150,215 ) );
+	m_magLB->SetMaxSize( wxSize( 150,500 ) );
 
-	magRightSide1->Add( m_magLB1, 0, wxALL, 5 );
+	magRightSide1->Add( m_magLB, 0, wxALL, 5 );
 
 
 	loadoutRow4Sizer1->Add( magRightSide1, 1, wxEXPAND, 5 );
@@ -2110,18 +2114,18 @@ LoadoutPanel::LoadoutPanel( wxWindow* parent, wxWindowID id, const wxPoint& pos,
 	fgSizer331111->SetFlexibleDirection( wxBOTH );
 	fgSizer331111->SetNonFlexibleGrowMode( wxFLEX_GROWMODE_SPECIFIED );
 
-	m_itemCustom1 = new wxTextCtrl( m_defaultLoadout, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-	fgSizer331111->Add( m_itemCustom1, 0, wxALL, 5 );
+	m_itemCustom = new wxTextCtrl( m_defaultLoadout, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	fgSizer331111->Add( m_itemCustom, 0, wxALL, 5 );
 
-	m_addItemCustom1 = new wxButton( m_defaultLoadout, wxID_ANY, wxT("Add Custom"), wxDefaultPosition, wxDefaultSize, 0 );
-	fgSizer331111->Add( m_addItemCustom1, 0, wxALL, 5 );
+	m_addItemCustom = new wxButton( m_defaultLoadout, wxID_ANY, wxT("Add Custom"), wxDefaultPosition, wxDefaultSize, 0 );
+	fgSizer331111->Add( m_addItemCustom, 0, wxALL, 5 );
 
-	m_itemPresets1 = new wxListBox( m_defaultLoadout, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, 0 );
-	m_itemPresets1->Append( wxT("First Aid Kit") );
-	m_itemPresets1->SetMinSize( wxSize( 130,150 ) );
-	m_itemPresets1->SetMaxSize( wxSize( 150,-1 ) );
+	m_itemPresets = new wxListBox( m_defaultLoadout, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, 0 );
+	m_itemPresets->Append( wxT("First Aid Kit") );
+	m_itemPresets->SetMinSize( wxSize( 130,150 ) );
+	m_itemPresets->SetMaxSize( wxSize( 150,-1 ) );
 
-	fgSizer331111->Add( m_itemPresets1, 0, wxALL, 5 );
+	fgSizer331111->Add( m_itemPresets, 0, wxALL, 5 );
 
 	wxFlexGridSizer* fgSizer351111;
 	fgSizer351111 = new wxFlexGridSizer( 0, 1, 0, 0 );
@@ -2129,11 +2133,11 @@ LoadoutPanel::LoadoutPanel( wxWindow* parent, wxWindowID id, const wxPoint& pos,
 	fgSizer351111->SetFlexibleDirection( wxBOTH );
 	fgSizer351111->SetNonFlexibleGrowMode( wxFLEX_GROWMODE_SPECIFIED );
 
-	m_addItemPreset1 = new wxButton( m_defaultLoadout, wxID_ANY, wxT("Add Preset"), wxDefaultPosition, wxDefaultSize, 0 );
-	fgSizer351111->Add( m_addItemPreset1, 0, wxALL, 5 );
+	m_addItemPreset = new wxButton( m_defaultLoadout, wxID_ANY, wxT("Add Preset"), wxDefaultPosition, wxDefaultSize, 0 );
+	fgSizer351111->Add( m_addItemPreset, 0, wxALL, 5 );
 
-	m_removeItemPreset1 = new wxButton( m_defaultLoadout, wxID_ANY, wxT("Remove Preset"), wxDefaultPosition, wxDefaultSize, 0 );
-	fgSizer351111->Add( m_removeItemPreset1, 0, wxALL, 5 );
+	m_removeItemPreset = new wxButton( m_defaultLoadout, wxID_ANY, wxT("Remove Preset"), wxDefaultPosition, wxDefaultSize, 0 );
+	fgSizer351111->Add( m_removeItemPreset, 0, wxALL, 5 );
 
 
 	fgSizer331111->Add( fgSizer351111, 1, wxEXPAND, 5 );
@@ -2157,20 +2161,20 @@ LoadoutPanel::LoadoutPanel( wxWindow* parent, wxWindowID id, const wxPoint& pos,
 	m_itemAmountTxt1->Wrap( -1 );
 	itemMiddle1->Add( m_itemAmountTxt1, 0, wxALL, 5 );
 
-	m_itemAmount1 = new wxTextCtrl( m_defaultLoadout, wxID_ANY, wxT("1"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_itemAmount1->SetMinSize( wxSize( 120,-1 ) );
+	m_itemAmount = new wxTextCtrl( m_defaultLoadout, wxID_ANY, wxT("1"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_itemAmount->SetMinSize( wxSize( 120,-1 ) );
 
-	itemMiddle1->Add( m_itemAmount1, 0, wxALL, 5 );
+	itemMiddle1->Add( m_itemAmount, 0, wxALL, 5 );
 
-	m_itemUpdateAmount1 = new wxButton( m_defaultLoadout, wxID_ANY, wxT("Update Amount ->"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_itemUpdateAmount1->SetMinSize( wxSize( 120,-1 ) );
+	m_itemUpdateAmount = new wxButton( m_defaultLoadout, wxID_ANY, wxT("Update Amount ->"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_itemUpdateAmount->SetMinSize( wxSize( 120,-1 ) );
 
-	itemMiddle1->Add( m_itemUpdateAmount1, 0, wxALL, 5 );
+	itemMiddle1->Add( m_itemUpdateAmount, 0, wxALL, 5 );
 
-	m_itemRemove1 = new wxButton( m_defaultLoadout, wxID_ANY, wxT("Remove -->"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_itemRemove1->SetMinSize( wxSize( 120,-1 ) );
+	m_itemRemove = new wxButton( m_defaultLoadout, wxID_ANY, wxT("Remove -->"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_itemRemove->SetMinSize( wxSize( 120,-1 ) );
 
-	itemMiddle1->Add( m_itemRemove1, 0, wxALL, 5 );
+	itemMiddle1->Add( m_itemRemove, 0, wxALL, 5 );
 
 
 	loadoutRow5Sizer11->Add( itemMiddle1, 1, wxEXPAND, 5 );
@@ -2180,12 +2184,12 @@ LoadoutPanel::LoadoutPanel( wxWindow* parent, wxWindowID id, const wxPoint& pos,
 	itemRightSide1->SetFlexibleDirection( wxBOTH );
 	itemRightSide1->SetNonFlexibleGrowMode( wxFLEX_GROWMODE_SPECIFIED );
 
-	m_itemLB1 = new wxListBox( m_defaultLoadout, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, 0 );
-	m_itemLB1->Append( wxT("FirstAidKit|1") );
-	m_itemLB1->SetMinSize( wxSize( 150,215 ) );
-	m_itemLB1->SetMaxSize( wxSize( 150,500 ) );
+	m_itemLB = new wxListBox( m_defaultLoadout, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, 0 );
+	m_itemLB->Append( wxT("FirstAidKit|1") );
+	m_itemLB->SetMinSize( wxSize( 150,215 ) );
+	m_itemLB->SetMaxSize( wxSize( 150,500 ) );
 
-	itemRightSide1->Add( m_itemLB1, 0, wxALL, 5 );
+	itemRightSide1->Add( m_itemLB, 0, wxALL, 5 );
 
 
 	loadoutRow5Sizer11->Add( itemRightSide1, 1, wxEXPAND, 5 );
@@ -2204,58 +2208,62 @@ LoadoutPanel::LoadoutPanel( wxWindow* parent, wxWindowID id, const wxPoint& pos,
 	this->Layout();
 
 	// Connect Events
-	m_uniformLB1->Connect( wxEVT_COMMAND_LISTBOX_DOUBLECLICKED, wxCommandEventHandler( LoadoutPanel::onUniformChange ), NULL, this );
-	m_backpackLB1->Connect( wxEVT_COMMAND_LISTBOX_DOUBLECLICKED, wxCommandEventHandler( LoadoutPanel::onBackpackChange ), NULL, this );
-	m_primaryLB1->Connect( wxEVT_COMMAND_LISTBOX_DOUBLECLICKED, wxCommandEventHandler( LoadoutPanel::onPrimaryChange ), NULL, this );
-	m_secondaryLB1->Connect( wxEVT_COMMAND_LISTBOX_DOUBLECLICKED, wxCommandEventHandler( LoadoutPanel::onSecondaryChange ), NULL, this );
-	m_addLinkedCustom1->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( LoadoutPanel::addCustomLinked ), NULL, this );
-	m_addLinkPreset1->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( LoadoutPanel::addPresetLinked ), NULL, this );
-	m_removeLinkPreset1->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( LoadoutPanel::removePresetLinked ), NULL, this );
-	m_removeLinkEquip1->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( LoadoutPanel::removeLinked ), NULL, this );
-	m_vestLB1->Connect( wxEVT_COMMAND_LISTBOX_DOUBLECLICKED, wxCommandEventHandler( LoadoutPanel::onVestChange ), NULL, this );
-	m_addWeapCustom1->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( LoadoutPanel::addCustomWeap ), NULL, this );
-	m_addWeapPreset1->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( LoadoutPanel::addPresetWeap ), NULL, this );
-	m_removeWeapPreset1->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( LoadoutPanel::removePresetWeap ), NULL, this );
-	m_removeWeapEquip1->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( LoadoutPanel::removeWeap ), NULL, this );
-	m_helmetLB1->Connect( wxEVT_COMMAND_LISTBOX_DOUBLECLICKED, wxCommandEventHandler( LoadoutPanel::onHelmetChange ), NULL, this );
-	m_addMagCustom1->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( LoadoutPanel::addCustomMag ), NULL, this );
-	m_addMagPreset1->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( LoadoutPanel::addPresetMag ), NULL, this );
-	m_removeMagPreset1->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( LoadoutPanel::removePresetMag ), NULL, this );
-	m_updateMagAmount1->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( LoadoutPanel::updateMagAmount ), NULL, this );
-	m_magRemove1->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( LoadoutPanel::removeMag ), NULL, this );
-	m_addItemCustom1->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( LoadoutPanel::addCustomItem ), NULL, this );
-	m_addItemPreset1->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( LoadoutPanel::addPresetItem ), NULL, this );
-	m_removeItemPreset1->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( LoadoutPanel::removePresetItem ), NULL, this );
-	m_itemUpdateAmount1->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( LoadoutPanel::updateItemAmount ), NULL, this );
-	m_itemRemove1->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( LoadoutPanel::removeItem ), NULL, this );
+	m_uniformLB->Connect( wxEVT_COMMAND_LISTBOX_DOUBLECLICKED, wxCommandEventHandler( LoadoutPanel::onUniformChange ), NULL, this );
+	m_backpackLB->Connect( wxEVT_COMMAND_LISTBOX_DOUBLECLICKED, wxCommandEventHandler( LoadoutPanel::onBackpackChange ), NULL, this );
+	m_primaryLB->Connect( wxEVT_COMMAND_LISTBOX_DOUBLECLICKED, wxCommandEventHandler( LoadoutPanel::onPrimaryChange ), NULL, this );
+	m_secondaryLB->Connect( wxEVT_COMMAND_LISTBOX_DOUBLECLICKED, wxCommandEventHandler( LoadoutPanel::onSecondaryChange ), NULL, this );
+	m_addLinkedCustom
+	->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( LoadoutPanel::addCustomLinked ), NULL, this );
+	m_addLinkPreset
+	->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( LoadoutPanel::addPresetLinked ), NULL, this );
+	m_removeLinkPreset->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( LoadoutPanel::removePresetLinked ), NULL, this );
+	m_removeLinkEquip->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( LoadoutPanel::removeLinked ), NULL, this );
+	m_vestLB->Connect( wxEVT_COMMAND_LISTBOX_DOUBLECLICKED, wxCommandEventHandler( LoadoutPanel::onVestChange ), NULL, this );
+	m_addWeapCustom->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( LoadoutPanel::addCustomWeap ), NULL, this );
+	m_addWeapPreset->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( LoadoutPanel::addPresetWeap ), NULL, this );
+	m_removeWeapPreset->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( LoadoutPanel::removePresetWeap ), NULL, this );
+	m_removeWeapEquip->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( LoadoutPanel::removeWeap ), NULL, this );
+	m_helmetLB->Connect( wxEVT_COMMAND_LISTBOX_DOUBLECLICKED, wxCommandEventHandler( LoadoutPanel::onHelmetChange ), NULL, this );
+	m_addMagCustom->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( LoadoutPanel::addCustomMag ), NULL, this );
+	m_addMagPreset->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( LoadoutPanel::addPresetMag ), NULL, this );
+	m_removeMagPreset->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( LoadoutPanel::removePresetMag ), NULL, this );
+	m_updateMagAmount->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( LoadoutPanel::updateMagAmount ), NULL, this );
+	m_magRemove->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( LoadoutPanel::removeMag ), NULL, this );
+	m_addItemCustom->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( LoadoutPanel::addCustomItem ), NULL, this );
+	m_addItemPreset->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( LoadoutPanel::addPresetItem ), NULL, this );
+	m_removeItemPreset->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( LoadoutPanel::removePresetItem ), NULL, this );
+	m_itemUpdateAmount->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( LoadoutPanel::updateItemAmount ), NULL, this );
+	m_itemRemove->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( LoadoutPanel::removeItem ), NULL, this );
 }
 
 LoadoutPanel::~LoadoutPanel()
 {
 	// Disconnect Events
-	m_uniformLB1->Disconnect( wxEVT_COMMAND_LISTBOX_DOUBLECLICKED, wxCommandEventHandler( LoadoutPanel::onUniformChange ), NULL, this );
-	m_backpackLB1->Disconnect( wxEVT_COMMAND_LISTBOX_DOUBLECLICKED, wxCommandEventHandler( LoadoutPanel::onBackpackChange ), NULL, this );
-	m_primaryLB1->Disconnect( wxEVT_COMMAND_LISTBOX_DOUBLECLICKED, wxCommandEventHandler( LoadoutPanel::onPrimaryChange ), NULL, this );
-	m_secondaryLB1->Disconnect( wxEVT_COMMAND_LISTBOX_DOUBLECLICKED, wxCommandEventHandler( LoadoutPanel::onSecondaryChange ), NULL, this );
-	m_addLinkedCustom1->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( LoadoutPanel::addCustomLinked ), NULL, this );
-	m_addLinkPreset1->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( LoadoutPanel::addPresetLinked ), NULL, this );
-	m_removeLinkPreset1->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( LoadoutPanel::removePresetLinked ), NULL, this );
-	m_removeLinkEquip1->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( LoadoutPanel::removeLinked ), NULL, this );
-	m_vestLB1->Disconnect( wxEVT_COMMAND_LISTBOX_DOUBLECLICKED, wxCommandEventHandler( LoadoutPanel::onVestChange ), NULL, this );
-	m_addWeapCustom1->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( LoadoutPanel::addCustomWeap ), NULL, this );
-	m_addWeapPreset1->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( LoadoutPanel::addPresetWeap ), NULL, this );
-	m_removeWeapPreset1->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( LoadoutPanel::removePresetWeap ), NULL, this );
-	m_removeWeapEquip1->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( LoadoutPanel::removeWeap ), NULL, this );
-	m_helmetLB1->Disconnect( wxEVT_COMMAND_LISTBOX_DOUBLECLICKED, wxCommandEventHandler( LoadoutPanel::onHelmetChange ), NULL, this );
-	m_addMagCustom1->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( LoadoutPanel::addCustomMag ), NULL, this );
-	m_addMagPreset1->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( LoadoutPanel::addPresetMag ), NULL, this );
-	m_removeMagPreset1->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( LoadoutPanel::removePresetMag ), NULL, this );
-	m_updateMagAmount1->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( LoadoutPanel::updateMagAmount ), NULL, this );
-	m_magRemove1->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( LoadoutPanel::removeMag ), NULL, this );
-	m_addItemCustom1->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( LoadoutPanel::addCustomItem ), NULL, this );
-	m_addItemPreset1->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( LoadoutPanel::addPresetItem ), NULL, this );
-	m_removeItemPreset1->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( LoadoutPanel::removePresetItem ), NULL, this );
-	m_itemUpdateAmount1->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( LoadoutPanel::updateItemAmount ), NULL, this );
-	m_itemRemove1->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( LoadoutPanel::removeItem ), NULL, this );
+	m_uniformLB->Disconnect( wxEVT_COMMAND_LISTBOX_DOUBLECLICKED, wxCommandEventHandler( LoadoutPanel::onUniformChange ), NULL, this );
+	m_backpackLB->Disconnect( wxEVT_COMMAND_LISTBOX_DOUBLECLICKED, wxCommandEventHandler( LoadoutPanel::onBackpackChange ), NULL, this );
+	m_primaryLB->Disconnect( wxEVT_COMMAND_LISTBOX_DOUBLECLICKED, wxCommandEventHandler( LoadoutPanel::onPrimaryChange ), NULL, this );
+	m_secondaryLB->Disconnect( wxEVT_COMMAND_LISTBOX_DOUBLECLICKED, wxCommandEventHandler( LoadoutPanel::onSecondaryChange ), NULL, this );
+	m_addLinkedCustom
+	->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( LoadoutPanel::addCustomLinked ), NULL, this );
+	m_addLinkPreset
+	->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( LoadoutPanel::addPresetLinked ), NULL, this );
+	m_removeLinkPreset->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( LoadoutPanel::removePresetLinked ), NULL, this );
+	m_removeLinkEquip->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( LoadoutPanel::removeLinked ), NULL, this );
+	m_vestLB->Disconnect( wxEVT_COMMAND_LISTBOX_DOUBLECLICKED, wxCommandEventHandler( LoadoutPanel::onVestChange ), NULL, this );
+	m_addWeapCustom->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( LoadoutPanel::addCustomWeap ), NULL, this );
+	m_addWeapPreset->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( LoadoutPanel::addPresetWeap ), NULL, this );
+	m_removeWeapPreset->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( LoadoutPanel::removePresetWeap ), NULL, this );
+	m_removeWeapEquip->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( LoadoutPanel::removeWeap ), NULL, this );
+	m_helmetLB->Disconnect( wxEVT_COMMAND_LISTBOX_DOUBLECLICKED, wxCommandEventHandler( LoadoutPanel::onHelmetChange ), NULL, this );
+	m_addMagCustom->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( LoadoutPanel::addCustomMag ), NULL, this );
+	m_addMagPreset->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( LoadoutPanel::addPresetMag ), NULL, this );
+	m_removeMagPreset->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( LoadoutPanel::removePresetMag ), NULL, this );
+	m_updateMagAmount->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( LoadoutPanel::updateMagAmount ), NULL, this );
+	m_magRemove->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( LoadoutPanel::removeMag ), NULL, this );
+	m_addItemCustom->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( LoadoutPanel::addCustomItem ), NULL, this );
+	m_addItemPreset->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( LoadoutPanel::addPresetItem ), NULL, this );
+	m_removeItemPreset->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( LoadoutPanel::removePresetItem ), NULL, this );
+	m_itemUpdateAmount->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( LoadoutPanel::updateItemAmount ), NULL, this );
+	m_itemRemove->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( LoadoutPanel::removeItem ), NULL, this );
 
 }
