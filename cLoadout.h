@@ -6,7 +6,7 @@ class cLoadout
 {
 public:
 	cLoadout();
-	cLoadout(wxString cName, wxString dName, wxString r, wxString u, wxString b, wxString p, wxString s, wxString v, wxString h, wxArrayString l, wxArrayString w, wxArrayString m);
+	cLoadout(wxString cName, wxString dName, wxString r, wxString u, wxString b, wxString p, wxString s, wxString v, wxString h, wxArrayString l, wxArrayString w, wxArrayString m, wxArrayString i);
 	wxString className;
 
 	wxString dispName;
@@ -23,6 +23,8 @@ public:
 	wxArrayString weapons;
 
 	wxArrayString mags;
+
+	wxArrayString items;
 };
 
 class cLoadoutDir
@@ -30,10 +32,10 @@ class cLoadoutDir
 public:
 	cLoadoutDir();
 
-	void addLoadout(cLoadout load);
-	void removeLoadout(cLoadout load);
+	void addLoadout(cLoadout* load);
+	void removeLoadout(cLoadout* load);
 	void removeLoadout(int idx);
 	void removeLoadout(wxString cName);
 
-	std::vector<cLoadout> loadouts;
+	std::vector<cLoadout*> loadouts;
 };

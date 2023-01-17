@@ -6,6 +6,8 @@ cSettings::cSettings() {
 	mainSettings = this;
 	channels = new ChannelSet();
 	hudOptions.set();
+
+	loadouts = new cLoadoutDir();
 }
 
 bool ChannelSet::set(int id, bool chat, bool voice)

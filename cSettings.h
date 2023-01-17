@@ -3,6 +3,7 @@
 #include <wx/wx.h>
 #include <bitset>
 
+#include "cLoadout.h"
 
 class Channel {
 public:
@@ -114,4 +115,6 @@ public:
 	int medicMult = 2;
 	int forceRespawnDelay = 3;
 	int bleedOutTime = 120;
+
+	cLoadoutDir* loadouts;
 };

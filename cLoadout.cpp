@@ -16,7 +16,7 @@ cLoadout::cLoadout()
 	secondary = "";
 }
 
-cLoadout::cLoadout(wxString cName, wxString dName, wxString r, wxString u, wxString b, wxString p, wxString s, wxString v, wxString h, wxArrayString l, wxArrayString w, wxArrayString m)
+cLoadout::cLoadout(wxString cName, wxString dName, wxString r, wxString u, wxString b, wxString p, wxString s, wxString v, wxString h, wxArrayString l, wxArrayString w, wxArrayString m, wxArrayString i)
 {
 	className = cName;
 	dispName = dName;
@@ -32,6 +32,8 @@ cLoadout::cLoadout(wxString cName, wxString dName, wxString r, wxString u, wxStr
 	linked = l;
 	weapons = w;
 	mags = m;
+
+	items = i;
 }
 
 cLoadoutDir::cLoadoutDir()
@@ -39,14 +41,14 @@ cLoadoutDir::cLoadoutDir()
 	
 }
 
-void cLoadoutDir::addLoadout(cLoadout load)
+void cLoadoutDir::addLoadout(cLoadout* load)
 {
 	// Ensure No Duplicate Classes
-	for (std::vector<cLoadout>::iterator i = loadouts.begin; i != loadouts.end(); ++i)
+	for (std::vector<cLoadout*>::iterator i = loadouts.begin(); i != loadouts.end(); ++i)
 	{
-		if (i->className == load.className)
+		if ((*i)->className == load->className)
 		{
-			load.className = load.className + "1";
+			load->className = load->className + "1";
 			addLoadout(load); // Since a name, unlikely to cause stack overflow
 			return;
 		}
@@ -54,11 +56,11 @@ void cLoadoutDir::addLoadout(cLoadout load)
 	loadouts.emplace_back(load);
 }
 
-void cLoadoutDir::removeLoadout(cLoadout load)
+void cLoadoutDir::removeLoadout(cLoadout* load)
 {
-	for (std::vector<cLoadout>::iterator i = loadouts.begin; i != loadouts.end(); ++i)
+	for (std::vector<cLoadout*>::iterator i = loadouts.begin(); i != loadouts.end(); ++i)
 	{
-		if (i->className == load.className)
+		if ((*i)->className == load->className)
 		{
 			i = loadouts.erase(i);
 			return;
@@ -68,14 +70,14 @@ void cLoadoutDir::removeLoadout(cLoadout load)
 
 void cLoadoutDir::removeLoadout(int idx)
 {
-	loadouts.erase(loadouts.begin + idx);
+	loadouts.erase(loadouts.begin() + idx);
 }
 
 void cLoadoutDir::removeLoadout(wxString cName)
 {
-	for (std::vector<cLoadout>::iterator i = loadouts.begin; i != loadouts.end(); ++i)
+	for (std::vector<cLoadout*>::iterator i = loadouts.begin(); i != loadouts.end(); ++i)
 	{
-		if (i->className == cName)
+		if ((*i)->className == cName)
 		{
 			i = loadouts.erase(i);
 			return;

@@ -1,6 +1,7 @@
 #pragma once
 
 #define OPT(s) else if (start == wxT(s))
+#define LOG(s) wxLogDebug(s)
 
 #include <wx/wx.h>
 #include <wx/tokenzr.h>
@@ -12,6 +13,7 @@
 #include <iostream>
 #include  <fstream>
 #include "cHelpers.h"
+#include "cLoadout.h"
 
 class cFileManager
 {

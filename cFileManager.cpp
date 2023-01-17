@@ -205,6 +205,224 @@ bool cFileManager::readSettings(const wxString path, cSettings* set)
             delete cSettings::mainSettings->channels;
             cSettings::mainSettings->channels = channels;
         }
+        else if (i->Lower().Contains("cfgrespawninventory"))
+        {
+            LOG("Hit Cfg Inv");
+            wxString curClass; // MUST have value
+            wxString dispName = "";
+            wxString role = "";
+
+            wxString weap = "";
+            wxString mags = "";
+            wxString linked = "";
+            wxString items = "";
+
+            wxString uniform = "";
+            wxString backpack = "";
+            wxString vest = "";
+            wxString helmet = "";
+
+            wxString primary = "";
+            wxString secondary = "";
+
+            bool inSpeach = false;
+
+            bool doubleClose = false;
+             // Move from cfgRespawn line
+            while (!i->Contains("};") && !doubleClose) // Break when class is closed
+            {
+                i->Replace("\t", "", true); // Remove Tabs
+                i->Replace(";", "", true); // Remove ;
+                i->Trim(false);
+
+
+                if (i->starts_with("class")) {
+                    curClass = i->Mid(5).BeforeFirst('{').Trim().Trim(false);
+                    do {
+                        i->Trim().Trim(false);
+                        *i = i->Lower();
+                        if (i->starts_with("weapons[]"))
+                        {
+                            weap.Append(i->AfterFirst('{')); // Add any info on first line
+                            ++i;
+                            while (!i->Contains("};")) // Iterate until param ends
+                            {
+                                i->Replace("\t", "", true); // Remove Whitespace
+                                i->Replace(" ", "", true);
+                                i->Trim();
+                                i->Trim(false);
+
+                                weap.Append(*i); // Append Line data
+                                ++i;
+                            }
+                            weap.Append(i->BeforeFirst('}')); // Add any info on last line
+                            ++i;
+                            continue;
+                        }
+                        if (i->starts_with("magazines[]"))
+                        {
+                            mags.Append(i->AfterFirst('{')); // Add any info on first line
+                            ++i;
+                            while (!i->Contains("};")) // Iterate until param ends
+                            {
+                                i->Replace("\t", "", true); // Remove Whitespace
+                                i->Replace(" ", "", true);
+                                i->Trim();
+                                i->Trim(false);
+
+                                mags.Append(*i); // Append Line data
+                                ++i;
+                            }
+                            mags.Append(i->BeforeFirst('}')); // Add any info on last line
+                            ++i;
+                            continue;
+                        }
+                        if (i->starts_with("items[]"))
+                        {
+                            items.Append(i->AfterFirst('{')); // Add any info on first line
+                            ++i;
+                            while (!i->Contains("};")) // Iterate until param ends
+                            {
+                                i->Replace("\t", "", true); // Remove Whitespace
+                                i->Replace(" ", "", true);
+                                i->Trim();
+                                i->Trim(false);
+
+                                items.Append(*i); // Append Line data
+                                ++i;
+                            }
+                            items.Append(i->BeforeFirst('}')); // Add any info on last line
+                            ++i;
+                            continue;
+                        }
+                        if (i->starts_with("linkeditems[]"))
+                        {
+                            linked.Append(i->AfterFirst('{')); // Add any info on first line
+                            ++i;
+                            while (!i->Contains("};")) // Iterate until param ends
+                            {
+                                i->Replace("\t", "", true); // Remove Whitespace
+                                i->Replace(" ", "", true);
+                                i->Trim();
+                                i->Trim(false);
+
+                                linked.Append(*i); // Append Line data
+                                ++i;
+                            }
+                            linked.Append(i->BeforeFirst('}')); // Add any info on last line
+                            ++i;
+                            continue;
+                        }
+                        wxString start1, end1;
+                        start1 = *i;
+                        parseOption(start1, end1);
+                        if (start1.starts_with("uniformclass"))
+                        {
+                            end1.Replace("\"", "", true);
+                            uniform = end1;
+                        }
+                        else if (start1.starts_with("backpack"))
+                        {
+                            end1.Replace("\"", "", true);
+                            backpack = end1;
+                        }
+                        else if (start1.starts_with("displayname"))
+                        {
+                            end1.Replace("\"", "", true);
+                            dispName = end1;
+                        }
+                        else if (start1.starts_with("role"))
+                        {
+                            end1.Replace("\"", "", true);
+                            role = end1;
+                        }
+
+                        ++i;
+                    } while (!i->Contains("};"));
+                    if (i->AfterFirst('}').Contains("};")) // Class closing, make sure we arn't moving out 2 scopes at once
+                    {
+                        doubleClose = true;
+                    }
+                    // Class Closed, save contents
+                    linked.Replace("\"", "", true);
+                    weap.Replace("\"", "", true);
+                    mags.Replace("\"", "", true);
+                    items.Replace("\"", "", true);
+                    linked.Replace("\n", "", true);
+                    weap.Replace("\n", "", true);
+                    mags.Replace("\n", "", true);
+                    items.Replace("\n", "", true);
+
+                    wxArrayString linkedItems;
+                    { // Linked Parse
+                        wxStringTokenizer tokenizer(linked, ",");
+                        int cnt = 0;
+                        while (tokenizer.HasMoreTokens())
+                        {
+                            wxString token = tokenizer.GetNextToken();
+                            // process token here
+                            if (token.starts_with("V_")) // Hacked Approach, don't have enough data to be able to tell if is actually a vest... rely on dev good practice in hope
+                            {
+                                vest = token;
+                            }
+                            else if (token.starts_with("H_"))
+                            {
+                                helmet = token;
+                            } else
+                            {
+                                linkedItems.push_back(token);
+                            }
+                        }
+                    }
+                    wxArrayString weapons;
+                    { // Weap Parse
+                        wxStringTokenizer tokenizer(weap, ",");
+                        int cnt = 0;
+                        while (tokenizer.HasMoreTokens())
+                        {
+                            wxString token = tokenizer.GetNextToken();
+                            // process token here
+                            switch (cnt)
+                            {
+                            case 0:
+                                primary = token;
+                                break;
+                            case 1:
+                                secondary = token;
+                                break;
+                            default:
+                                weapons.push_back(token);
+                            }
+                        }
+                    }
+                    wxArrayString magazines;
+                    { // Mags Parse
+                        wxStringTokenizer tokenizer(mags, ",");
+                        int cnt = 0;
+                        while (tokenizer.HasMoreTokens())
+                        {
+                            wxString token = tokenizer.GetNextToken();
+                            // process token here
+                            magazines.push_back(token);
+                        }
+                    }
+                    wxArrayString itemList;
+                    { // Items Parse
+                        wxStringTokenizer tokenizer(items, ",");
+                        int cnt = 0;
+                        while (tokenizer.HasMoreTokens())
+                        {
+                            wxString token = tokenizer.GetNextToken();
+                            // process token here
+                            itemList.push_back(token);
+                        }
+                    }
+                    cSettings* set = cSettings::getMain();
+                    set->loadouts->addLoadout(new cLoadout(curClass, dispName, role, uniform, backpack, primary, secondary, vest, helmet, linkedItems, weapons, magazines, itemList));
+                }
+                ++i;
+            }
+        }
     }
     return true;
 }
