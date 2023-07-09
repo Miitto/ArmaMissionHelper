@@ -229,6 +229,7 @@ bool cFileManager::readSettings(const wxString path, cSettings* set)
 
             bool doubleClose = false;
              // Move from cfgRespawn line
+            ++i;
             while (!i->Contains("};") && !doubleClose) // Break when class is closed
             {
                 i->Replace("\t", "", true); // Remove Tabs
@@ -239,7 +240,7 @@ bool cFileManager::readSettings(const wxString path, cSettings* set)
                 if (i->starts_with("class")) {
                     curClass = i->Mid(5).BeforeFirst('{').Trim().Trim(false);
                     do {
-                        i->Trim().Trim(false);
+                        *i = i->BeforeFirst('/').Trim().Trim(false);
 
                         wxString start1, end1; // Up here, Since needs to not be made lower to keep end1 true to config
                         start1 = *i;
@@ -247,25 +248,37 @@ bool cFileManager::readSettings(const wxString path, cSettings* set)
                         if (start1.Lower().starts_with("uniformclass"))
                         {
                             end1.Replace("\"", "", true);
-                            end1.RemoveLast(); // Remove trailing semi colon
+                            *i = i->BeforeFirst('/').Trim().Trim(false);
+                            if (end1.ends_with(";")) {
+                                end1.RemoveLast();
+                            }
                             uniform = end1;
                         }
                         else if (start1.Lower().starts_with("backpack"))
                         {
                             end1.Replace("\"", "", true);
-                            end1.RemoveLast();
+                            *i = i->BeforeFirst('/').Trim().Trim(false);
+                            if (end1.ends_with(";")) {
+                                end1.RemoveLast();
+                            }
                             backpack = end1;
                         }
                         else if (start1.Lower().starts_with("displayname"))
                         {
                             end1.Replace("\"", "", true);
-                            end1.RemoveLast();
+                            *i = i->BeforeFirst('/').Trim().Trim(false);
+                            if (end1.ends_with(";")) {
+                                end1.RemoveLast();
+                            }
                             dispName = end1;
                         }
                         else if (start1.Lower().starts_with("role"))
                         {
                             end1.Replace("\"", "", true);
-                            end1.RemoveLast();
+                            *i = i->BeforeFirst('/').Trim().Trim(false);
+                            if (end1.ends_with(";")) {
+                                end1.RemoveLast();
+                            }
                             role = end1;
                         }
 
@@ -278,8 +291,7 @@ bool cFileManager::readSettings(const wxString path, cSettings* set)
                             {
                                 i->Replace("\t", "", true); // Remove Whitespace
                                 i->Replace(" ", "", true);
-                                i->Trim();
-                                i->Trim(false);
+                                *i = i->BeforeFirst('/').Trim().Trim(false);
 
                                 weap.Append(*i); // Append Line data
                                 ++i;
@@ -296,8 +308,7 @@ bool cFileManager::readSettings(const wxString path, cSettings* set)
                             {
                                 i->Replace("\t", "", true); // Remove Whitespace
                                 i->Replace(" ", "", true);
-                                i->Trim();
-                                i->Trim(false);
+                                *i = i->BeforeFirst('/').Trim().Trim(false);
 
                                 mags.Append(*i); // Append Line data
                                 ++i;
@@ -314,8 +325,7 @@ bool cFileManager::readSettings(const wxString path, cSettings* set)
                             {
                                 i->Replace("\t", "", true); // Remove Whitespace
                                 i->Replace(" ", "", true);
-                                i->Trim();
-                                i->Trim(false);
+                                *i = i->BeforeFirst('/').Trim().Trim(false);
 
                                 items.Append(*i); // Append Line data
                                 ++i;
@@ -332,8 +342,7 @@ bool cFileManager::readSettings(const wxString path, cSettings* set)
                             {
                                 i->Replace("\t", "", true); // Remove Whitespace
                                 i->Replace(" ", "", true);
-                                i->Trim();
-                                i->Trim(false);
+                                *i = i->BeforeFirst('/').Trim().Trim(false);
 
                                 linked.Append(*i); // Append Line data
                                 ++i;
@@ -368,14 +377,14 @@ bool cFileManager::readSettings(const wxString path, cSettings* set)
                             // process token here
                             if (token.starts_with("V_")) // Hacked Approach, don't have enough data to be able to tell if is actually a vest... rely on dev good practice in hope
                             {
-                                vest = token;
+                                vest = token.Trim().Trim(false);
                             }
                             else if (token.starts_with("H_"))
                             {
-                                helmet = token;
+                                helmet = token.Trim().Trim(false);
                             } else
                             {
-                                linkedItems.push_back(token);
+                                linkedItems.push_back(token.Trim().Trim(false));
                             }
                         }
                     }
@@ -390,14 +399,15 @@ bool cFileManager::readSettings(const wxString path, cSettings* set)
                             switch (cnt)
                             {
                             case 0:
-                                primary = token;
+                                primary = token.Trim().Trim(false);
                                 break;
                             case 1:
-                                secondary = token;
+                                secondary = token.Trim().Trim(false);
                                 break;
                             default:
-                                weapons.push_back(token);
+                                weapons.push_back(token.Trim().Trim(false));
                             }
+                            ++cnt;
                         }
                     }
                     wxArrayString magazines;
@@ -408,7 +418,7 @@ bool cFileManager::readSettings(const wxString path, cSettings* set)
                         {
                             wxString token = tokenizer.GetNextToken();
                             // process token here
-                            magazines.push_back(token);
+                            magazines.push_back(token.Trim().Trim(false));
                         }
                     }
                     wxArrayString itemList;
@@ -419,10 +429,11 @@ bool cFileManager::readSettings(const wxString path, cSettings* set)
                         {
                             wxString token = tokenizer.GetNextToken();
                             // process token here
-                            itemList.push_back(token);
+                            itemList.push_back(token.Trim().Trim(false));
                         }
                     }
                     cSettings* set = cSettings::getMain();
+                    LOG("Added " + curClass);
                     set->loadouts->addLoadout(new cLoadout(curClass, dispName, role, uniform, backpack, primary, secondary, vest, helmet, linkedItems, weapons, magazines, itemList));
                 }
                 ++i;
@@ -432,16 +443,65 @@ bool cFileManager::readSettings(const wxString path, cSettings* set)
     return true;
 }
 
-void cFileManager::parseOption(wxString& start, wxString& end, bool makeLower)
+void cFileManager::parseOption(wxString& start, wxString& end, bool makeLower, char descriminator)
 {
-    start = start.Trim().Trim(false);
-    end = start.AfterFirst('=').Trim(false);
+    start = start.BeforeFirst('/').Trim().Trim(false);
+    end = start.AfterFirst(descriminator).Trim(false);
     if (makeLower) {
         start = start.Lower();
     }
-    start = start.BeforeFirst('=').Trim();
+    start = start.BeforeFirst(descriminator).Trim();
     if (end.ends_with(';')) end.RemoveLast();
     end.Replace(wxString("\""), wxString(""), true); // Remove Speech marks
+}
+
+bool cFileManager::readLoadoutLists(wxArrayString& primaries, wxArrayString& secondaries, wxArrayString& uniforms, wxArrayString& backpacks, wxArrayString& linked, wxArrayString& weapons, wxArrayString& vest,
+                                    wxArrayString& helmets, wxArrayString& mags, wxArrayString& items) {
+    wxString path = wxStandardPaths::Get().GetUserLocalDataDir() + "\\loadouts.cfg";
+
+    std::string text;
+    std::vector<wxString> lines;
+    if (!std::filesystem::exists(path.ToStdString())) {
+        if (!std::filesystem::exists(wxStandardPaths::Get().GetUserLocalDataDir().ToStdString())) std::filesystem::create_directories(wxStandardPaths::Get().GetUserLocalDataDir().ToStdString()); // Create dirs for ofstream
+        std::ofstream cfg(path.ToStdString()); // Create File if it does't exists for Users Ease of Use
+        cfg << "// How to Add items\n"
+            "// primary:display_name:class_name\n"
+            "// secondary:display_name:class_name\n"
+            "// uniform:display_name:class_name\n"
+            "// backpack:display_name:class_name\n"
+            "// linked:display_name:class_name\n"
+            "// other_weap:display_name:class_name\n"
+            "// vest:display_name:class_name\n"
+            "// helmet:display_name:class_name\n"
+            "// mag:display_name:class_name\n"
+            "// item:display_name:class_name\n"
+            << std::endl;
+        return false; // No Settings Read
+    }
+    std::ifstream desc(path.ToStdString());
+
+    while (std::getline(desc, text))
+    {
+        lines.emplace_back(text);
+    }
+
+    for (std::vector<wxString>::iterator i = lines.begin(); i != lines.end(); ++i)
+    {
+        wxString start, end;
+        start = *i;
+        parseOption(start, end, true, ':');
+        if (start == "primary") primaries.push_back(end);
+        OPT("secondary") secondaries.push_back(end);
+        OPT("uniform") uniforms.push_back(end);
+        OPT("backpack") backpacks.push_back(end);
+        OPT("linked") linked.push_back(end);
+        OPT("other_weap") weapons.push_back(end);
+        OPT("vest") vest.push_back(end);
+        OPT("helmet") helmets.push_back(end);
+        OPT("mag") mags.push_back(end);
+        OPT("item") items.push_back(end);
+    }
+    return true;
 }
 
 bool cFileManager::readLoadScreen(const wxString path, cLoadScreen* set)
@@ -471,6 +531,24 @@ bool cFileManager::readLoadScreen(const wxString path, cLoadScreen* set)
         if (isMap)
         {
             if (start == wxT("author")) set->mapAuthor = end;
+            OPT("loadingtexts[]") {
+                wxArrayString loadTxt;
+                { // Items Parse
+                    wxStringTokenizer tokenizer(end, ",");
+                    while (tokenizer.HasMoreTokens())
+                    {
+                        wxString token = tokenizer.GetNextToken();
+                        token.Replace("{", "");
+                        token.Replace("}", "");
+                        // process token here
+                        loadTxt.push_back(token.Trim().Trim(false));
+                    }
+                }
+                set->loadTxts = loadTxt;
+            }
+            if (i->Contains("};")) {
+                isMap = false;
+            }
         }
         OPT("author") set->missionAuthor = end;
     }
@@ -499,22 +577,31 @@ bool cFileManager::writeSettings(wxString path, cSettings* set, cLoadScreen* loa
     desc << "briefingName = \"" << load->missionName << "\";\n" << std::endl;
 
     desc << "class Header\n"
-			"{\n"
-			"\tgameType = " << set->gameType << ";\n"
-			"\tminPlayers = " << set->minPlayers << ";\n"
-			"\tmaxPlayers = " << set->maxPlayers << ";\n"
-			"};\n" << std::endl;
+        "{\n"
+        "\tgameType = " << set->gameType << ";\n"
+        "\tminPlayers = " << set->minPlayers << ";\n"
+        "\tmaxPlayers = " << set->maxPlayers << ";\n"
+        "};\n" << std::endl;
 
     desc << "class CfgWorlds\n"
-			"{\n"
-			"\tclass Any\n"
-			"\t{\n"
-			"\t\tauthor = \"" << load->mapAuthor << "\";\n"
-			"\t\tdescription = \"" << load->mapName << "\";\n"
-			"\t\tpictureMap = \"" << load->mapBackground << "\";\n"
-			"\t\tpictureShot = \"" << load->mapBackground << "\";\n"
-			"\t};\n"
-			"};\n" << std::endl;
+        "{\n"
+        "\tclass Any\n"
+        "\t{\n"
+        "\t\tauthor = \"" << load->mapAuthor << "\";\n"
+        "\t\tdescription = \"" << load->mapName << "\";\n"
+        "\t\tpictureMap = \"" << load->mapBackground << "\";\n"
+        "\t\tpictureShot = \"" << load->mapBackground << "\";\n"
+        "\t\tloadingTexts[] = {";
+    for (int i = 0; i < load->loadTxts.size(); ++i) {
+        desc << "\"" << load->loadTxts[i] << "\"";
+        if (i + 1 != load->loadTxts.size()) {
+            desc << ", ";
+        }
+    }
+    desc << "};" << std::endl;
+
+    desc << "\t};\n"
+        "};\n" << std::endl;
 
     desc << "respawn = " << set->respawnType << ";" << std::endl;
     desc << "respawnOnStart = " << set->respawnOnStart << ";\n" << std::endl;
@@ -555,7 +642,7 @@ bool cFileManager::writeSettings(wxString path, cSettings* set, cLoadScreen* loa
     desc << "wreckLimit = " << set->wreckLimit << ";" << std::endl;
     desc << "wreckRemovalMinTime = " << set->wreckMinTime << ";" << std::endl;
     desc << "wreckRemovalMaxTime = " << set->wreckMaxTime << ";" << std::endl;
-    desc<< "minPlayerDistance = " << set->minPlayerDistance << ";\n" << std::endl;
+    desc << "minPlayerDistance = " << set->minPlayerDistance << ";\n" << std::endl;
 
     desc << "respawnButton = " << (set->respawnButton ? "1" : "0") << ";" << std::endl;
     desc << "respawnDialog = " << (set->respawnDialog ? "1" : "0") << ";" << std::endl;
@@ -583,6 +670,64 @@ bool cFileManager::writeSettings(wxString path, cSettings* set, cLoadScreen* loa
         (set->channels->group.chat ? "false" : "true") << ", " << (set->channels->group.voice ? "false" : "true") << "\n\t},\n\t{\n\t\t4, " <<
         (set->channels->vehicle.chat ? "false" : "true") << ", " << (set->channels->vehicle.voice ? "false" : "true") << "\n\t},\n\t{\n\t\t5, " <<
         (set->channels->direct.chat ? "false" : "true") << ", " << (set->channels->direct.voice ? "false" : "true") << "\n\t}\n};\n" << std::endl;
+
+    desc << "class CfgRespawnInventory\n{" << std::endl;
+
+    cLoadoutDir* dir = set->loadouts;
+
+    for (auto it = dir->loadouts.begin(); it != dir->loadouts.end(); ++it) {
+        cLoadout* load = *it;
+
+        desc << "\tclass " << load->className << std::endl;
+        desc << "\t{\n"
+            "\t\tdisplayName = \"" << load->dispName << "\";\n"
+            "\t\trole = \"" << load->role << "\";\n" << std::endl;
+
+        wxString weap;
+        desc << "\t\tweapons[] = {" << std::endl;
+        weap.Append("\t\t\t\"" + load->primary + "\",\n");
+        weap.Append("\t\t\t\"" + load->secondary + "\",\n");
+        for (auto i = load->weapons.begin(); i != load->weapons.end(); ++i) {
+            weap.Append("\t\t\t\"" + i->Trim().Trim(false) + "\",\n");
+        }
+        weap.RemoveLast(2); // Remove trailing , and new line
+        desc << weap << "\n"
+            "\t\t};" << std::endl;
+
+        wxString mag;
+        desc << "\t\tmagazines[] = {" << std::endl;
+        for (auto i = load->mags.begin(); i != load->mags.end(); ++i) {
+            mag.Append("\t\t\t\"" + i->Trim().Trim(false) + "\",\n");
+        }
+        mag.RemoveLast(2); // Remove trailing , and new line
+        desc << mag << "\n"
+            "\t\t};" << std::endl;
+
+        wxString link;
+        desc << "\t\tlinkedItems[] = {" << std::endl;
+        link.Append("\t\t\t\"" + load->vest + "\",\n");
+        link.Append("\t\t\t\"" + load->helmet + "\",\n");
+        for (auto i = load->linked.begin(); i != load->linked.end(); ++i) {
+            link.Append("\t\t\t\"" + i->Trim().Trim(false) + "\",\n");
+        }
+        link.RemoveLast(2); // Remove trailing , and new line
+        desc << link << "\n"
+            "\t\t};" << std::endl;
+
+        wxString item;
+        desc << "\t\titems[] = {" << std::endl;
+        for (auto i = load->items.begin(); i != load->items.end(); ++i) {
+            item.Append("\t\t\t\"" + i->Trim().Trim(false) + "\",\n");
+        }
+        item.RemoveLast(2); // Remove trailing , and new line
+        desc << item << "\n"
+            "\t\t};\n" << std::endl;
+
+        desc << "\t\tuniformClass = \"" << load->uniform << "\";" << std::endl;
+        desc << "\t\tbackpack = \"" << load->backpack << "\";\n"
+            "\t};\n};" << std::endl;
+    }
+
 
     desc << "//&&& Anything below this line will be saved. Do not add any settings above this line";
 

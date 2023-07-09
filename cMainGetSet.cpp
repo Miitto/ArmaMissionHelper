@@ -214,6 +214,16 @@ wxString cMain::getMapBackground() {
 	return m_worldBackground->GetPath();
 }
 
+wxArrayString cMain::getLoadTexts() {
+	wxArrayString txts;
+	int itemCnt = m_loadingTextLB->GetCount();
+	for (int i = 0; i < itemCnt; ++i)
+	{
+		txts.push_back(m_loadingTextLB->GetString(i));
+	}
+	return txts;
+}
+
 // Settings Setters
 
 void cMain::setGameType(wxString type)
@@ -394,6 +404,12 @@ void cMain::setMissionName(wxString name)
 void cMain::setMapBackground(wxString back)
 {
 	m_worldBackground->SetPath(back);
+}
+
+void cMain::setLoadTexts(wxArrayString txts) {
+	for (wxArrayString::iterator i = txts.begin(); i != txts.end(); ++i) {
+		m_loadingTextLB->Append(*i);
+	}
 }
 
 

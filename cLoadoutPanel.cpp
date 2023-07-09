@@ -4,125 +4,177 @@ cLoadoutPanel::cLoadoutPanel( wxWindow* parent )
 :
 LoadoutPanel( parent )
 {
-
+	loadLists();
 }
 
-void cLoadoutPanel::onUniformChange( wxCommandEvent& event )
+
+cLoadoutPanel::cLoadoutPanel(wxWindow* parent, cLoadout* load)
+:
+LoadoutPanel(parent)
 {
-// TODO: Implement onUniformChange
+	loadLists();
+	updateLoadout(load);
 }
 
-void cLoadoutPanel::onBackpackChange( wxCommandEvent& event )
-{
-// TODO: Implement onBackpackChange
+void cLoadoutPanel::loadLists() {
+	wxString path = wxStandardPaths::Get().GetUserLocalDataDir();
+	wxArrayString primaries, secondaries, uniforms, backpacks, linked, weapons, vest, helmets, mags, items;
+	cFileManager::readLoadoutLists(primaries, secondaries, uniforms, backpacks, linked, weapons, vest, helmets, mags, items);
+
+	m_primaryLB->Append(primaries);
+	m_secondaryLB->Append(secondaries);
+	m_uniformLB->Append(uniforms);
+	m_backpackLB->Append(backpacks);
+	m_linkedPresets->Append(linked);
+	m_weapPresets->Append(weapons);
+	m_vestLB->Append(vest);
+	m_helmetLB->Append(helmets);
+	m_magPresets->Append(mags);
+	m_itemPresets->Append(items);
 }
 
-void cLoadoutPanel::onPrimaryChange( wxCommandEvent& event )
+cLoadoutPanel::~cLoadoutPanel()
 {
-// TODO: Implement onPrimaryChange
 }
 
-void cLoadoutPanel::onSecondaryChange( wxCommandEvent& event )
+void cLoadoutPanel::updateLoadout(cLoadout* load)
 {
-// TODO: Implement onSecondaryChange
+	addMag(load);
+	addItem(load);
+	addLinked(load);
+	addWeapon(load);
 }
 
-void cLoadoutPanel::addCustomLinked( wxCommandEvent& event )
+void cLoadoutPanel::addMag(cLoadout* load)
 {
-// TODO: Implement addCustomLinked
+	addMag(load->mags);
 }
 
-void cLoadoutPanel::addPresetLinked( wxCommandEvent& event )
-{
-// TODO: Implement addPresetLinked
+void cLoadoutPanel::addMag(wxArrayString mags) {
+	for (auto i = mags.begin(); i != mags.end(); ++i) {
+		addMag(*i);
+	}
 }
 
-void cLoadoutPanel::removePresetLinked( wxCommandEvent& event )
+void cLoadoutPanel::addMag(wxString mag)
 {
-// TODO: Implement removePresetLinked
+	bool foundDupe = false;
+
+	for (int idx = 0; idx < m_magLB->GetCount(); ++idx) {
+		if (m_magLB->GetString(idx).Lower().BeforeFirst('|') == mag.Lower()) {
+			wxString cur = m_magLB->GetString(idx);
+
+			if (cur.Contains("|")) {
+				int cnt = cHelpers::toInt(cur.AfterFirst('|'), 1) + 1;
+				wxString newStr = cur.BeforeFirst('|') + "|" + wxString::Format(wxT("%i"), cnt);
+				m_magLB->SetString(idx, newStr);
+				foundDupe = true;
+				break;
+			}
+			cur.Append("|2");
+			m_magLB->SetString(idx, cur);
+			foundDupe = true;
+			break;
+		}
+	}
+	if (!foundDupe) {
+		wxString magToAdd = mag + "|1";
+		wxLogDebug("Adding New Mag: " + magToAdd);
+		m_magLB->Append(magToAdd);
+		m_magLB->Refresh();
+	}
 }
 
-void cLoadoutPanel::removeLinked( wxCommandEvent& event )
+void cLoadoutPanel::addItem(cLoadout* load)
 {
-// TODO: Implement removeLinked
+	addItem(load->items);
 }
 
-void cLoadoutPanel::onVestChange( wxCommandEvent& event )
-{
-// TODO: Implement onVestChange
+
+void cLoadoutPanel::addItem(wxArrayString items) {
+	for (auto i = items.begin(); i != items.end(); ++i) {
+		addItem(*i);
+	}
 }
 
-void cLoadoutPanel::addCustomWeap( wxCommandEvent& event )
+void cLoadoutPanel::addItem(wxString item)
 {
-// TODO: Implement addCustomWeap
+	bool foundDupe = false;
+
+	for (int idx = 0; idx < m_itemLB->GetCount(); ++idx) {
+		if (m_itemLB->GetString(idx).Lower().BeforeFirst('|') == item.Lower()) {
+			wxString cur = m_itemLB->GetString(idx);
+
+			if (cur.Contains("|")) {
+				int cnt = cHelpers::toInt(cur.AfterFirst('|'), 1) + 1;
+				wxString newStr = cur.BeforeFirst('|') + "|" + wxString::Format(wxT("%i"), cnt);
+				m_itemLB->SetString(idx, newStr);
+				foundDupe = true;
+				break;
+			}
+			cur.Append("|2");
+			m_itemLB->SetString(idx, cur);
+			foundDupe = true;
+			break;
+		}
+	}
+	if (!foundDupe) {
+		wxString itemToAdd = item + "|1";
+		wxLogDebug("Added New Item: " + itemToAdd);
+		m_itemLB->Append(itemToAdd);
+		m_itemLB->Refresh();
+	}
 }
 
-void cLoadoutPanel::addPresetWeap( wxCommandEvent& event )
-{
-// TODO: Implement addPresetWeap
+
+void cLoadoutPanel::addLinked(cLoadout* load) {
+	addLinked(load->linked);
 }
 
-void cLoadoutPanel::removePresetWeap( wxCommandEvent& event )
+void cLoadoutPanel::addLinked(wxArrayString linked)
 {
-// TODO: Implement removePresetWeap
+	for (auto i = linked.begin(); i != linked.end(); ++i) {
+		addLinked(*i);
+	}
 }
 
-void cLoadoutPanel::removeWeap( wxCommandEvent& event )
+void cLoadoutPanel::addLinked(wxString link)
 {
-// TODO: Implement removeWeap
+	bool foundDupe = false;
+
+	for (int idx = 0; idx < m_itemLB->GetCount(); ++idx) {
+		if (m_itemLB->GetString(idx).Lower() == link.Lower()) {
+			foundDupe = true;
+			break;
+		}
+	}
+	if (!foundDupe) {
+		m_linkedItemsLB->Append(link);
+	}
 }
 
-void cLoadoutPanel::onHelmetChange( wxCommandEvent& event )
-{
-// TODO: Implement onHelmetChange
+void cLoadoutPanel::addWeapon(cLoadout* load) {
+	addWeapon(load->weapons);
 }
 
-void cLoadoutPanel::addCustomMag( wxCommandEvent& event )
+void cLoadoutPanel::addWeapon(wxArrayString weapons)
 {
-// TODO: Implement addCustomMag
+	for (auto i = weapons.begin(); i != weapons.end(); ++i) {
+		addWeapon(*i);
+	}
 }
 
-void cLoadoutPanel::addPresetMag( wxCommandEvent& event )
+void cLoadoutPanel::addWeapon(wxString weap)
 {
-// TODO: Implement addPresetMag
-}
+	bool foundDupe = false;
 
-void cLoadoutPanel::removePresetMag( wxCommandEvent& event )
-{
-// TODO: Implement removePresetMag
-}
-
-void cLoadoutPanel::updateMagAmount( wxCommandEvent& event )
-{
-// TODO: Implement updateMagAmount
-}
-
-void cLoadoutPanel::removeMag( wxCommandEvent& event )
-{
-// TODO: Implement removeMag
-}
-
-void cLoadoutPanel::addCustomItem( wxCommandEvent& event )
-{
-// TODO: Implement addCustomItem
-}
-
-void cLoadoutPanel::addPresetItem( wxCommandEvent& event )
-{
-// TODO: Implement addPresetItem
-}
-
-void cLoadoutPanel::removePresetItem( wxCommandEvent& event )
-{
-// TODO: Implement removePresetItem
-}
-
-void cLoadoutPanel::updateItemAmount( wxCommandEvent& event )
-{
-// TODO: Implement updateItemAmount
-}
-
-void cLoadoutPanel::removeItem( wxCommandEvent& event )
-{
-// TODO: Implement removeItem
+	for (int idx = 0; idx < m_itemLB->GetCount(); ++idx) {
+		if (m_itemLB->GetString(idx).Lower() == weap.Lower()) {
+			foundDupe = true;
+			break;
+		}
+	}
+	if (!foundDupe) {
+		m_weaponsLB->Append(weap);
+	}
 }

@@ -10,6 +10,10 @@ mainFrame( parent )
 	m_statusBar->SetStatusText("No Mission Open", 2);
 }
 
+cMain::~cMain() {
+	wxLogDebug("Deleting cMain");
+}
+
 void cMain::updateSettings() {
 	cSettings* set = cSettings::getMain();
 	set->gameType = getGameType();
@@ -56,6 +60,8 @@ void cMain::updateSettings() {
 	set->medicMult = getMedicMult();
 	set->forceRespawnDelay = getForceRespawnDelay();
 	set->bleedOutTime = getBleedOutTime();
+
+	updateLoadouts();
 }
 
 void cMain::updateLoadScreen() {
@@ -68,6 +74,83 @@ void cMain::updateLoadScreen() {
 	set->missionBackground = getMissionBackground();
 
 	set->mapBackground = getMapBackground();
+
+	set->loadTxts = getLoadTexts();
+}
+
+void cMain::updateLoadouts() {
+	cSettings* set = cSettings::getMain();
+	cLoadoutDir* dir = set->loadouts;
+
+	
+	for (auto it = loadoutPages.begin(); it != loadoutPages.end(); ++it) {
+		cLoadout* load = nullptr;
+		cLoadoutPanel* pane = *it;
+		for (auto i = dir->loadouts.begin(); i != dir->loadouts.end(); ++i) {
+			if ((*i)->className == (*it)->className) {
+				load = *i;
+			}
+		}
+		if (load == nullptr) {
+			wxLogDebug("Invalid Loadout to save");
+			continue; // didnt find matching loadout
+		}
+
+		load->dispName = pane->m_loadoutDispName->GetValue();
+		load->role = pane->m_role->GetValue();
+
+		load->uniform = pane->m_uniform->GetValue();
+		load->backpack = pane->m_backpack->GetValue();
+		load->vest = pane->m_vest->GetValue();
+		load->helmet = pane->m_helmet->GetValue();
+
+		load->primary = pane->m_primary->GetValue();
+		load->secondary = pane->m_secondary->GetValue();
+
+		wxArrayString mags;
+		wxLogDebug("Saving Mags");
+		for (int idx = 0; idx < pane->m_magLB->GetCount(); ++idx) {
+			wxString item = pane->m_magLB->GetString(idx);
+			if (item.Contains("|")) {
+				int cnt = cHelpers::toInt(item.AfterFirst('|'), 1);
+				for (int i = 0; i < cnt; ++i) {
+					mags.push_back(item.BeforeFirst('|').Trim(true).Trim());
+				}
+				continue;
+			}
+			mags.push_back(item.Trim(true).Trim());
+		}
+
+		load->mags = mags;
+
+		wxArrayString items;
+		wxLogDebug("Saving Items");
+		for (int idx = 0; idx < pane->m_itemLB->GetCount(); ++idx) {
+			wxString item = pane->m_itemLB->GetString(idx);
+			if (item.Contains("|")) {
+				int cnt = cHelpers::toInt(item.AfterFirst('|'), 1);
+				for (int i = 0; i < cnt; ++i) {
+					items.push_back(item.BeforeFirst('|').Trim(true).Trim());
+				}
+				continue;
+			}
+			items.push_back(item.Trim(true).Trim());
+		}
+
+		load->items = items;
+
+		wxArrayString linked;
+		for (int idx = 0; idx < pane->m_linkedItemsLB->GetCount(); ++idx) {
+			linked.push_back(pane->m_linkedItemsLB->GetString(idx).Trim(true).Trim());
+		}
+		load->linked = linked;
+
+		wxArrayString weap;
+		for (int idx = 0; idx < pane->m_weaponsLB->GetCount(); ++idx) {
+			weap.push_back(pane->m_weaponsLB->GetString(idx).Trim(true).Trim());
+		}
+		load->weapons = weap;
+	}
 }
 
 void cMain::open_new_path() {
@@ -88,7 +171,19 @@ void cMain::open_new_path(const wxString path) {
 		return;
 	}
 
-	cFileManager::readSettings(path + "description.ext", cSettings::mainSettings);
+	cSettings* set = cSettings::getMain();
+
+	cLoadoutDir* loadDir = set->loadouts;
+	std::vector<cLoadout*> loadouts = loadDir->loadouts;
+
+	for (auto it = loadouts.begin(); it != loadouts.end(); ++it)
+	{
+		deleteLoadout((*it)->className);
+	}
+	m_loadoutLB->Clear();
+	loadouts.clear(); // Ensure its clear
+
+	cFileManager::readSettings(path + "description.ext", cSettings::getMain());
 	setSettings();
 	setLoadouts();
 	cFileManager::readLoadScreen(path + "description.ext", cLoadScreen::getLoadScreen());
@@ -152,6 +247,7 @@ void cMain::setLoadScreen()
 	setMissionAuthor(set->missionAuthor);
 	setMissionBackground(set->missionBackground);
 	setMapBackground(set->mapBackground);
+	setLoadTexts(set->loadTxts);
 }
 
 void cMain::setLoadouts()
@@ -161,18 +257,76 @@ void cMain::setLoadouts()
 	cLoadoutDir* loadDir = set->loadouts;
 	std::vector<cLoadout*> loadouts = loadDir->loadouts;
 
-	m_loadoutBook->DeleteAllPages(); // Clean slate
-
 	for (std::vector<cLoadout*>::iterator i = loadouts.begin(); i != loadouts.end(); ++i)
 	{
 		cLoadout* load = *i;
 
 
 		cLoadoutPanel* loadPage = new cLoadoutPanel(m_loadoutBook);
+
+		loadPage->className = load->className;
+
 		loadPage->m_loadoutDispName->SetValue(load->dispName);
 		loadPage->m_role->SetValue(load->role);
 
+		loadPage->m_uniform->SetValue(load->uniform);
+		loadPage->m_backpack->SetValue(load->backpack);
+
+		loadPage->m_primary->SetValue(load->primary);
+		loadPage->m_secondary->SetValue(load->secondary);
+
+		loadPage->m_vest->SetValue(load->vest);
+		loadPage->m_helmet->SetValue(load->helmet);
+
+
+		loadPage->updateLoadout(load);
+
 		m_loadoutBook->AddPage(loadPage, load->className, false);
+
+		m_loadoutLB->Append(load->className);
+
+		loadoutPages.emplace_back(loadPage);
+	}
+}
+
+void cMain::deleteLoadout(wxString className)
+{
+	
+
+	int itemCnt = m_loadoutLB->GetCount();
+	for (int i = 0; i < itemCnt; ++i)
+	{
+		if (m_loadoutLB->GetString(i) == className)
+		{
+			LOG("Removed LB Item for " + className);
+			m_loadoutLB->Delete(i);
+			break;
+		}
 	}
 
+	cSettings* set = cSettings::getMain();
+	set->loadouts->removeLoadout(className);
+
+	for (auto it = loadoutPages.begin(); it != loadoutPages.end(); ++it) { // Remove Page from list
+		if ((*it)->className == className) {
+			LOG("Deleting Page " + className);
+			loadoutPages.erase(it); // Remove hanging pointer from list, error when deleting, hope wxWidgets manages that to avoid a leak
+			break;
+		}
+	}
+
+	LOG("Page Size: " + wxString::Format(wxT("%i"), int(loadoutPages.size())));
+	for (auto it = loadoutPages.begin(); it != loadoutPages.end(); ++it) {
+		LOG("Loadout Page Remaining: " + (*it)->className);
+	}
+
+	int pageCnt = m_loadoutBook->GetPageCount();
+	for (int idx = 0; idx < pageCnt; ++idx) { // Remove Tab
+		if (m_loadoutBook->GetPageText(idx) == className)
+		{
+			LOG("Removed Tab For " + className);
+			m_loadoutBook->RemovePage(idx);
+			break;
+		}
+	}
 }

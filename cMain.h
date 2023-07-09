@@ -60,9 +60,21 @@ protected:
 	void respawnDelayUpdate(wxCommandEvent& event) override;
 	void vehRespawnDelaySliderUpdate(wxCommandEvent& event) override;
 	void vehRespawnDelayUpdate(wxCommandEvent& event) override;
+
+	void addLoadingText(wxCommandEvent& event) override;
+	void removeLoadingText(wxCommandEvent& event) override;
+
+	void newLoadout(wxCommandEvent& event) override;
+	void dupeLoadout(wxCommandEvent& event) override;
+	void renameLoadout(wxCommandEvent& event) override;
+	void closeLoadout(wxCommandEvent& event) override;
+	void deleteLoadout(wxCommandEvent& event) override;
+	void selectLoadout(wxCommandEvent& event) override;
+
 public:
 	/** Constructor */
 	cMain( wxWindow* parent );
+	~cMain();
 
 	//// end generated class members
 
@@ -121,6 +133,7 @@ public:
 	wxString getMissionAuthor();
 	wxString getMissionBackground();
 	wxString getMapBackground();
+	wxArrayString getLoadTexts();
 
 	// Settings Setters
 	void setGameType(wxString type);
@@ -160,6 +173,7 @@ public:
 	void setMissionAuthor(wxString name);
 	void setMissionBackground(wxString back);
 	void setMapBackground(wxString back);
+	void setLoadTexts(wxArrayString txts);
 
 	// Respawn Gettters
 	bool getRespawnButton();
@@ -194,7 +208,9 @@ public:
 	void setForceRespawnDelay(int num);
 	void setBleedOutTime(int num);
 
+	std::vector<cLoadoutPanel*> loadoutPages;
 
+	void deleteLoadout(wxString className);
 };
 
 #endif // __cMain__

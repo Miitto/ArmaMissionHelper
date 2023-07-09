@@ -22,6 +22,7 @@ bool cApp::OnInit()
 	m_main->SetIcon(wxICON(ICO_APP));
 	m_main->Show();
 
+
 	cSettings* settings = new cSettings();
 	cLoadScreen* loadScreen = new cLoadScreen();
 
@@ -93,6 +94,7 @@ bool cApp::OnInit()
 
 int cApp::OnExit()
 {
+	wxLogDebug("cApp Exit");
 	delete cSettings::getMain();
 	delete cLoadScreen::getLoadScreen();
 	return 0;
@@ -101,6 +103,7 @@ int cApp::OnExit()
 int cApp::OnRun()
 {
 	int exitcode = wxApp::OnRun();
+	wxLogDebug("Got Exitcode");
 	return exitcode;
 }
 

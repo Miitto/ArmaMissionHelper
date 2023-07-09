@@ -1,7 +1,6 @@
 #include "cMain.h"
 
 
-
 void cMain::save(wxCommandEvent& event)
 {
 	save();
@@ -47,7 +46,7 @@ void cMain::saveAs(wxCommandEvent& event)
 
 void cMain::open(wxCommandEvent& event)
 {
-	wxString path;
+	wxString path = "";
 	if (FAILED(cFileManager::basicFolderOpen(path))) {
 		m_statusBar->SetStatusText("Invalid Path, Closed", 1);
 		return;
@@ -73,6 +72,21 @@ void cMain::exit(wxCommandEvent& event)
 		std::ofstream{ cDetails::missionPath.ToStdString() + "description.ext" };
 	}
 	event.Skip();
+}
+
+void cMain::addLoadingText(wxCommandEvent& event) {
+	wxString txt = m_loadingText->GetValue();
+	if (txt.empty()) {
+		return;
+	}
+	m_loadingTextLB->Append(txt);
+}
+
+void cMain::removeLoadingText(wxCommandEvent& event) {
+	if (m_loadingTextLB->GetStringSelection() == "") {
+		return;
+	}
+	m_loadingTextLB->Delete(m_loadingTextLB->GetSelection());
 }
 
 void cMain::onTabChange(wxBookCtrlEvent& event)

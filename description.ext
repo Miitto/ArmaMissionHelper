@@ -1,0 +1,109 @@
+author = "Mission Author";
+onLoadName = "Mission Name";
+onLoadMission = "Mission Name";
+loadScreen = "Mission Background";
+briefingName = "Mission Name";
+
+class Header
+{
+	gameType = COOP;
+	minPlayers = 1;
+	maxPlayers = 30;
+};
+
+class CfgWorlds
+{
+	class Any
+	{
+		author = "Map Author";
+		description = "Map Name";
+		pictureMap = "World Background";
+		pictureShot = "World Background";
+	};
+};
+
+respawn = 0;
+respawnOnStart = -1;
+
+overviewText = "Mission Name Mission Author";
+overviewTextLocked = "Mission Name Mission Author | Mission Locked";
+
+showHUD[] = {
+	1,
+	1,
+	0,
+	0,
+	1,
+	0,
+	0,
+	1,
+	1,
+	0,
+	1,
+};
+
+showMap = 1;
+
+showWatch = 1;
+showGPS = 1;
+showCompass = 1;
+showUAVFeed = 1;
+showGroupIndicator = 0;
+
+aiKills = 0;
+
+corpseManagerMode = 2;
+corpseLimit = 15;
+corpseRemovalMinTime = 10;
+corpseRemovalMaxTime = 3600;
+
+wreckManagerMode = 2;
+wreckLimit = 15;
+wreckRemovalMinTime = 10;
+wreckRemovalMaxTime = 36000;
+minPlayerDistance = 0;
+
+respawnButton = 1;
+respawnDialog = 1;
+reviveRequiredTrait = 0;
+reviveRequiredItemsFakConsumed = 1;
+
+respawnDelay = 5;
+respawnVehicleDelay = 5;
+
+reviveMode = 0;
+reviveUnconsciousStateMode = 0;
+
+reviveRequiredItems = 2;
+reviveMedicSpeedMultiplier = 2;
+reviveDelay = 6;
+reviveForceRespawnDelay = 3;
+reviveBleedOutDelay = 120;
+
+disabledAI = 0;
+enableDebugConsole = 1;
+
+disableChannels[] = {
+	{
+		0, false, false
+	},
+	{
+		1, false, false
+	},
+	{
+		2, false, false
+	},
+	{
+		3, false, false
+	},
+	{
+		4, false, false
+	},
+	{
+		5, true, false
+	}
+};
+
+class CfgRespawnInventory
+{
+//&&& Anything below this line will be saved. Do not add any settings above this line

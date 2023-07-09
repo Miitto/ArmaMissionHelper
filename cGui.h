@@ -26,15 +26,15 @@
 #include <wx/sizer.h>
 #include <wx/panel.h>
 #include <wx/filepicker.h>
-#include <wx/slider.h>
-#include <wx/button.h>
-#include <wx/statline.h>
 #include <wx/listbox.h>
-#include <wx/scrolwin.h>
+#include <wx/button.h>
+#include <wx/slider.h>
+#include <wx/statline.h>
 #include <wx/notebook.h>
 #include <wx/statusbr.h>
 #include <wx/frame.h>
 #include <wx/aui/aui.h>
+#include <wx/scrolwin.h>
 
 ///////////////////////////////////////////////////////////////////////////
 
@@ -134,7 +134,12 @@ class mainFrame : public wxFrame
 		wxTextCtrl* m_missionAuthorLocation;
 		wxPanel* m_panel9;
 		wxFilePickerCtrl* m_missionBackground;
+		wxStaticText* m_loadingTextTxt;
 		wxFilePickerCtrl* m_worldBackground;
+		wxTextCtrl* m_loadingText;
+		wxListBox* m_loadingTextLB;
+		wxButton* m_addLoadingText;
+		wxButton* m_removeLoadingText;
 		wxPanel* m_respawnPanel;
 		wxPanel* m_respawnLeftPanel;
 		wxStaticText* m_respawnTypeTxt;
@@ -178,72 +183,6 @@ class mainFrame : public wxFrame
 		wxListBox* m_loadoutLB;
 		wxStaticLine* m_staticline4;
 		wxButton* m_delLoadout;
-		wxNotebook* m_loadoutBook;
-		wxScrolledWindow* m_defaultLoadout;
-		wxStaticText* m_loadoutDispNameTxt;
-		wxTextCtrl* m_loadoutDispName;
-		wxStaticText* m_loadoutRoleTxt;
-		wxTextCtrl* Assault;
-		wxStaticText* m_uniformTxt;
-		wxTextCtrl* m_uniform;
-		wxListBox* m_uniformLB;
-		wxStaticText* m_backpackTxt;
-		wxTextCtrl* m_backpack;
-		wxListBox* m_backpackLB;
-		wxStaticText* m_primaryTxt;
-		wxTextCtrl* m_primary;
-		wxListBox* m_primaryLB;
-		wxStaticText* m_secondaryTxt;
-		wxTextCtrl* m_secondary;
-		wxListBox* m_secondaryLB;
-		wxStaticLine* m_staticline5;
-		wxStaticText* m_otherEquip;
-		wxTextCtrl* m_linkedCustom;
-		wxButton* m_addLinkedCustom;
-		wxListBox* m_linkedPresets;
-		wxButton* m_addLinkPreset;
-		wxButton* m_removeLinkPreset;
-		wxButton* m_removeLinkEquip;
-		wxListBox* m_linkedItemsLB;
-		wxStaticText* m_vestTxt;
-		wxTextCtrl* m_vest;
-		wxListBox* m_vestLB;
-		wxStaticLine* m_staticline6;
-		wxStaticText* m_otherWeap;
-		wxTextCtrl* m_weapCustom;
-		wxButton* m_addWeapCustom;
-		wxListBox* m_weapPresets;
-		wxButton* m_addWeapPreset;
-		wxButton* m_removeWeapPreset;
-		wxButton* m_removeWeapEquip;
-		wxListBox* m_weaponsLB;
-		wxStaticText* m_helmetTxt;
-		wxTextCtrl* m_helmet;
-		wxListBox* m_helmetLB;
-		wxStaticLine* m_staticline8;
-		wxStaticText* m_magsTxt;
-		wxTextCtrl* m_magCustom;
-		wxButton* m_addMagCustom;
-		wxListBox* m_magPresets;
-		wxButton* m_addMagPreset;
-		wxButton* m_removeMagPreset;
-		wxStaticText* m_magAmountTxt;
-		wxTextCtrl* m_magAmount;
-		wxButton* m_updateMagAmount;
-		wxButton* m_magRemove;
-		wxListBox* m_magLB;
-		wxStaticLine* m_staticline7;
-		wxStaticText* m_itemTxt;
-		wxTextCtrl* m_itemCustom;
-		wxButton* m_addItemCustom;
-		wxListBox* m_itemPresets;
-		wxButton* m_addItemPreset;
-		wxButton* m_removeItemPreset;
-		wxStaticText* m_itemAmountTxt;
-		wxTextCtrl* m_itemAmount;
-		wxButton* m_itemUpdateAmount;
-		wxButton* m_itemRemove;
-		wxListBox* m_itemLB;
 		wxPanel* m_eventPane;
 		wxStaticText* m_staticText25;
 		wxStatusBar* m_statusBar;
@@ -275,6 +214,8 @@ class mainFrame : public wxFrame
 		virtual void corpseManagerFocus( wxFocusEvent& event ) { event.Skip(); }
 		virtual void onMissionBackground( wxFileDirPickerEvent& event ) { event.Skip(); }
 		virtual void onMapBackground( wxFileDirPickerEvent& event ) { event.Skip(); }
+		virtual void addLoadingText( wxCommandEvent& event ) { event.Skip(); }
+		virtual void removeLoadingText( wxCommandEvent& event ) { event.Skip(); }
 		virtual void respawnTypeFocus( wxFocusEvent& event ) { event.Skip(); }
 		virtual void startRespawnFocus( wxFocusEvent& event ) { event.Skip(); }
 		virtual void respawnDelaySliderUpdate( wxCommandEvent& event ) { event.Skip(); }
@@ -287,33 +228,10 @@ class mainFrame : public wxFrame
 		virtual void closeLoadout( wxCommandEvent& event ) { event.Skip(); }
 		virtual void selectLoadout( wxCommandEvent& event ) { event.Skip(); }
 		virtual void deleteLoadout( wxCommandEvent& event ) { event.Skip(); }
-		virtual void onUniformChange( wxCommandEvent& event ) { event.Skip(); }
-		virtual void onBackpackChange( wxCommandEvent& event ) { event.Skip(); }
-		virtual void onPrimaryChange( wxCommandEvent& event ) { event.Skip(); }
-		virtual void onSecondaryChange( wxCommandEvent& event ) { event.Skip(); }
-		virtual void addCustomLinked( wxCommandEvent& event ) { event.Skip(); }
-		virtual void addPresetLinked( wxCommandEvent& event ) { event.Skip(); }
-		virtual void removePresetLinked( wxCommandEvent& event ) { event.Skip(); }
-		virtual void removeLinked( wxCommandEvent& event ) { event.Skip(); }
-		virtual void onVestChange( wxCommandEvent& event ) { event.Skip(); }
-		virtual void addCustomWeap( wxCommandEvent& event ) { event.Skip(); }
-		virtual void addPresetWeap( wxCommandEvent& event ) { event.Skip(); }
-		virtual void removePresetWeap( wxCommandEvent& event ) { event.Skip(); }
-		virtual void removeWeap( wxCommandEvent& event ) { event.Skip(); }
-		virtual void onHelmetChange( wxCommandEvent& event ) { event.Skip(); }
-		virtual void addCustomMag( wxCommandEvent& event ) { event.Skip(); }
-		virtual void addPresetMag( wxCommandEvent& event ) { event.Skip(); }
-		virtual void removePresetMag( wxCommandEvent& event ) { event.Skip(); }
-		virtual void updateMagAmount( wxCommandEvent& event ) { event.Skip(); }
-		virtual void removeMag( wxCommandEvent& event ) { event.Skip(); }
-		virtual void addCustomItem( wxCommandEvent& event ) { event.Skip(); }
-		virtual void addPresetItem( wxCommandEvent& event ) { event.Skip(); }
-		virtual void removePresetItem( wxCommandEvent& event ) { event.Skip(); }
-		virtual void updateItemAmount( wxCommandEvent& event ) { event.Skip(); }
-		virtual void removeItem( wxCommandEvent& event ) { event.Skip(); }
 
 
 	public:
+		wxNotebook* m_loadoutBook;
 
 		mainFrame( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("Arma Mission Helper"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 1314,720 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
 		wxAuiManager m_mgr;
@@ -349,6 +267,7 @@ class LoadoutPanel : public wxPanel
 		wxButton* m_removeLinkPreset;
 		wxButton* m_removeLinkEquip;
 		wxListBox* m_linkedItemsLB;
+		wxStaticLine* m_staticline9;
 		wxStaticText* m_vestTxt1;
 		wxTextCtrl* m_vest;
 		wxListBox* m_vestLB;
@@ -361,6 +280,7 @@ class LoadoutPanel : public wxPanel
 		wxButton* m_removeWeapPreset;
 		wxButton* m_removeWeapEquip;
 		wxListBox* m_weaponsLB;
+		wxStaticLine* m_staticline10;
 		wxStaticText* m_helmetTxt1;
 		wxTextCtrl* m_helmet;
 		wxListBox* m_helmetLB;
@@ -409,11 +329,13 @@ class LoadoutPanel : public wxPanel
 		virtual void removePresetMag( wxCommandEvent& event ) { event.Skip(); }
 		virtual void updateMagAmount( wxCommandEvent& event ) { event.Skip(); }
 		virtual void removeMag( wxCommandEvent& event ) { event.Skip(); }
+		virtual void magSelected( wxCommandEvent& event ) { event.Skip(); }
 		virtual void addCustomItem( wxCommandEvent& event ) { event.Skip(); }
 		virtual void addPresetItem( wxCommandEvent& event ) { event.Skip(); }
 		virtual void removePresetItem( wxCommandEvent& event ) { event.Skip(); }
 		virtual void updateItemAmount( wxCommandEvent& event ) { event.Skip(); }
 		virtual void removeItem( wxCommandEvent& event ) { event.Skip(); }
+		virtual void itemSelected( wxCommandEvent& event ) { event.Skip(); }
 
 
 	public:

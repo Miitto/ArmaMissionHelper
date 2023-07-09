@@ -18,7 +18,7 @@ mainFrame::mainFrame( wxWindow* parent, wxWindowID id, const wxString& title, co
 	m_menubar = new wxMenuBar( 0 );
 	m_file = new wxMenu();
 	wxMenuItem* m_save;
-	m_save = new wxMenuItem( m_file, wxID_ANY, wxString( wxT("Save") ) , wxEmptyString, wxITEM_NORMAL );
+	m_save = new wxMenuItem( m_file, wxID_ANY, wxString( wxT("Save") ) + wxT('\t') + wxT("Ctrl-S"), wxEmptyString, wxITEM_NORMAL );
 	m_file->Append( m_save );
 
 	wxMenuItem* m_saveAs;
@@ -28,7 +28,7 @@ mainFrame::mainFrame( wxWindow* parent, wxWindowID id, const wxString& title, co
 	m_file->AppendSeparator();
 
 	wxMenuItem* m_open;
-	m_open = new wxMenuItem( m_file, wxID_ANY, wxString( wxT("Open") ) , wxEmptyString, wxITEM_NORMAL );
+	m_open = new wxMenuItem( m_file, wxID_ANY, wxString( wxT("Open") ) + wxT('\t') + wxT("Ctrl-O"), wxEmptyString, wxITEM_NORMAL );
 	m_file->Append( m_open );
 
 	m_file->AppendSeparator();
@@ -555,13 +555,78 @@ mainFrame::mainFrame( wxWindow* parent, wxWindowID id, const wxString& title, co
 	fgSizer7->Add( m_panel8, 1, wxEXPAND | wxALL, 1 );
 
 
-	fgSizer7->Add( 25, 170, 1, wxEXPAND, 5 );
+	fgSizer7->Add( 25, 50, 1, wxEXPAND, 5 );
 
 
 	fgSizer7->Add( 0, 0, 1, wxEXPAND, 5 );
 
+	wxFlexGridSizer* fgSizer52;
+	fgSizer52 = new wxFlexGridSizer( 0, 1, 0, 0 );
+	fgSizer52->AddGrowableRow( 0 );
+	fgSizer52->SetFlexibleDirection( wxBOTH );
+	fgSizer52->SetNonFlexibleGrowMode( wxFLEX_GROWMODE_SPECIFIED );
+
+	wxFlexGridSizer* fgSizer56;
+	fgSizer56 = new wxFlexGridSizer( 0, 2, 0, 0 );
+	fgSizer56->AddGrowableCol( 0 );
+	fgSizer56->SetFlexibleDirection( wxBOTH );
+	fgSizer56->SetNonFlexibleGrowMode( wxFLEX_GROWMODE_SPECIFIED );
+
+
+	fgSizer56->Add( 0, 0, 1, wxEXPAND, 5 );
+
+	m_loadingTextTxt = new wxStaticText( m_panel12, wxID_ANY, wxT("Loading Texts:"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_loadingTextTxt->Wrap( -1 );
+	fgSizer56->Add( m_loadingTextTxt, 0, wxALL, 5 );
+
+
+	fgSizer52->Add( fgSizer56, 1, wxEXPAND, 5 );
+
 	m_worldBackground = new wxFilePickerCtrl( m_panel12, wxID_ANY, wxT("World Background"), wxT("World Background"), wxT("*.paa"), wxDefaultPosition, wxSize( 250,-1 ), wxFLP_DEFAULT_STYLE );
-	fgSizer7->Add( m_worldBackground, 0, wxALL, 5 );
+	fgSizer52->Add( m_worldBackground, 0, wxALL, 5 );
+
+
+	fgSizer7->Add( fgSizer52, 1, wxEXPAND, 5 );
+
+	wxFlexGridSizer* fgSizer53;
+	fgSizer53 = new wxFlexGridSizer( 1, 0, 0, 0 );
+	fgSizer53->SetFlexibleDirection( wxBOTH );
+	fgSizer53->SetNonFlexibleGrowMode( wxFLEX_GROWMODE_SPECIFIED );
+
+	wxFlexGridSizer* fgSizer55;
+	fgSizer55 = new wxFlexGridSizer( 0, 1, 0, 0 );
+	fgSizer55->SetFlexibleDirection( wxBOTH );
+	fgSizer55->SetNonFlexibleGrowMode( wxFLEX_GROWMODE_SPECIFIED );
+
+	m_loadingText = new wxTextCtrl( m_panel12, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	m_loadingText->SetMinSize( wxSize( 150,-1 ) );
+
+	fgSizer55->Add( m_loadingText, 0, wxALL, 5 );
+
+	m_loadingTextLB = new wxListBox( m_panel12, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, 0|wxHSCROLL|wxVSCROLL );
+	m_loadingTextLB->SetMinSize( wxSize( 150,115 ) );
+
+	fgSizer55->Add( m_loadingTextLB, 0, wxALL, 5 );
+
+
+	fgSizer53->Add( fgSizer55, 1, wxEXPAND, 5 );
+
+	wxFlexGridSizer* fgSizer54;
+	fgSizer54 = new wxFlexGridSizer( 0, 1, 0, 0 );
+	fgSizer54->SetFlexibleDirection( wxBOTH );
+	fgSizer54->SetNonFlexibleGrowMode( wxFLEX_GROWMODE_SPECIFIED );
+
+	m_addLoadingText = new wxButton( m_panel12, wxID_ANY, wxT("Add"), wxDefaultPosition, wxDefaultSize, 0 );
+	fgSizer54->Add( m_addLoadingText, 0, wxALL, 5 );
+
+	m_removeLoadingText = new wxButton( m_panel12, wxID_ANY, wxT("Remove"), wxDefaultPosition, wxDefaultSize, 0 );
+	fgSizer54->Add( m_removeLoadingText, 0, wxALL, 5 );
+
+
+	fgSizer53->Add( fgSizer54, 1, wxEXPAND, 5 );
+
+
+	fgSizer7->Add( fgSizer53, 1, wxEXPAND, 5 );
 
 
 	m_panel12->SetSizer( fgSizer7 );
@@ -819,611 +884,6 @@ mainFrame::mainFrame( wxWindow* parent, wxWindowID id, const wxString& title, co
 	m_loadoutBook->SetForegroundColour( wxColour( 192, 192, 192 ) );
 	m_loadoutBook->SetBackgroundColour( wxColour( 192, 192, 192 ) );
 
-	m_defaultLoadout = new wxScrolledWindow( m_loadoutBook, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxVSCROLL );
-	m_defaultLoadout->SetScrollRate( 5, 5 );
-	wxFlexGridSizer* loadoutPageSizer;
-	loadoutPageSizer = new wxFlexGridSizer( 0, 1, 0, 0 );
-	loadoutPageSizer->SetFlexibleDirection( wxBOTH );
-	loadoutPageSizer->SetNonFlexibleGrowMode( wxFLEX_GROWMODE_SPECIFIED );
-
-	wxFlexGridSizer* loadoutRow1Sizer;
-	loadoutRow1Sizer = new wxFlexGridSizer( 1, 0, 0, 0 );
-	loadoutRow1Sizer->SetFlexibleDirection( wxBOTH );
-	loadoutRow1Sizer->SetNonFlexibleGrowMode( wxFLEX_GROWMODE_SPECIFIED );
-
-	wxFlexGridSizer* fgSizer21;
-	fgSizer21 = new wxFlexGridSizer( 0, 2, 0, 0 );
-	fgSizer21->SetFlexibleDirection( wxBOTH );
-	fgSizer21->SetNonFlexibleGrowMode( wxFLEX_GROWMODE_SPECIFIED );
-
-	m_loadoutDispNameTxt = new wxStaticText( m_defaultLoadout, wxID_ANY, wxT("Display Name"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_loadoutDispNameTxt->Wrap( -1 );
-	fgSizer21->Add( m_loadoutDispNameTxt, 0, wxALL, 5 );
-
-	m_loadoutDispName = new wxTextCtrl( m_defaultLoadout, wxID_ANY, wxT("Light"), wxDefaultPosition, wxDefaultSize, 0 );
-	fgSizer21->Add( m_loadoutDispName, 0, wxALL, 5 );
-
-	m_loadoutRoleTxt = new wxStaticText( m_defaultLoadout, wxID_ANY, wxT("Role (Optional)"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_loadoutRoleTxt->Wrap( -1 );
-	fgSizer21->Add( m_loadoutRoleTxt, 0, wxALL, 5 );
-
-	Assault = new wxTextCtrl( m_defaultLoadout, wxID_ANY, wxT("Assault"), wxDefaultPosition, wxDefaultSize, 0 );
-	fgSizer21->Add( Assault, 0, wxALL, 5 );
-
-	wxFlexGridSizer* uniformSizer;
-	uniformSizer = new wxFlexGridSizer( 0, 1, 0, 0 );
-	uniformSizer->SetFlexibleDirection( wxBOTH );
-	uniformSizer->SetNonFlexibleGrowMode( wxFLEX_GROWMODE_SPECIFIED );
-
-	m_uniformTxt = new wxStaticText( m_defaultLoadout, wxID_ANY, wxT("Uniform"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_uniformTxt->Wrap( -1 );
-	m_uniformTxt->SetFont( wxFont( 9, wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, true, wxT("Arial") ) );
-
-	uniformSizer->Add( m_uniformTxt, 0, wxALL, 5 );
-
-	m_uniform = new wxTextCtrl( m_defaultLoadout, wxID_ANY, wxT("U_B_CombatUniform_mcam_tshirt"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_uniform->SetMinSize( wxSize( 150,25 ) );
-	m_uniform->SetMaxSize( wxSize( 150,25 ) );
-
-	uniformSizer->Add( m_uniform, 0, wxALL, 5 );
-
-	m_uniformLB = new wxListBox( m_defaultLoadout, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, 0 );
-	m_uniformLB->SetMinSize( wxSize( 150,150 ) );
-	m_uniformLB->SetMaxSize( wxSize( 150,250 ) );
-
-	uniformSizer->Add( m_uniformLB, 0, wxALL, 5 );
-
-
-	fgSizer21->Add( uniformSizer, 1, wxEXPAND, 5 );
-
-	wxFlexGridSizer* backpackSizer;
-	backpackSizer = new wxFlexGridSizer( 0, 1, 0, 0 );
-	backpackSizer->SetFlexibleDirection( wxBOTH );
-	backpackSizer->SetNonFlexibleGrowMode( wxFLEX_GROWMODE_SPECIFIED );
-
-	m_backpackTxt = new wxStaticText( m_defaultLoadout, wxID_ANY, wxT("Backpack"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_backpackTxt->Wrap( -1 );
-	m_backpackTxt->SetFont( wxFont( 9, wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, true, wxT("Arial") ) );
-
-	backpackSizer->Add( m_backpackTxt, 0, wxALL, 5 );
-
-	m_backpack = new wxTextCtrl( m_defaultLoadout, wxID_ANY, wxT("B_AssaultPack_mcamo"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_backpack->SetMinSize( wxSize( 150,25 ) );
-	m_backpack->SetMaxSize( wxSize( 150,25 ) );
-
-	backpackSizer->Add( m_backpack, 0, wxALL, 5 );
-
-	m_backpackLB = new wxListBox( m_defaultLoadout, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, 0 );
-	m_backpackLB->SetMinSize( wxSize( 150,150 ) );
-	m_backpackLB->SetMaxSize( wxSize( 150,250 ) );
-
-	backpackSizer->Add( m_backpackLB, 0, wxALL, 5 );
-
-
-	fgSizer21->Add( backpackSizer, 1, wxEXPAND, 5 );
-
-
-	loadoutRow1Sizer->Add( fgSizer21, 1, wxEXPAND, 5 );
-
-	wxFlexGridSizer* fgSizer22;
-	fgSizer22 = new wxFlexGridSizer( 0, 2, 0, 0 );
-	fgSizer22->SetFlexibleDirection( wxBOTH );
-	fgSizer22->SetNonFlexibleGrowMode( wxFLEX_GROWMODE_SPECIFIED );
-
-	wxFlexGridSizer* primarySizer;
-	primarySizer = new wxFlexGridSizer( 0, 1, 0, 0 );
-	primarySizer->SetFlexibleDirection( wxBOTH );
-	primarySizer->SetNonFlexibleGrowMode( wxFLEX_GROWMODE_SPECIFIED );
-
-	m_primaryTxt = new wxStaticText( m_defaultLoadout, wxID_ANY, wxT("Primary"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_primaryTxt->Wrap( -1 );
-	m_primaryTxt->SetFont( wxFont( 9, wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, true, wxT("Arial") ) );
-
-	primarySizer->Add( m_primaryTxt, 0, wxALL, 5 );
-
-	m_primary = new wxTextCtrl( m_defaultLoadout, wxID_ANY, wxT("arifle_MXC_F"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_primary->SetMinSize( wxSize( 150,25 ) );
-	m_primary->SetMaxSize( wxSize( 150,25 ) );
-
-	primarySizer->Add( m_primary, 0, wxALL, 5 );
-
-	m_primaryLB = new wxListBox( m_defaultLoadout, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, 0 );
-	m_primaryLB->SetMinSize( wxSize( 150,217 ) );
-	m_primaryLB->SetMaxSize( wxSize( 150,250 ) );
-
-	primarySizer->Add( m_primaryLB, 0, wxALL, 5 );
-
-
-	fgSizer22->Add( primarySizer, 1, wxEXPAND, 5 );
-
-	wxFlexGridSizer* secondarySizer;
-	secondarySizer = new wxFlexGridSizer( 0, 1, 0, 0 );
-	secondarySizer->SetFlexibleDirection( wxBOTH );
-	secondarySizer->SetNonFlexibleGrowMode( wxFLEX_GROWMODE_SPECIFIED );
-
-	m_secondaryTxt = new wxStaticText( m_defaultLoadout, wxID_ANY, wxT("Secondary"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_secondaryTxt->Wrap( -1 );
-	m_secondaryTxt->SetFont( wxFont( 9, wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, true, wxT("Arial") ) );
-
-	secondarySizer->Add( m_secondaryTxt, 0, wxALL, 5 );
-
-	m_secondary = new wxTextCtrl( m_defaultLoadout, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-	m_secondary->SetMinSize( wxSize( 150,25 ) );
-	m_secondary->SetMaxSize( wxSize( 150,25 ) );
-
-	secondarySizer->Add( m_secondary, 0, wxALL, 5 );
-
-	m_secondaryLB = new wxListBox( m_defaultLoadout, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, 0 );
-	m_secondaryLB->SetMinSize( wxSize( 150,217 ) );
-	m_secondaryLB->SetMaxSize( wxSize( 150,250 ) );
-
-	secondarySizer->Add( m_secondaryLB, 0, wxALL, 5 );
-
-
-	fgSizer22->Add( secondarySizer, 1, wxEXPAND, 5 );
-
-
-	loadoutRow1Sizer->Add( fgSizer22, 1, wxEXPAND, 5 );
-
-
-	loadoutPageSizer->Add( loadoutRow1Sizer, 1, wxEXPAND, 5 );
-
-	m_staticline5 = new wxStaticLine( m_defaultLoadout, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL );
-	loadoutPageSizer->Add( m_staticline5, 0, wxEXPAND | wxALL, 5 );
-
-	wxFlexGridSizer* loadoutRow2Sizer;
-	loadoutRow2Sizer = new wxFlexGridSizer( 0, 3, 0, 0 );
-	loadoutRow2Sizer->SetFlexibleDirection( wxBOTH );
-	loadoutRow2Sizer->SetNonFlexibleGrowMode( wxFLEX_GROWMODE_SPECIFIED );
-
-	wxFlexGridSizer* linkedSizer;
-	linkedSizer = new wxFlexGridSizer( 0, 1, 0, 0 );
-	linkedSizer->SetFlexibleDirection( wxBOTH );
-	linkedSizer->SetNonFlexibleGrowMode( wxFLEX_GROWMODE_SPECIFIED );
-
-	m_otherEquip = new wxStaticText( m_defaultLoadout, wxID_ANY, wxT("Other Equipment (Linked Items)"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_otherEquip->Wrap( -1 );
-	m_otherEquip->SetFont( wxFont( 9, wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD, true, wxT("Arial") ) );
-
-	linkedSizer->Add( m_otherEquip, 0, wxALL, 5 );
-
-	wxFlexGridSizer* fgSizer32;
-	fgSizer32 = new wxFlexGridSizer( 1, 0, 0, 0 );
-	fgSizer32->SetFlexibleDirection( wxBOTH );
-	fgSizer32->SetNonFlexibleGrowMode( wxFLEX_GROWMODE_SPECIFIED );
-
-	wxFlexGridSizer* fgSizer33;
-	fgSizer33 = new wxFlexGridSizer( 0, 2, 0, 0 );
-	fgSizer33->SetFlexibleDirection( wxBOTH );
-	fgSizer33->SetNonFlexibleGrowMode( wxFLEX_GROWMODE_SPECIFIED );
-
-	m_linkedCustom = new wxTextCtrl( m_defaultLoadout, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-	fgSizer33->Add( m_linkedCustom, 0, wxALL, 5 );
-
-	m_addLinkedCustom = new wxButton( m_defaultLoadout, wxID_ANY, wxT("Add Custom"), wxDefaultPosition, wxDefaultSize, 0 );
-	fgSizer33->Add( m_addLinkedCustom, 0, wxALL, 5 );
-
-	m_linkedPresets = new wxListBox( m_defaultLoadout, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, 0 );
-	m_linkedPresets->Append( wxT("Map : ItemMap") );
-	m_linkedPresets->Append( wxT("Compass : ItemCompass") );
-	m_linkedPresets->Append( wxT("Watch : ItemWatch") );
-	m_linkedPresets->Append( wxT("Radio : ItemRadio") );
-	m_linkedPresets->SetMinSize( wxSize( 130,150 ) );
-	m_linkedPresets->SetMaxSize( wxSize( 150,-1 ) );
-
-	fgSizer33->Add( m_linkedPresets, 0, wxALL, 5 );
-
-	wxFlexGridSizer* fgSizer35;
-	fgSizer35 = new wxFlexGridSizer( 0, 1, 0, 0 );
-	fgSizer35->AddGrowableRow( 1 );
-	fgSizer35->SetFlexibleDirection( wxBOTH );
-	fgSizer35->SetNonFlexibleGrowMode( wxFLEX_GROWMODE_SPECIFIED );
-
-	m_addLinkPreset = new wxButton( m_defaultLoadout, wxID_ANY, wxT("Add Preset"), wxDefaultPosition, wxDefaultSize, 0 );
-	fgSizer35->Add( m_addLinkPreset, 0, wxALL, 5 );
-
-	m_removeLinkPreset = new wxButton( m_defaultLoadout, wxID_ANY, wxT("Remove Preset"), wxDefaultPosition, wxDefaultSize, 0 );
-	fgSizer35->Add( m_removeLinkPreset, 0, wxALL, 5 );
-
-	m_removeLinkEquip = new wxButton( m_defaultLoadout, wxID_ANY, wxT("Remove ->"), wxDefaultPosition, wxDefaultSize, 0 );
-	fgSizer35->Add( m_removeLinkEquip, 0, wxALL, 5 );
-
-
-	fgSizer33->Add( fgSizer35, 1, wxEXPAND, 5 );
-
-
-	fgSizer32->Add( fgSizer33, 1, wxEXPAND, 5 );
-
-	m_linkedItemsLB = new wxListBox( m_defaultLoadout, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, 0 );
-	m_linkedItemsLB->Append( wxT("ItemMap") );
-	m_linkedItemsLB->Append( wxT("ItemCompass") );
-	m_linkedItemsLB->Append( wxT("ItemWatch") );
-	m_linkedItemsLB->Append( wxT("ItemRadio") );
-	m_linkedItemsLB->Append( wxT("optic_Aco") );
-	m_linkedItemsLB->Append( wxT("acc_flashlight") );
-	m_linkedItemsLB->SetMinSize( wxSize( 150,185 ) );
-	m_linkedItemsLB->SetMaxSize( wxSize( 150,500 ) );
-
-	fgSizer32->Add( m_linkedItemsLB, 0, wxALL, 5 );
-
-
-	linkedSizer->Add( fgSizer32, 1, wxEXPAND, 5 );
-
-
-	loadoutRow2Sizer->Add( linkedSizer, 1, wxEXPAND, 5 );
-
-
-	loadoutRow2Sizer->Add( 10, 0, 1, wxEXPAND, 5 );
-
-	wxFlexGridSizer* vestSizer;
-	vestSizer = new wxFlexGridSizer( 0, 1, 0, 0 );
-	vestSizer->SetFlexibleDirection( wxBOTH );
-	vestSizer->SetNonFlexibleGrowMode( wxFLEX_GROWMODE_SPECIFIED );
-
-	m_vestTxt = new wxStaticText( m_defaultLoadout, wxID_ANY, wxT("Vest"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_vestTxt->Wrap( -1 );
-	m_vestTxt->SetFont( wxFont( 9, wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, true, wxT("Arial") ) );
-
-	vestSizer->Add( m_vestTxt, 0, wxALL, 5 );
-
-	m_vest = new wxTextCtrl( m_defaultLoadout, wxID_ANY, wxT("V_Chestrig_khk"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_vest->SetMinSize( wxSize( 150,25 ) );
-	m_vest->SetMaxSize( wxSize( 150,25 ) );
-
-	vestSizer->Add( m_vest, 0, wxALL, 5 );
-
-	m_vestLB = new wxListBox( m_defaultLoadout, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, 0 );
-	m_vestLB->SetMinSize( wxSize( 150,150 ) );
-	m_vestLB->SetMaxSize( wxSize( 150,250 ) );
-
-	vestSizer->Add( m_vestLB, 0, wxALL, 5 );
-
-
-	loadoutRow2Sizer->Add( vestSizer, 1, wxEXPAND, 5 );
-
-
-	loadoutPageSizer->Add( loadoutRow2Sizer, 1, wxEXPAND, 5 );
-
-	m_staticline6 = new wxStaticLine( m_defaultLoadout, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL );
-	loadoutPageSizer->Add( m_staticline6, 0, wxEXPAND | wxALL, 5 );
-
-	wxFlexGridSizer* loadoutRow3Sizer;
-	loadoutRow3Sizer = new wxFlexGridSizer( 0, 3, 0, 0 );
-	loadoutRow3Sizer->SetFlexibleDirection( wxBOTH );
-	loadoutRow3Sizer->SetNonFlexibleGrowMode( wxFLEX_GROWMODE_SPECIFIED );
-
-	wxFlexGridSizer* otherWeapSizer;
-	otherWeapSizer = new wxFlexGridSizer( 0, 1, 0, 0 );
-	otherWeapSizer->SetFlexibleDirection( wxBOTH );
-	otherWeapSizer->SetNonFlexibleGrowMode( wxFLEX_GROWMODE_SPECIFIED );
-
-	m_otherWeap = new wxStaticText( m_defaultLoadout, wxID_ANY, wxT("Other Weapons"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_otherWeap->Wrap( -1 );
-	m_otherWeap->SetFont( wxFont( 9, wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD, true, wxT("Arial") ) );
-
-	otherWeapSizer->Add( m_otherWeap, 0, wxALL, 5 );
-
-	wxFlexGridSizer* fgSizer321;
-	fgSizer321 = new wxFlexGridSizer( 1, 0, 0, 0 );
-	fgSizer321->SetFlexibleDirection( wxBOTH );
-	fgSizer321->SetNonFlexibleGrowMode( wxFLEX_GROWMODE_SPECIFIED );
-
-	wxFlexGridSizer* fgSizer331;
-	fgSizer331 = new wxFlexGridSizer( 0, 2, 0, 0 );
-	fgSizer331->SetFlexibleDirection( wxBOTH );
-	fgSizer331->SetNonFlexibleGrowMode( wxFLEX_GROWMODE_SPECIFIED );
-
-	m_weapCustom = new wxTextCtrl( m_defaultLoadout, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-	fgSizer331->Add( m_weapCustom, 0, wxALL, 5 );
-
-	m_addWeapCustom = new wxButton( m_defaultLoadout, wxID_ANY, wxT("Add Custom"), wxDefaultPosition, wxDefaultSize, 0 );
-	fgSizer331->Add( m_addWeapCustom, 0, wxALL, 5 );
-
-	m_weapPresets = new wxListBox( m_defaultLoadout, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, 0 );
-	m_weapPresets->Append( wxT("Binocular") );
-	m_weapPresets->SetMinSize( wxSize( 130,150 ) );
-	m_weapPresets->SetMaxSize( wxSize( 150,-1 ) );
-
-	fgSizer331->Add( m_weapPresets, 0, wxALL, 5 );
-
-	wxFlexGridSizer* fgSizer351;
-	fgSizer351 = new wxFlexGridSizer( 0, 1, 0, 0 );
-	fgSizer351->AddGrowableRow( 1 );
-	fgSizer351->SetFlexibleDirection( wxBOTH );
-	fgSizer351->SetNonFlexibleGrowMode( wxFLEX_GROWMODE_SPECIFIED );
-
-	m_addWeapPreset = new wxButton( m_defaultLoadout, wxID_ANY, wxT("Add Preset"), wxDefaultPosition, wxDefaultSize, 0 );
-	fgSizer351->Add( m_addWeapPreset, 0, wxALL, 5 );
-
-	m_removeWeapPreset = new wxButton( m_defaultLoadout, wxID_ANY, wxT("Remove Preset"), wxDefaultPosition, wxDefaultSize, 0 );
-	fgSizer351->Add( m_removeWeapPreset, 0, wxALL, 5 );
-
-	m_removeWeapEquip = new wxButton( m_defaultLoadout, wxID_ANY, wxT("Remove ->"), wxDefaultPosition, wxDefaultSize, 0 );
-	fgSizer351->Add( m_removeWeapEquip, 0, wxALL, 5 );
-
-
-	fgSizer331->Add( fgSizer351, 1, wxEXPAND, 5 );
-
-
-	fgSizer321->Add( fgSizer331, 1, wxEXPAND, 5 );
-
-	m_weaponsLB = new wxListBox( m_defaultLoadout, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, 0 );
-	m_weaponsLB->Append( wxT("Binocular") );
-	m_weaponsLB->SetMinSize( wxSize( 150,185 ) );
-	m_weaponsLB->SetMaxSize( wxSize( 150,500 ) );
-
-	fgSizer321->Add( m_weaponsLB, 0, wxALL, 5 );
-
-
-	otherWeapSizer->Add( fgSizer321, 1, wxEXPAND, 5 );
-
-
-	loadoutRow3Sizer->Add( otherWeapSizer, 1, wxEXPAND, 5 );
-
-
-	loadoutRow3Sizer->Add( 10, 0, 1, wxEXPAND, 5 );
-
-	wxFlexGridSizer* helmetSizer;
-	helmetSizer = new wxFlexGridSizer( 0, 1, 0, 0 );
-	helmetSizer->SetFlexibleDirection( wxBOTH );
-	helmetSizer->SetNonFlexibleGrowMode( wxFLEX_GROWMODE_SPECIFIED );
-
-	m_helmetTxt = new wxStaticText( m_defaultLoadout, wxID_ANY, wxT("Helmet"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_helmetTxt->Wrap( -1 );
-	m_helmetTxt->SetFont( wxFont( 9, wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, true, wxT("Arial") ) );
-
-	helmetSizer->Add( m_helmetTxt, 0, wxALL, 5 );
-
-	m_helmet = new wxTextCtrl( m_defaultLoadout, wxID_ANY, wxT("H_Watchcap_blk"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_helmet->SetMinSize( wxSize( 150,25 ) );
-	m_helmet->SetMaxSize( wxSize( 150,25 ) );
-
-	helmetSizer->Add( m_helmet, 0, wxALL, 5 );
-
-	m_helmetLB = new wxListBox( m_defaultLoadout, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, 0 );
-	m_helmetLB->SetMinSize( wxSize( 150,150 ) );
-	m_helmetLB->SetMaxSize( wxSize( 150,250 ) );
-
-	helmetSizer->Add( m_helmetLB, 0, wxALL, 5 );
-
-
-	loadoutRow3Sizer->Add( helmetSizer, 1, wxEXPAND, 5 );
-
-
-	loadoutPageSizer->Add( loadoutRow3Sizer, 1, wxEXPAND, 5 );
-
-	m_staticline8 = new wxStaticLine( m_defaultLoadout, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL );
-	loadoutPageSizer->Add( m_staticline8, 0, wxEXPAND | wxALL, 5 );
-
-	wxFlexGridSizer* loadoutRow4Sizer;
-	loadoutRow4Sizer = new wxFlexGridSizer( 1, 0, 0, 0 );
-	loadoutRow4Sizer->AddGrowableCol( 0 );
-	loadoutRow4Sizer->SetFlexibleDirection( wxBOTH );
-	loadoutRow4Sizer->SetNonFlexibleGrowMode( wxFLEX_GROWMODE_SPECIFIED );
-
-	wxFlexGridSizer* magLeftSide;
-	magLeftSide = new wxFlexGridSizer( 0, 1, 0, 0 );
-	magLeftSide->SetFlexibleDirection( wxBOTH );
-	magLeftSide->SetNonFlexibleGrowMode( wxFLEX_GROWMODE_SPECIFIED );
-
-	m_magsTxt = new wxStaticText( m_defaultLoadout, wxID_ANY, wxT("Magazines"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_magsTxt->Wrap( -1 );
-	m_magsTxt->SetFont( wxFont( 9, wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD, true, wxT("Arial") ) );
-
-	magLeftSide->Add( m_magsTxt, 0, wxALL, 5 );
-
-	wxFlexGridSizer* fgSizer3211;
-	fgSizer3211 = new wxFlexGridSizer( 1, 0, 0, 0 );
-	fgSizer3211->SetFlexibleDirection( wxBOTH );
-	fgSizer3211->SetNonFlexibleGrowMode( wxFLEX_GROWMODE_SPECIFIED );
-
-	wxFlexGridSizer* fgSizer3311;
-	fgSizer3311 = new wxFlexGridSizer( 0, 2, 0, 0 );
-	fgSizer3311->SetFlexibleDirection( wxBOTH );
-	fgSizer3311->SetNonFlexibleGrowMode( wxFLEX_GROWMODE_SPECIFIED );
-
-	m_magCustom = new wxTextCtrl( m_defaultLoadout, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-	fgSizer3311->Add( m_magCustom, 0, wxALL, 5 );
-
-	m_addMagCustom = new wxButton( m_defaultLoadout, wxID_ANY, wxT("Add Custom"), wxDefaultPosition, wxDefaultSize, 0 );
-	fgSizer3311->Add( m_addMagCustom, 0, wxALL, 5 );
-
-	m_magPresets = new wxListBox( m_defaultLoadout, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, 0 );
-	m_magPresets->Append( wxT("30Rnd_65x39_caseless_mag") );
-	m_magPresets->SetMinSize( wxSize( 130,150 ) );
-	m_magPresets->SetMaxSize( wxSize( 150,-1 ) );
-
-	fgSizer3311->Add( m_magPresets, 0, wxALL, 5 );
-
-	wxFlexGridSizer* fgSizer3511;
-	fgSizer3511 = new wxFlexGridSizer( 0, 1, 0, 0 );
-	fgSizer3511->AddGrowableRow( 0 );
-	fgSizer3511->SetFlexibleDirection( wxBOTH );
-	fgSizer3511->SetNonFlexibleGrowMode( wxFLEX_GROWMODE_SPECIFIED );
-
-	m_addMagPreset = new wxButton( m_defaultLoadout, wxID_ANY, wxT("Add Preset"), wxDefaultPosition, wxDefaultSize, 0 );
-	fgSizer3511->Add( m_addMagPreset, 0, wxALL, 5 );
-
-	m_removeMagPreset = new wxButton( m_defaultLoadout, wxID_ANY, wxT("Remove Preset"), wxDefaultPosition, wxDefaultSize, 0 );
-	fgSizer3511->Add( m_removeMagPreset, 0, wxALL, 5 );
-
-
-	fgSizer3311->Add( fgSizer3511, 1, wxEXPAND, 5 );
-
-
-	fgSizer3211->Add( fgSizer3311, 1, wxEXPAND, 5 );
-
-
-	magLeftSide->Add( fgSizer3211, 1, wxEXPAND, 5 );
-
-
-	loadoutRow4Sizer->Add( magLeftSide, 1, wxEXPAND, 5 );
-
-	wxFlexGridSizer* magMiddle;
-	magMiddle = new wxFlexGridSizer( 0, 1, 0, 0 );
-	magMiddle->AddGrowableRow( 2 );
-	magMiddle->SetFlexibleDirection( wxBOTH );
-	magMiddle->SetNonFlexibleGrowMode( wxFLEX_GROWMODE_SPECIFIED );
-
-	m_magAmountTxt = new wxStaticText( m_defaultLoadout, wxID_ANY, wxT("Amount"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_magAmountTxt->Wrap( -1 );
-	magMiddle->Add( m_magAmountTxt, 0, wxALL, 5 );
-
-	m_magAmount = new wxTextCtrl( m_defaultLoadout, wxID_ANY, wxT("1"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_magAmount->SetMinSize( wxSize( 120,-1 ) );
-
-	magMiddle->Add( m_magAmount, 0, wxALL, 5 );
-
-	m_updateMagAmount = new wxButton( m_defaultLoadout, wxID_ANY, wxT("Update Amount ->"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_updateMagAmount->SetMinSize( wxSize( 120,-1 ) );
-
-	magMiddle->Add( m_updateMagAmount, 0, wxALL, 5 );
-
-	m_magRemove = new wxButton( m_defaultLoadout, wxID_ANY, wxT("Remove -->"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_magRemove->SetMinSize( wxSize( 120,-1 ) );
-
-	magMiddle->Add( m_magRemove, 0, wxALL, 5 );
-
-
-	loadoutRow4Sizer->Add( magMiddle, 1, wxEXPAND, 5 );
-
-	wxFlexGridSizer* magRightSide;
-	magRightSide = new wxFlexGridSizer( 0, 2, 0, 0 );
-	magRightSide->SetFlexibleDirection( wxBOTH );
-	magRightSide->SetNonFlexibleGrowMode( wxFLEX_GROWMODE_SPECIFIED );
-
-	m_magLB = new wxListBox( m_defaultLoadout, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, 0 );
-	m_magLB->Append( wxT("30Rnd_65x39_caseless_mag|2") );
-	m_magLB->Append( wxT("SmokeShell") );
-	m_magLB->SetMinSize( wxSize( 150,215 ) );
-	m_magLB->SetMaxSize( wxSize( 150,500 ) );
-
-	magRightSide->Add( m_magLB, 0, wxALL, 5 );
-
-
-	loadoutRow4Sizer->Add( magRightSide, 1, wxEXPAND, 5 );
-
-
-	loadoutPageSizer->Add( loadoutRow4Sizer, 1, wxEXPAND, 5 );
-
-	m_staticline7 = new wxStaticLine( m_defaultLoadout, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL );
-	loadoutPageSizer->Add( m_staticline7, 0, wxEXPAND | wxALL, 5 );
-
-	wxFlexGridSizer* loadoutRow5Sizer1;
-	loadoutRow5Sizer1 = new wxFlexGridSizer( 1, 0, 0, 0 );
-	loadoutRow5Sizer1->AddGrowableCol( 0 );
-	loadoutRow5Sizer1->SetFlexibleDirection( wxBOTH );
-	loadoutRow5Sizer1->SetNonFlexibleGrowMode( wxFLEX_GROWMODE_SPECIFIED );
-
-	wxFlexGridSizer* itemLeftSide;
-	itemLeftSide = new wxFlexGridSizer( 0, 1, 0, 0 );
-	itemLeftSide->SetFlexibleDirection( wxBOTH );
-	itemLeftSide->SetNonFlexibleGrowMode( wxFLEX_GROWMODE_SPECIFIED );
-
-	m_itemTxt = new wxStaticText( m_defaultLoadout, wxID_ANY, wxT("Items"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_itemTxt->Wrap( -1 );
-	m_itemTxt->SetFont( wxFont( 9, wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD, true, wxT("Arial") ) );
-
-	itemLeftSide->Add( m_itemTxt, 0, wxALL, 5 );
-
-	wxFlexGridSizer* fgSizer32111;
-	fgSizer32111 = new wxFlexGridSizer( 1, 0, 0, 0 );
-	fgSizer32111->SetFlexibleDirection( wxBOTH );
-	fgSizer32111->SetNonFlexibleGrowMode( wxFLEX_GROWMODE_SPECIFIED );
-
-	wxFlexGridSizer* fgSizer33111;
-	fgSizer33111 = new wxFlexGridSizer( 0, 2, 0, 0 );
-	fgSizer33111->SetFlexibleDirection( wxBOTH );
-	fgSizer33111->SetNonFlexibleGrowMode( wxFLEX_GROWMODE_SPECIFIED );
-
-	m_itemCustom = new wxTextCtrl( m_defaultLoadout, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-	fgSizer33111->Add( m_itemCustom, 0, wxALL, 5 );
-
-	m_addItemCustom = new wxButton( m_defaultLoadout, wxID_ANY, wxT("Add Custom"), wxDefaultPosition, wxDefaultSize, 0 );
-	fgSizer33111->Add( m_addItemCustom, 0, wxALL, 5 );
-
-	m_itemPresets = new wxListBox( m_defaultLoadout, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, 0 );
-	m_itemPresets->Append( wxT("First Aid Kit") );
-	m_itemPresets->SetMinSize( wxSize( 130,150 ) );
-	m_itemPresets->SetMaxSize( wxSize( 150,-1 ) );
-
-	fgSizer33111->Add( m_itemPresets, 0, wxALL, 5 );
-
-	wxFlexGridSizer* fgSizer35111;
-	fgSizer35111 = new wxFlexGridSizer( 0, 1, 0, 0 );
-	fgSizer35111->AddGrowableRow( 0 );
-	fgSizer35111->SetFlexibleDirection( wxBOTH );
-	fgSizer35111->SetNonFlexibleGrowMode( wxFLEX_GROWMODE_SPECIFIED );
-
-	m_addItemPreset = new wxButton( m_defaultLoadout, wxID_ANY, wxT("Add Preset"), wxDefaultPosition, wxDefaultSize, 0 );
-	fgSizer35111->Add( m_addItemPreset, 0, wxALL, 5 );
-
-	m_removeItemPreset = new wxButton( m_defaultLoadout, wxID_ANY, wxT("Remove Preset"), wxDefaultPosition, wxDefaultSize, 0 );
-	fgSizer35111->Add( m_removeItemPreset, 0, wxALL, 5 );
-
-
-	fgSizer33111->Add( fgSizer35111, 1, wxEXPAND, 5 );
-
-
-	fgSizer32111->Add( fgSizer33111, 1, wxEXPAND, 5 );
-
-
-	itemLeftSide->Add( fgSizer32111, 1, wxEXPAND, 5 );
-
-
-	loadoutRow5Sizer1->Add( itemLeftSide, 1, wxEXPAND, 5 );
-
-	wxFlexGridSizer* itemMiddle;
-	itemMiddle = new wxFlexGridSizer( 0, 1, 0, 0 );
-	itemMiddle->AddGrowableRow( 2 );
-	itemMiddle->SetFlexibleDirection( wxBOTH );
-	itemMiddle->SetNonFlexibleGrowMode( wxFLEX_GROWMODE_SPECIFIED );
-
-	m_itemAmountTxt = new wxStaticText( m_defaultLoadout, wxID_ANY, wxT("Amount"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_itemAmountTxt->Wrap( -1 );
-	itemMiddle->Add( m_itemAmountTxt, 0, wxALL, 5 );
-
-	m_itemAmount = new wxTextCtrl( m_defaultLoadout, wxID_ANY, wxT("1"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_itemAmount->SetMinSize( wxSize( 120,-1 ) );
-
-	itemMiddle->Add( m_itemAmount, 0, wxALL, 5 );
-
-	m_itemUpdateAmount = new wxButton( m_defaultLoadout, wxID_ANY, wxT("Update Amount ->"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_itemUpdateAmount->SetMinSize( wxSize( 120,-1 ) );
-
-	itemMiddle->Add( m_itemUpdateAmount, 0, wxALL, 5 );
-
-	m_itemRemove = new wxButton( m_defaultLoadout, wxID_ANY, wxT("Remove -->"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_itemRemove->SetMinSize( wxSize( 120,-1 ) );
-
-	itemMiddle->Add( m_itemRemove, 0, wxALL, 5 );
-
-
-	loadoutRow5Sizer1->Add( itemMiddle, 1, wxEXPAND, 5 );
-
-	wxFlexGridSizer* itemRightSide;
-	itemRightSide = new wxFlexGridSizer( 0, 2, 0, 0 );
-	itemRightSide->SetFlexibleDirection( wxBOTH );
-	itemRightSide->SetNonFlexibleGrowMode( wxFLEX_GROWMODE_SPECIFIED );
-
-	m_itemLB = new wxListBox( m_defaultLoadout, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, 0 );
-	m_itemLB->Append( wxT("FirstAidKit|1") );
-	m_itemLB->SetMinSize( wxSize( 150,215 ) );
-	m_itemLB->SetMaxSize( wxSize( 150,500 ) );
-
-	itemRightSide->Add( m_itemLB, 0, wxALL, 5 );
-
-
-	loadoutRow5Sizer1->Add( itemRightSide, 1, wxEXPAND, 5 );
-
-
-	loadoutPageSizer->Add( loadoutRow5Sizer1, 1, wxEXPAND, 5 );
-
-
-	m_defaultLoadout->SetSizer( loadoutPageSizer );
-	m_defaultLoadout->Layout();
-	loadoutPageSizer->Fit( m_defaultLoadout );
-	m_loadoutBook->AddPage( m_defaultLoadout, wxT("Blufor1"), false );
 
 	fgSizer10->Add( m_loadoutBook, 1, wxEXPAND | wxALL, 5 );
 
@@ -1481,6 +941,8 @@ mainFrame::mainFrame( wxWindow* parent, wxWindowID id, const wxString& title, co
 	m_wreckManager->Connect( wxEVT_SET_FOCUS, wxFocusEventHandler( mainFrame::corpseManagerFocus ), NULL, this );
 	m_missionBackground->Connect( wxEVT_COMMAND_FILEPICKER_CHANGED, wxFileDirPickerEventHandler( mainFrame::onMissionBackground ), NULL, this );
 	m_worldBackground->Connect( wxEVT_COMMAND_FILEPICKER_CHANGED, wxFileDirPickerEventHandler( mainFrame::onMapBackground ), NULL, this );
+	m_addLoadingText->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( mainFrame::addLoadingText ), NULL, this );
+	m_removeLoadingText->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( mainFrame::removeLoadingText ), NULL, this );
 	m_respawnType->Connect( wxEVT_SET_FOCUS, wxFocusEventHandler( mainFrame::respawnTypeFocus ), NULL, this );
 	m_startRespawn->Connect( wxEVT_SET_FOCUS, wxFocusEventHandler( mainFrame::startRespawnFocus ), NULL, this );
 	m_respawnDelaySlider->Connect( wxEVT_SLIDER, wxCommandEventHandler( mainFrame::respawnDelaySliderUpdate ), NULL, this );
@@ -1493,30 +955,6 @@ mainFrame::mainFrame( wxWindow* parent, wxWindowID id, const wxString& title, co
 	m_closeLoadout->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( mainFrame::closeLoadout ), NULL, this );
 	m_loadoutLB->Connect( wxEVT_COMMAND_LISTBOX_DOUBLECLICKED, wxCommandEventHandler( mainFrame::selectLoadout ), NULL, this );
 	m_delLoadout->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( mainFrame::deleteLoadout ), NULL, this );
-	m_uniformLB->Connect( wxEVT_COMMAND_LISTBOX_DOUBLECLICKED, wxCommandEventHandler( mainFrame::onUniformChange ), NULL, this );
-	m_backpackLB->Connect( wxEVT_COMMAND_LISTBOX_DOUBLECLICKED, wxCommandEventHandler( mainFrame::onBackpackChange ), NULL, this );
-	m_primaryLB->Connect( wxEVT_COMMAND_LISTBOX_DOUBLECLICKED, wxCommandEventHandler( mainFrame::onPrimaryChange ), NULL, this );
-	m_secondaryLB->Connect( wxEVT_COMMAND_LISTBOX_DOUBLECLICKED, wxCommandEventHandler( mainFrame::onSecondaryChange ), NULL, this );
-	m_addLinkedCustom->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( mainFrame::addCustomLinked ), NULL, this );
-	m_addLinkPreset->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( mainFrame::addPresetLinked ), NULL, this );
-	m_removeLinkPreset->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( mainFrame::removePresetLinked ), NULL, this );
-	m_removeLinkEquip->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( mainFrame::removeLinked ), NULL, this );
-	m_vestLB->Connect( wxEVT_COMMAND_LISTBOX_DOUBLECLICKED, wxCommandEventHandler( mainFrame::onVestChange ), NULL, this );
-	m_addWeapCustom->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( mainFrame::addCustomWeap ), NULL, this );
-	m_addWeapPreset->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( mainFrame::addPresetWeap ), NULL, this );
-	m_removeWeapPreset->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( mainFrame::removePresetWeap ), NULL, this );
-	m_removeWeapEquip->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( mainFrame::removeWeap ), NULL, this );
-	m_helmetLB->Connect( wxEVT_COMMAND_LISTBOX_DOUBLECLICKED, wxCommandEventHandler( mainFrame::onHelmetChange ), NULL, this );
-	m_addMagCustom->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( mainFrame::addCustomMag ), NULL, this );
-	m_addMagPreset->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( mainFrame::addPresetMag ), NULL, this );
-	m_removeMagPreset->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( mainFrame::removePresetMag ), NULL, this );
-	m_updateMagAmount->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( mainFrame::updateMagAmount ), NULL, this );
-	m_magRemove->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( mainFrame::removeMag ), NULL, this );
-	m_addItemCustom->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( mainFrame::addCustomItem ), NULL, this );
-	m_addItemPreset->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( mainFrame::addPresetItem ), NULL, this );
-	m_removeItemPreset->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( mainFrame::removePresetItem ), NULL, this );
-	m_itemUpdateAmount->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( mainFrame::updateItemAmount ), NULL, this );
-	m_itemRemove->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( mainFrame::removeItem ), NULL, this );
 }
 
 mainFrame::~mainFrame()
@@ -1544,6 +982,8 @@ mainFrame::~mainFrame()
 	m_wreckManager->Disconnect( wxEVT_SET_FOCUS, wxFocusEventHandler( mainFrame::corpseManagerFocus ), NULL, this );
 	m_missionBackground->Disconnect( wxEVT_COMMAND_FILEPICKER_CHANGED, wxFileDirPickerEventHandler( mainFrame::onMissionBackground ), NULL, this );
 	m_worldBackground->Disconnect( wxEVT_COMMAND_FILEPICKER_CHANGED, wxFileDirPickerEventHandler( mainFrame::onMapBackground ), NULL, this );
+	m_addLoadingText->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( mainFrame::addLoadingText ), NULL, this );
+	m_removeLoadingText->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( mainFrame::removeLoadingText ), NULL, this );
 	m_respawnType->Disconnect( wxEVT_SET_FOCUS, wxFocusEventHandler( mainFrame::respawnTypeFocus ), NULL, this );
 	m_startRespawn->Disconnect( wxEVT_SET_FOCUS, wxFocusEventHandler( mainFrame::startRespawnFocus ), NULL, this );
 	m_respawnDelaySlider->Disconnect( wxEVT_SLIDER, wxCommandEventHandler( mainFrame::respawnDelaySliderUpdate ), NULL, this );
@@ -1556,30 +996,6 @@ mainFrame::~mainFrame()
 	m_closeLoadout->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( mainFrame::closeLoadout ), NULL, this );
 	m_loadoutLB->Disconnect( wxEVT_COMMAND_LISTBOX_DOUBLECLICKED, wxCommandEventHandler( mainFrame::selectLoadout ), NULL, this );
 	m_delLoadout->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( mainFrame::deleteLoadout ), NULL, this );
-	m_uniformLB->Disconnect( wxEVT_COMMAND_LISTBOX_DOUBLECLICKED, wxCommandEventHandler( mainFrame::onUniformChange ), NULL, this );
-	m_backpackLB->Disconnect( wxEVT_COMMAND_LISTBOX_DOUBLECLICKED, wxCommandEventHandler( mainFrame::onBackpackChange ), NULL, this );
-	m_primaryLB->Disconnect( wxEVT_COMMAND_LISTBOX_DOUBLECLICKED, wxCommandEventHandler( mainFrame::onPrimaryChange ), NULL, this );
-	m_secondaryLB->Disconnect( wxEVT_COMMAND_LISTBOX_DOUBLECLICKED, wxCommandEventHandler( mainFrame::onSecondaryChange ), NULL, this );
-	m_addLinkedCustom->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( mainFrame::addCustomLinked ), NULL, this );
-	m_addLinkPreset->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( mainFrame::addPresetLinked ), NULL, this );
-	m_removeLinkPreset->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( mainFrame::removePresetLinked ), NULL, this );
-	m_removeLinkEquip->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( mainFrame::removeLinked ), NULL, this );
-	m_vestLB->Disconnect( wxEVT_COMMAND_LISTBOX_DOUBLECLICKED, wxCommandEventHandler( mainFrame::onVestChange ), NULL, this );
-	m_addWeapCustom->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( mainFrame::addCustomWeap ), NULL, this );
-	m_addWeapPreset->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( mainFrame::addPresetWeap ), NULL, this );
-	m_removeWeapPreset->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( mainFrame::removePresetWeap ), NULL, this );
-	m_removeWeapEquip->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( mainFrame::removeWeap ), NULL, this );
-	m_helmetLB->Disconnect( wxEVT_COMMAND_LISTBOX_DOUBLECLICKED, wxCommandEventHandler( mainFrame::onHelmetChange ), NULL, this );
-	m_addMagCustom->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( mainFrame::addCustomMag ), NULL, this );
-	m_addMagPreset->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( mainFrame::addPresetMag ), NULL, this );
-	m_removeMagPreset->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( mainFrame::removePresetMag ), NULL, this );
-	m_updateMagAmount->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( mainFrame::updateMagAmount ), NULL, this );
-	m_magRemove->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( mainFrame::removeMag ), NULL, this );
-	m_addItemCustom->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( mainFrame::addCustomItem ), NULL, this );
-	m_addItemPreset->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( mainFrame::addPresetItem ), NULL, this );
-	m_removeItemPreset->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( mainFrame::removePresetItem ), NULL, this );
-	m_itemUpdateAmount->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( mainFrame::updateItemAmount ), NULL, this );
-	m_itemRemove->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( mainFrame::removeItem ), NULL, this );
 
 	m_mgr.UnInit();
 
@@ -1594,7 +1010,7 @@ LoadoutPanel::LoadoutPanel( wxWindow* parent, wxWindowID id, const wxPoint& pos,
 	loadoutPanelSizer = new wxBoxSizer( wxVERTICAL );
 
 	m_defaultLoadout = new wxScrolledWindow( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxVSCROLL );
-	m_defaultLoadout->SetScrollRate( 5, 5 );
+	m_defaultLoadout->SetScrollRate( 10, 25 );
 	wxFlexGridSizer* loadoutPageSizer;
 	loadoutPageSizer = new wxFlexGridSizer( 0, 1, 0, 0 );
 	loadoutPageSizer->SetFlexibleDirection( wxBOTH );
@@ -1641,7 +1057,11 @@ LoadoutPanel::LoadoutPanel( wxWindow* parent, wxWindowID id, const wxPoint& pos,
 
 	uniformSizer1->Add( m_uniform, 0, wxALL, 5 );
 
-	m_uniformLB = new wxListBox( m_defaultLoadout, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, 0 );
+	m_uniformLB = new wxListBox( m_defaultLoadout, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, 0|wxHSCROLL|wxVSCROLL );
+	m_uniformLB->Append( wxT("Vanilla Blufor : U_B_CombatUniform_mcam_tshirt") );
+	m_uniformLB->Append( wxT("[40CO] Crye G4 : MW_UKSF_Uniform_B1") );
+	m_uniformLB->Append( wxT("[40CO] Crye G4 FC :  MW_UKSF_Uniform_B2") );
+	m_uniformLB->Append( wxEmptyString );
 	m_uniformLB->SetMinSize( wxSize( 150,150 ) );
 	m_uniformLB->SetMaxSize( wxSize( 150,250 ) );
 
@@ -1661,13 +1081,14 @@ LoadoutPanel::LoadoutPanel( wxWindow* parent, wxWindowID id, const wxPoint& pos,
 
 	backpackSizer1->Add( m_backpackTxt1, 0, wxALL, 5 );
 
-	m_backpack = new wxTextCtrl( m_defaultLoadout, wxID_ANY, wxT("B_AssaultPack_mcamo"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_backpack = new wxTextCtrl( m_defaultLoadout, wxID_ANY, wxT("B_AssaultPack_mcamo\n"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_backpack->SetMinSize( wxSize( 150,25 ) );
 	m_backpack->SetMaxSize( wxSize( 150,25 ) );
 
 	backpackSizer1->Add( m_backpack, 0, wxALL, 5 );
 
-	m_backpackLB = new wxListBox( m_defaultLoadout, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, 0 );
+	m_backpackLB = new wxListBox( m_defaultLoadout, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, 0|wxHSCROLL|wxVSCROLL );
+	m_backpackLB->Append( wxT("Vanilla Blufor : B_AssaultPack_mcamo") );
 	m_backpackLB->SetMinSize( wxSize( 150,150 ) );
 	m_backpackLB->SetMaxSize( wxSize( 150,250 ) );
 
@@ -1701,7 +1122,8 @@ LoadoutPanel::LoadoutPanel( wxWindow* parent, wxWindowID id, const wxPoint& pos,
 
 	primarySizer1->Add( m_primary, 0, wxALL, 5 );
 
-	m_primaryLB = new wxListBox( m_defaultLoadout, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, 0 );
+	m_primaryLB = new wxListBox( m_defaultLoadout, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, 0|wxHSCROLL|wxVSCROLL );
+	m_primaryLB->Append( wxT("Vanilla AR : arifle_MXC_F") );
 	m_primaryLB->SetMinSize( wxSize( 150,217 ) );
 	m_primaryLB->SetMaxSize( wxSize( 150,250 ) );
 
@@ -1727,7 +1149,7 @@ LoadoutPanel::LoadoutPanel( wxWindow* parent, wxWindowID id, const wxPoint& pos,
 
 	secondarySizer1->Add( m_secondary, 0, wxALL, 5 );
 
-	m_secondaryLB = new wxListBox( m_defaultLoadout, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, 0 );
+	m_secondaryLB = new wxListBox( m_defaultLoadout, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, 0|wxHSCROLL|wxVSCROLL );
 	m_secondaryLB->SetMinSize( wxSize( 150,217 ) );
 	m_secondaryLB->SetMaxSize( wxSize( 150,250 ) );
 
@@ -1779,7 +1201,7 @@ LoadoutPanel::LoadoutPanel( wxWindow* parent, wxWindowID id, const wxPoint& pos,
 	fgSizer332->Add( m_addLinkedCustom
 	, 0, wxALL, 5 );
 
-	m_linkedPresets = new wxListBox( m_defaultLoadout, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, 0 );
+	m_linkedPresets = new wxListBox( m_defaultLoadout, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, 0|wxHSCROLL|wxVSCROLL );
 	m_linkedPresets->Append( wxT("Map : ItemMap") );
 	m_linkedPresets->Append( wxT("Compass : ItemCompass") );
 	m_linkedPresets->Append( wxT("Watch : ItemWatch") );
@@ -1812,13 +1234,7 @@ LoadoutPanel::LoadoutPanel( wxWindow* parent, wxWindowID id, const wxPoint& pos,
 
 	fgSizer322->Add( fgSizer332, 1, wxEXPAND, 5 );
 
-	m_linkedItemsLB = new wxListBox( m_defaultLoadout, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, 0 );
-	m_linkedItemsLB->Append( wxT("ItemMap") );
-	m_linkedItemsLB->Append( wxT("ItemCompass") );
-	m_linkedItemsLB->Append( wxT("ItemWatch") );
-	m_linkedItemsLB->Append( wxT("ItemRadio") );
-	m_linkedItemsLB->Append( wxT("optic_Aco") );
-	m_linkedItemsLB->Append( wxT("acc_flashlight") );
+	m_linkedItemsLB = new wxListBox( m_defaultLoadout, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, 0|wxHSCROLL|wxVSCROLL );
 	m_linkedItemsLB->SetMinSize( wxSize( 150,185 ) );
 	m_linkedItemsLB->SetMaxSize( wxSize( 150,500 ) );
 
@@ -1830,8 +1246,8 @@ LoadoutPanel::LoadoutPanel( wxWindow* parent, wxWindowID id, const wxPoint& pos,
 
 	loadoutRow2Sizer1->Add( linkedSizer1, 1, wxEXPAND, 5 );
 
-
-	loadoutRow2Sizer1->Add( 10, 0, 1, wxEXPAND, 5 );
+	m_staticline9 = new wxStaticLine( m_defaultLoadout, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLI_VERTICAL );
+	loadoutRow2Sizer1->Add( m_staticline9, 0, wxEXPAND | wxALL, 5 );
 
 	wxFlexGridSizer* vestSizer1;
 	vestSizer1 = new wxFlexGridSizer( 0, 1, 0, 0 );
@@ -1850,7 +1266,8 @@ LoadoutPanel::LoadoutPanel( wxWindow* parent, wxWindowID id, const wxPoint& pos,
 
 	vestSizer1->Add( m_vest, 0, wxALL, 5 );
 
-	m_vestLB = new wxListBox( m_defaultLoadout, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, 0 );
+	m_vestLB = new wxListBox( m_defaultLoadout, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, 0|wxHSCROLL|wxVSCROLL );
+	m_vestLB->Append( wxT("Vanilla Blufor : V_Chestrig_khk") );
 	m_vestLB->SetMinSize( wxSize( 150,150 ) );
 	m_vestLB->SetMaxSize( wxSize( 150,250 ) );
 
@@ -1897,7 +1314,7 @@ LoadoutPanel::LoadoutPanel( wxWindow* parent, wxWindowID id, const wxPoint& pos,
 	m_addWeapCustom = new wxButton( m_defaultLoadout, wxID_ANY, wxT("Add Custom"), wxDefaultPosition, wxDefaultSize, 0 );
 	fgSizer3312->Add( m_addWeapCustom, 0, wxALL, 5 );
 
-	m_weapPresets = new wxListBox( m_defaultLoadout, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, 0 );
+	m_weapPresets = new wxListBox( m_defaultLoadout, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, 0|wxHSCROLL|wxVSCROLL );
 	m_weapPresets->Append( wxT("Binocular") );
 	m_weapPresets->SetMinSize( wxSize( 130,150 ) );
 	m_weapPresets->SetMaxSize( wxSize( 150,-1 ) );
@@ -1925,8 +1342,7 @@ LoadoutPanel::LoadoutPanel( wxWindow* parent, wxWindowID id, const wxPoint& pos,
 
 	fgSizer3212->Add( fgSizer3312, 1, wxEXPAND, 5 );
 
-	m_weaponsLB = new wxListBox( m_defaultLoadout, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, 0 );
-	m_weaponsLB->Append( wxT("Binocular") );
+	m_weaponsLB = new wxListBox( m_defaultLoadout, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, 0|wxHSCROLL|wxVSCROLL );
 	m_weaponsLB->SetMinSize( wxSize( 150,185 ) );
 	m_weaponsLB->SetMaxSize( wxSize( 150,500 ) );
 
@@ -1938,8 +1354,8 @@ LoadoutPanel::LoadoutPanel( wxWindow* parent, wxWindowID id, const wxPoint& pos,
 
 	loadoutRow3Sizer1->Add( otherWeapSizer1, 1, wxEXPAND, 5 );
 
-
-	loadoutRow3Sizer1->Add( 10, 0, 1, wxEXPAND, 5 );
+	m_staticline10 = new wxStaticLine( m_defaultLoadout, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLI_VERTICAL );
+	loadoutRow3Sizer1->Add( m_staticline10, 0, wxEXPAND | wxALL, 5 );
 
 	wxFlexGridSizer* helmetSizer1;
 	helmetSizer1 = new wxFlexGridSizer( 0, 1, 0, 0 );
@@ -1958,7 +1374,8 @@ LoadoutPanel::LoadoutPanel( wxWindow* parent, wxWindowID id, const wxPoint& pos,
 
 	helmetSizer1->Add( m_helmet, 0, wxALL, 5 );
 
-	m_helmetLB = new wxListBox( m_defaultLoadout, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, 0 );
+	m_helmetLB = new wxListBox( m_defaultLoadout, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, 0|wxHSCROLL|wxVSCROLL );
+	m_helmetLB->Append( wxT("Vanilla Blufor : H_Watchcap_blk") );
 	m_helmetLB->SetMinSize( wxSize( 150,150 ) );
 	m_helmetLB->SetMaxSize( wxSize( 150,250 ) );
 
@@ -2006,7 +1423,7 @@ LoadoutPanel::LoadoutPanel( wxWindow* parent, wxWindowID id, const wxPoint& pos,
 	m_addMagCustom = new wxButton( m_defaultLoadout, wxID_ANY, wxT("Add Custom"), wxDefaultPosition, wxDefaultSize, 0 );
 	fgSizer33112->Add( m_addMagCustom, 0, wxALL, 5 );
 
-	m_magPresets = new wxListBox( m_defaultLoadout, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, 0 );
+	m_magPresets = new wxListBox( m_defaultLoadout, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, 0|wxHSCROLL|wxVSCROLL );
 	m_magPresets->Append( wxT("30Rnd_65x39_caseless_mag") );
 	m_magPresets->SetMinSize( wxSize( 130,150 ) );
 	m_magPresets->SetMaxSize( wxSize( 150,-1 ) );
@@ -2070,9 +1487,7 @@ LoadoutPanel::LoadoutPanel( wxWindow* parent, wxWindowID id, const wxPoint& pos,
 	magRightSide1->SetFlexibleDirection( wxBOTH );
 	magRightSide1->SetNonFlexibleGrowMode( wxFLEX_GROWMODE_SPECIFIED );
 
-	m_magLB = new wxListBox( m_defaultLoadout, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, 0 );
-	m_magLB->Append( wxT("30Rnd_65x39_caseless_mag|2") );
-	m_magLB->Append( wxT("SmokeShell") );
+	m_magLB = new wxListBox( m_defaultLoadout, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, 0|wxHSCROLL|wxVSCROLL );
 	m_magLB->SetMinSize( wxSize( 150,215 ) );
 	m_magLB->SetMaxSize( wxSize( 150,500 ) );
 
@@ -2120,7 +1535,7 @@ LoadoutPanel::LoadoutPanel( wxWindow* parent, wxWindowID id, const wxPoint& pos,
 	m_addItemCustom = new wxButton( m_defaultLoadout, wxID_ANY, wxT("Add Custom"), wxDefaultPosition, wxDefaultSize, 0 );
 	fgSizer331111->Add( m_addItemCustom, 0, wxALL, 5 );
 
-	m_itemPresets = new wxListBox( m_defaultLoadout, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, 0 );
+	m_itemPresets = new wxListBox( m_defaultLoadout, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, 0|wxHSCROLL|wxVSCROLL );
 	m_itemPresets->Append( wxT("First Aid Kit") );
 	m_itemPresets->SetMinSize( wxSize( 130,150 ) );
 	m_itemPresets->SetMaxSize( wxSize( 150,-1 ) );
@@ -2184,8 +1599,7 @@ LoadoutPanel::LoadoutPanel( wxWindow* parent, wxWindowID id, const wxPoint& pos,
 	itemRightSide1->SetFlexibleDirection( wxBOTH );
 	itemRightSide1->SetNonFlexibleGrowMode( wxFLEX_GROWMODE_SPECIFIED );
 
-	m_itemLB = new wxListBox( m_defaultLoadout, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, 0 );
-	m_itemLB->Append( wxT("FirstAidKit|1") );
+	m_itemLB = new wxListBox( m_defaultLoadout, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, 0|wxHSCROLL|wxVSCROLL );
 	m_itemLB->SetMinSize( wxSize( 150,215 ) );
 	m_itemLB->SetMaxSize( wxSize( 150,500 ) );
 
@@ -2229,11 +1643,13 @@ LoadoutPanel::LoadoutPanel( wxWindow* parent, wxWindowID id, const wxPoint& pos,
 	m_removeMagPreset->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( LoadoutPanel::removePresetMag ), NULL, this );
 	m_updateMagAmount->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( LoadoutPanel::updateMagAmount ), NULL, this );
 	m_magRemove->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( LoadoutPanel::removeMag ), NULL, this );
+	m_magLB->Connect( wxEVT_COMMAND_LISTBOX_SELECTED, wxCommandEventHandler( LoadoutPanel::magSelected ), NULL, this );
 	m_addItemCustom->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( LoadoutPanel::addCustomItem ), NULL, this );
 	m_addItemPreset->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( LoadoutPanel::addPresetItem ), NULL, this );
 	m_removeItemPreset->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( LoadoutPanel::removePresetItem ), NULL, this );
 	m_itemUpdateAmount->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( LoadoutPanel::updateItemAmount ), NULL, this );
 	m_itemRemove->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( LoadoutPanel::removeItem ), NULL, this );
+	m_itemLB->Connect( wxEVT_COMMAND_LISTBOX_SELECTED, wxCommandEventHandler( LoadoutPanel::itemSelected ), NULL, this );
 }
 
 LoadoutPanel::~LoadoutPanel()
@@ -2260,10 +1676,12 @@ LoadoutPanel::~LoadoutPanel()
 	m_removeMagPreset->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( LoadoutPanel::removePresetMag ), NULL, this );
 	m_updateMagAmount->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( LoadoutPanel::updateMagAmount ), NULL, this );
 	m_magRemove->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( LoadoutPanel::removeMag ), NULL, this );
+	m_magLB->Disconnect( wxEVT_COMMAND_LISTBOX_SELECTED, wxCommandEventHandler( LoadoutPanel::magSelected ), NULL, this );
 	m_addItemCustom->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( LoadoutPanel::addCustomItem ), NULL, this );
 	m_addItemPreset->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( LoadoutPanel::addPresetItem ), NULL, this );
 	m_removeItemPreset->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( LoadoutPanel::removePresetItem ), NULL, this );
 	m_itemUpdateAmount->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( LoadoutPanel::updateItemAmount ), NULL, this );
 	m_itemRemove->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( LoadoutPanel::removeItem ), NULL, this );
+	m_itemLB->Disconnect( wxEVT_COMMAND_LISTBOX_SELECTED, wxCommandEventHandler( LoadoutPanel::itemSelected ), NULL, this );
 
 }

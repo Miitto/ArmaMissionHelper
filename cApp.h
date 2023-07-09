@@ -1,6 +1,7 @@
 #pragma once
 
 #include "cMain.h"
+#include "cLoadoutPanel.h"
 
 #include <wx/wxprec.h>
 #include <wx/cmdline.h>

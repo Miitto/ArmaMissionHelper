@@ -22,5 +22,7 @@ public:
 	wxString missionBackground;
 
 	wxString mapBackground;
+
+	wxArrayString loadTxts;
 };
 
